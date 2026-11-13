@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giriş / Qeydiyyat — Sınaq</title>
+<meta name="description" content="Hesabına daxil ol — irəliləyişin, nəticələrin və balansın bir yerdə.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+
+<main class="wrap narrow">
+<div class="hero merkez" style="padding:34px 0 18px">
+  <p class="eyebrow">Şəxsi kabinet</p>
+  <h1 style="font-size:clamp(1.8rem,4.2vw,2.4rem)">Hesabına daxil ol</h1>
+  <p class="lead" style="margin-top:12px">İrəliləyişin, nəticələrin və balansın hesabına bağlıdır —
+  istənilən cihazdan daxil ol, hər şey yerindədir.</p>
+</div>
+
+<div id="hesab-xeta"></div>
+
+<div class="hqutu">
+  <div class="hteb">
+    <button class="hteb-d aktiv" data-teb="giris">Giriş</button>
+    <button class="hteb-d" data-teb="qeyd">Qeydiyyat</button>
+  </div>
+
+  <form id="f-giris" class="hform">
+    <label>E-poçt<input type="email" name="email" required autocomplete="email" placeholder="ad@mail.com"></label>
+    <label>Parol<input type="password" name="parol" required autocomplete="current-password" placeholder="••••••••"></label>
+    <button class="dugme tam" type="submit">Daxil ol</button>
+    <button type="button" class="kecid" id="parol-unutdum">Parolu unutdum</button>
+  </form>
+
+  <form id="f-qeyd" class="hform gizli">
+    <label>Ad<input type="text" name="ad" required placeholder="Adınız"></label>
+    <label>E-poçt<input type="email" name="email" required autocomplete="email" placeholder="ad@mail.com"></label>
+    <label>Parol<input type="password" name="parol" required minlength="6" autocomplete="new-password" placeholder="ən azı 6 simvol"></label>
+    <button class="dugme tam" type="submit">Hesab yarat</button>
+    <p class="xirda">Qeydiyyat pulsuzdur. Mövzu izahları hesab olmadan da açıqdır.</p>
+  </form>
+</div>
+
+<p class="lead merkez" style="font-size:.92rem;margin-top:26px">
+  Hesab yaratmaq istəmirsən? <a href="movzular.html">Mövzu izahları</a> hamıya pulsuzdur.
+</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var S = window.Sinaq, xeta = document.getElementById("hesab-xeta");
+  function goster(m, nov) {
+    xeta.className = nov === "ok" ? "notice ok" : "notice xeta";
+    xeta.innerHTML = m;
+    xeta.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  function qayit() {
+    var p = new URLSearchParams(location.search).get("qayit");
+    location.href = (p && /^[a-z0-9\-]+\.html$/i.test(p)) ? p : "kabinet.html";
+  }
+  if (!S || !S.aktiv) {
+    goster("<b>Hesab sistemi hələ qurulmayıb.</b> Mövzu izahları onsuz da pulsuzdur — " +
+           '<a href="movzular.html">buradan keçin</a>.');
+    document.querySelector(".hqutu").style.display = "none";
+    return;
+  }
+  S.hazir().then(function () { if (S.istifadeci) qayit(); });
+
+  document.querySelectorAll(".hteb-d").forEach(function (d) {
+    d.addEventListener("click", function () {
+      document.querySelectorAll(".hteb-d").forEach(function (x) { x.classList.remove("aktiv"); });
+      d.classList.add("aktiv");
+      var g = d.getAttribute("data-teb") === "giris";
+      document.getElementById("f-giris").classList.toggle("gizli", !g);
+      document.getElementById("f-qeyd").classList.toggle("gizli", g);
+      xeta.className = ""; xeta.innerHTML = "";
+    });
+  });
+
+  document.getElementById("f-giris").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var b = this.querySelector("button[type=submit]"); b.disabled = true; b.textContent = "Yoxlanılır…";
+    S.giris(this.email.value.trim(), this.parol.value).then(function (r) {
+      if (r.error) {
+        b.disabled = false; b.textContent = "Daxil ol";
+        goster(r.error.message.indexOf("Invalid") > -1
+          ? "E-poçt və ya parol səhvdir."
+          : "Giriş alınmadı: " + S.kacir(r.error.message));
+      } else { qayit(); }
+    });
+  });
+
+  document.getElementById("f-qeyd").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var b = this.querySelector("button[type=submit]"); b.disabled = true; b.textContent = "Yaradılır…";
+    S.qeydiyyat(this.email.value.trim(), this.parol.value, this.ad.value.trim()).then(function (r) {
+      b.disabled = false; b.textContent = "Hesab yarat";
+      if (r.error) {
+        goster("Hesab yaradılmadı: " + S.kacir(r.error.message));
+      } else if (r.data && r.data.session) {
+        qayit();
+      } else {
+        goster("<b>Hesab yaradıldı.</b> E-poçtunuza təsdiq linki göndərildi — " +
+               "linkə kliklədikdən sonra daxil ola bilərsiniz.", "ok");
+      }
+    });
+  });
+
+  document.getElementById("parol-unutdum").addEventListener("click", function () {
+    var e = document.querySelector("#f-giris input[name=email]").value.trim();
+    if (!e) { goster("Əvvəlcə e-poçtunuzu yazın."); return; }
+    S.parolBerpa(e).then(function () {
+      goster("Parol bərpa linki <b>" + S.kacir(e) + "</b> ünvanına göndərildi.", "ok");
+    });
+  });
+});
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

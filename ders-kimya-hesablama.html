@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kimyəvi hesablamalar — Kimya — Sınaq</title>
+<meta name="description" content="Tənlik üzrə hesablamalar, məhsulun çıxımı">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="movzular.html">Mövzu izahları</a> › <a href="fenn-ders-kimya.html">Kimya</a> › <span>Kimyəvi hesablamalar</span></nav>
+<div class="hero" style="padding:26px 0 18px"><p class="eyebrow">14-ci mövzu · izah pulsuzdur</p><h1 style="font-size:clamp(1.8rem,4.2vw,2.5rem)">Kimyəvi hesablamalar</h1><p class="lead" style="margin-top:12px">Tənlik üzrə hesablamalar, məhsulun çıxımı</p></div>
+<article class="lesson">
+<h3>Kimyəvi hesablamaların açarı: mol</h3>
+<div class="tip"><b>Universal alqoritm:</b><br>
+1. Verilən kəmiyyəti <b>mola</b> çevir<br>
+2. Tənliyin əmsalları ilə axtarılan maddənin molunu tap<br>
+3. Molu istənilən kəmiyyətə (qram, litr) çevir<br>
+Bütün məsələlər bu üç addımla həll olunur.</div>
+
+<h3>Çevirmə düsturları</h3>
+<div class="tscroll"><table>
+<tr><td>Kütlədən mola</td><td>n = m / M</td></tr>
+<tr><td>Moldan kütləyə</td><td>m = n · M</td></tr>
+<tr><td>Qaz həcmindən mola (n.ş.)</td><td>n = V / 22,4</td></tr>
+<tr><td>Hissəcik sayından</td><td>n = N / (6,02·10²³)</td></tr>
+<tr><td>Məhluldan</td><td>n = C · V</td></tr>
+</table></div>
+
+<h3>Nümunə: tənlik üzrə hesablama</h3>
+<div class="ex"><b>Məsələ:</b> 10 q CaCO₃ parçalandıqda neçə litr CO₂ alınır?<br><br>
+CaCO₃ → CaO + CO₂<br>
+1. M(CaCO₃) = 40 + 12 + 48 = 100 q/mol → n = 10/100 = <b>0,1 mol</b><br>
+2. Əmsallar 1:1 → n(CO₂) = <b>0,1 mol</b><br>
+3. V = 0,1 · 22,4 = <b>2,24 l</b></div>
+
+<h3>Kütlə payı</h3>
+<p><b>ω = m(element)/M(maddə) · 100%</b></p>
+<div class="ex">H₂O-da hidrogenin payı: 2/18 · 100 = <b>11,1%</b><br>
+Fe₂O₃-də dəmirin payı: 112/160 · 100 = <b>70%</b></div>
+
+<h3>Qazın nisbi sıxlığı</h3>
+<p><b>D = M₁ / M₂</b></p>
+<ul>
+<li>Hidrogena görə: D(H₂) = M/2</li>
+<li>Havaya görə: D(hava) = M/29</li>
+</ul>
+<div class="ex">Havaya görə sıxlığı 1,52 olan qaz: M = 1,52 · 29 ≈ 44 → <b>CO₂</b>.
+Bu üsulla naməlum qazı tapmaq olar.</div>
+
+<h3>Reaksiya çıxımı</h3>
+<p><b>η = m(praktiki) / m(nəzəri) · 100%</b></p>
+<p>Real şəraitdə heç vaxt 100% olmur — itkilər, əks reaksiyalar, yan məhsullar var.</p>
+
+<h3>Artıq və çatışmayan maddə</h3>
+<div class="tip"><b>Vacib addım:</b> iki reagent verilibsə, hansının <b>tam sərf olunduğunu</b>
+tapmaq lazımdır. Hesablama <b>həmin maddəyə görə</b> aparılır.<br>
+Hər birinin molunu tənliyin əmsalına böl — kiçik nəticə verən çatışmayandır.</div>
+<div class="ex">4 q H₂ (2 mol) və 32 q O₂ (1 mol), tənlik 2H₂ + O₂ → 2H₂O<br>
+H₂: 2/2 = 1 · O₂: 1/1 = 1 → <b>bərabərdir</b>, ikisi də tam sərf olunur.</div>
+
+<h3>Məhlul qarışdırma</h3>
+<p>İki məhlul qarışdırıldıqda maddələrin kütlələri toplanır, məhlulların kütlələri də toplanır:</p>
+<div class="ex">200 q 10%-li + 300 q 20%-li:<br>
+Maddə: 20 + 60 = 80 q · Məhlul: 500 q → ω = 80/500 · 100 = <b>16%</b></div>
+</article>
+<section class="plain" style="padding-top:34px"><div class="sec-head"><h2>Bu mövzunun testləri</h2><p>İzahı oxuduqdan sonra biliyini yoxla. Hər səhv cavabın ətraflı izahı açılır.</p></div><div class="alqutu"><div><b>3 test toplusu · 30 sual</b><span>Bir dəfə alırsan, bütün toplular açılır və həmişəlik səninki olur.</span></div><div class="alsag"><span class="price big">2 AZN</span><a class="btn solid" data-al="kimya:hesablama" href="index.html#paket">Testləri al</a></div></div></section>
+</main>
+<script src="assets/al.js"></script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
