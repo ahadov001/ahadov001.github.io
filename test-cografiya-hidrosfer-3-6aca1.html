@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hidrosfer — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-cografiya.html">Coğrafiya</a> › <a href="acilan-cografiya-hidrosfer-095af.html">Hidrosfer</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Hidrosfer — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "cografiya-hidrosfer-3", "title": "Hidrosfer — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Suyun dövranı nədir?", "o": ["Donma", "Buxarlanma, kondensasiya, yağıntı və axının fasiləsiz dövrü", "Dayanıqlı hal", "Ərimə"], "a": 1, "e": "Günəş enerjisi hərəkətverici qüvvədir."}, {"s": "Şəlalə necə yaranır?", "o": ["Deltada", "Çay yatağında sərt və yumşaq süxurların növbələşməsindən", "Gölün ortasında", "Mənbədə"], "a": 1, "e": "Niaqara, Viktoriya məşhurdur."}, {"s": "Su anbarı nə üçün yaradılır?", "o": ["Turizm yalnız", "Suvarma, enerji, su təchizatı", "Gözəllik", "Balıq yalnız"], "a": 1, "e": "Mingəçevir Azərbaycanda ən böyüyüdür."}, {"s": "Mingəçevir su anbarı hansı çay üzərindədir?", "o": ["Kür", "Həkəri", "Samur", "Araz"], "a": 0, "e": "Enerji və suvarma əhəmiyyətlidir."}, {"s": "Dünya okeanının çirklənməsinin əsas səbəbi nədir?", "o": ["Axınlar", "Neft tullantıları və plastik", "Balıqlar", "Dalğalar"], "a": 1, "e": "Ekosistemə ziyan vurur."}, {"s": "Duzluluq hansı vahidlə ölçülür?", "o": ["Dərəcə", "Promil (‰)", "Metr", "Faiz"], "a": 1, "e": "1 kq suda qram duz."}, {"s": "Ən duzlu dəniz hansıdır?", "o": ["Qara dəniz", "Xəzər", "Ölü dəniz", "Baltik"], "a": 2, "e": "Duzluluq 300‰-ə çatır."}, {"s": "Qara dənizin duzluluğu niyə azdır?", "o": ["Dərin olduğu üçün", "İsti olduğu üçün", "Çox çay suyu tökülür və buxarlanma azdır", "Kiçik olduğu üçün"], "a": 2, "e": "Təxminən 18‰."}, {"s": "Boğaz nədir?", "o": ["Körfəz", "İki su hövzəsini birləşdirən dar su yolu", "Quru hissə", "Ada"], "a": 1, "e": "Bosfor buna nümunədir."}, {"s": "Körfəz nədir?", "o": ["Yarımada", "Dar su yolu", "Okean və ya dənizin quruya daxil olan hissəsi", "Ada"], "a": 2, "e": "Fars körfəzi buna nümunədir."}]};
+  var ACAR = "cografiya:hidrosfer";
+  CFG.meta = {"fenn": "cografiya", "movzu": "hidrosfer", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Hidrosfer — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

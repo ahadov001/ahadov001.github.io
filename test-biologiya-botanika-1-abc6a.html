@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitkilərin quruluşu — 1-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-biologiya.html">Biologiya</a> › <a href="acilan-biologiya-botanika-6d565.html">Bitkilərin quruluşu</a> › <span>1-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Bitkilərin quruluşu — 1-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "biologiya-botanika-1", "title": "Bitkilərin quruluşu — 1-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Kökün əsas funksiyası nədir?", "o": ["Tənəffüs", "Su və mineral maddələri sormaq, bitkini bərkitmək", "Çoxalma", "Fotosintez"], "a": 1, "e": "Torpaqdan qidalanmanı təmin edir."}, {"s": "Kök sistemi neçə növdür?", "o": ["4", "3", "1", "2"], "a": 3, "e": "Mil və saçaqlı kök sistemi."}, {"s": "Yarpağın əsas funksiyası nədir?", "o": ["Fotosintez, transpirasiya, qaz mübadiləsi", "Bərkitmə", "Çoxalma", "Su sormaq"], "a": 0, "e": "Bitkinin «mətbəxi»dir."}, {"s": "Ağızcıqlar harada yerləşir?", "o": ["Gövdədə yalnız", "Çiçəkdə", "Yarpağın epidermasında", "Kökdə"], "a": 2, "e": "Qaz mübadiləsini tənzimləyir."}, {"s": "Gövdənin funksiyası nədir?", "o": ["Fotosintez yalnız", "Yalnız dayaq", "Çoxalma", "Dayaq, maddələrin daşınması, bəzən ehtiyat toplama"], "a": 3, "e": "Yarpaq və çiçəkləri daşıyır."}, {"s": "Çiçəyin əsas hissələri hansılardır?", "o": ["Yarpaq", "Erkəkcik, dişicik, ləçək, kasacıq", "Yalnız dişicik", "Yalnız ləçək"], "a": 1, "e": "Çoxalma orqanıdır."}, {"s": "Tozlanma nədir?", "o": ["Meyvə yetişməsi", "Tozcuğun dişiciyin ağzına düşməsi", "Mayalanma", "Toxum əmələgəlmə"], "a": 1, "e": "Mayalanmadan əvvəlki mərhələdir."}, {"s": "Meyvə nədən inkişaf edir?", "o": ["Ləçəkdən", "Yumurtalıqdan", "Erkəkcikdən", "Kasacıqdan"], "a": 1, "e": "Toxumları qoruyur və yayır."}, {"s": "Toxum nədən ibarətdir?", "o": ["Yalnız qabıq", "Rüşeym, ehtiyat qida, qabıq", "Yalnız rüşeym", "Kök"], "a": 1, "e": "Yeni bitkinin başlanğıcıdır."}, {"s": "Kambi nədir?", "o": ["Çiçək", "Yarpaq toxuması", "Kök", "Gövdənin eninə böyüməsini təmin edən toxuma"], "a": 3, "e": "Törədici toxumadır."}]};
+  var ACAR = "biologiya:botanika";
+  CFG.meta = {"fenn": "biologiya", "movzu": "botanika", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Bitkilərin quruluşu — 1-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

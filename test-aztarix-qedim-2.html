@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ən qədim dövr — 2-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-aztarix.html">Azərbaycan tarixi</a> › <span>Ən qədim dövr · 2-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Ən qədim dövr — 2-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "aztarix-qedim-2", "title": "Ən qədim dövr — 2-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Daş dövrü hansı mərhələlərə bölünür?", "o": ["Tunc və dəmir", "Yalnız paleolit", "Paleolit, mezolit, neolit", "Eneolit və tunc"], "a": 2, "e": "Üç əsas mərhələ var."}, {"s": "İlk əmək alətləri nədən hazırlanırdı?", "o": ["Gil", "Daş və sümük", "Ağac", "Metal"], "a": 1, "e": "Çaxmaq daşı ən çox istifadə olunurdu."}, {"s": "Qobustan qoruğu nə vaxt UNESCO siyahısına daxil edilib?", "o": ["1998", "2015", "1990", "2007"], "a": 3, "e": "Mədəni landşaft kimi qeydə alınıb."}, {"s": "Tunc dövründə hansı yeni təsərrüfat forması yarandı?", "o": ["Ovçuluq", "Balıqçılıq", "Toplayıcılıq", "Köçəri maldarlıq"], "a": 3, "e": "Əmək bölgüsü dərinləşdi."}, {"s": "Qədim Azərbaycanda kurqanlar nədir?", "o": ["Qala", "Torpaq qəbir abidələri", "Məbəd", "Saray"], "a": 1, "e": "Tunc dövrünə aid dəfn abidələridir."}, {"s": "Gəmiqaya abidələri harada yerləşir?", "o": ["Qarabağ", "Şirvan", "Lənkəran", "Naxçıvan"], "a": 3, "e": "Ordubad rayonunda, Gəmiqaya dağındadır."}, {"s": "Qədim insanların ilk məşğuliyyəti nə olub?", "o": ["Ticarət", "Ovçuluq və yığıcılıq", "Əkinçilik", "Sənətkarlıq"], "a": 1, "e": "Mənimsəmə təsərrüfatı idi."}, {"s": "Dəmir dövrü Azərbaycanda nə vaxt başlayıb?", "o": ["B.e. I əsr", "E.ə. II minillik sonu – I minillik əvvəli", "E.ə. V minillik", "B.e. V əsr"], "a": 1, "e": "Dəmir alətlər təsərrüfatı dəyişdirdi."}, {"s": "Leylatəpə mədəniyyəti hansı dövrə aiddir?", "o": ["Dəmir dövrü", "Paleolit", "Orta əsrlər", "Eneolit"], "a": 3, "e": "Mis-daş dövrünün mühüm abidəsidir."}, {"s": "Qobustan təsvirlərində hansı rəqs əks olunub?", "o": ["Vals", "Yallı", "Lezginka", "Tanqo"], "a": 1, "e": "Kollektiv yallı rəqsi təsvir edilib."}]};
+  var ACAR = null;
+  CFG.meta = {"fenn": "aztarix", "movzu": "qedim", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Ən qədim dövr — 2-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
