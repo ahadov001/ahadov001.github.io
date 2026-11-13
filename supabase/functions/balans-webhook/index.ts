@@ -21,12 +21,16 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 //  (Product → Variants bölməsindəki rəqəm) buraya yazın.
 // ─────────────────────────────────────────────────────────────
 const PAKETLER: Record<string, number> = {
-  "000001": 500,    // 5 AZN  → 500 qəpik
-  "000002": 1000,   // 10 AZN
-  "000003": 2500,   // 25 AZN
-  "000004": 5000,   // 50 AZN
+  // ── TEST rejimi
+  "2371785": 200,    //  2 AZN
+  "2371788": 500,    //  5 AZN
+  "2371790": 1000,   // 10 AZN
+  "2371791": 2000,   // 20 AZN
+  "2371795": 3000,   // 30 AZN
+  "2371796": 5000,   // 50 AZN
+  // ── CANLI rejim: ID-ləri buraya əlavə edin, məsələn:
+  // "1234567": 200,
 };
-
 function altiOnluq(bayt: Uint8Array): string {
   return [...bayt].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
