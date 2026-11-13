@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<title>Daxil ol — Azərbaycan dili</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap"><div class="authbox"><div class="panel-card">
+<div id="setup-banner"></div>
+<div class="tabs" role="tablist" id="tabs"><button type="button" role="tab" id="t-in" aria-selected="true">Daxil ol</button><button type="button" role="tab" id="t-up" aria-selected="false">Qeydiyyat</button></div>
+<div id="msg" role="alert"></div>
+
+<form id="f-in" novalidate>
+<label class="field"><span>E-poçt</span><input type="email" name="email" autocomplete="email" required></label>
+<label class="field"><span>Şifrə</span><input type="password" name="password" autocomplete="current-password" required></label>
+<button class="btn solid block" type="submit">Daxil ol</button>
+<p style="margin:14px 0 0;text-align:center"><button type="button" class="linkbtn" id="go-forgot">Şifrəni unutdum</button></p>
+</form>
+
+<form id="f-up" hidden novalidate>
+<label class="field"><span>Ad, soyad</span><input type="text" name="name" autocomplete="name" required maxlength="80"></label>
+<label class="field"><span>E-poçt</span><input type="email" name="email" autocomplete="email" required></label>
+<label class="field"><span>Şifrə</span><input type="password" name="password" autocomplete="new-password" minlength="8" required><small>Ən azı 8 simvol.</small></label>
+<button class="btn solid block" type="submit">Hesab yarat</button>
+<p style="margin:14px 0 0;text-align:center;color:var(--muted);font-size:.86rem">Qeydiyyat pulsuzdur. Hesab nəticələrini və balansını saxlamaq üçündür.</p>
+</form>
+
+<form id="f-forgot" hidden novalidate>
+<p style="margin-top:0;color:var(--muted)">E-poçtunu yaz, şifrəni yeniləmək üçün link göndərək.</p>
+<label class="field"><span>E-poçt</span><input type="email" name="email" autocomplete="email" required></label>
+<button class="btn solid block" type="submit">Link göndər</button>
+<p style="margin:14px 0 0;text-align:center"><button type="button" class="linkbtn" id="back-in">← Geri</button></p>
+</form>
+
+<form id="f-reset" hidden novalidate>
+<p style="margin-top:0;color:var(--muted)">Yeni şifrəni yaz.</p>
+<label class="field"><span>Yeni şifrə</span><input type="password" name="password" autocomplete="new-password" minlength="8" required><small>Ən azı 8 simvol.</small></label>
+<button class="btn solid block" type="submit">Şifrəni yenilə</button>
+</form>
+</div></div></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+<script>
+
+(function () {
+  var S = window.Sinaq;
+  S.mountHeader("");
+  S.setupBanner();
+  var next = S.safeNext(S.qs("next"), "kabinet.html");
+  var forms = { in: "f-in", up: "f-up", forgot: "f-forgot", reset: "f-reset" };
+  var msg = document.getElementById("msg");
+  var isRecovery = /type=recovery/.test(location.hash) || S.qs("mode") === "reset";
+
+  function show(which) {
+    Object.keys(forms).forEach(function (k) { document.getElementById(forms[k]).hidden = k !== which; });
+    document.getElementById("tabs").hidden = which === "forgot" || which === "reset";
+    document.getElementById("t-in").setAttribute("aria-selected", which === "in");
+    document.getElementById("t-up").setAttribute("aria-selected", which === "up");
+    note("");
+  }
+  function note(text, ok) { msg.className = text ? "msg " + (ok ? "ok" : "err") : ""; msg.textContent = text || ""; }
+  function busy(form, on) {
+    var b = form.querySelector("button[type=submit]");
+    if (!b) return;
+    if (on) { b.dataset.l = b.textContent; b.textContent = "Gözləyin…"; } else if (b.dataset.l) { b.textContent = b.dataset.l; }
+    b.disabled = on;
+  }
+  function val(form, n) { return form.elements[n].value.trim(); }
+  function emailOk(v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); }
+  function base() { return location.origin + location.pathname.replace(/[^/]*$/, ""); }
+
+  document.getElementById("t-in").onclick = function () { show("in"); };
+  document.getElementById("t-up").onclick = function () { show("up"); };
+  document.getElementById("go-forgot").onclick = function () { show("forgot"); };
+  document.getElementById("back-in").onclick = function () { show("in"); };
+
+  if (!S.sb) { note("Sayt hələ quraşdırılmayıb."); return; }
+
+  document.getElementById("f-in").addEventListener("submit", async function (e) {
+    e.preventDefault(); var f = e.target;
+    var email = val(f, "email"), pw = f.elements.password.value;
+    if (!emailOk(email) || !pw) { note("E-poçt və şifrəni yaz."); return; }
+    busy(f, true); note("");
+    var r = await S.sb.auth.signInWithPassword({ email: email, password: pw });
+    busy(f, false);
+    if (r.error) { note(S.errText(r.error)); return; }
+    location.href = next;
+  });
+
+  document.getElementById("f-up").addEventListener("submit", async function (e) {
+    e.preventDefault(); var f = e.target;
+    var name = val(f, "name"), email = val(f, "email"), pw = f.elements.password.value;
+    if (!name) { note("Adını yaz."); return; }
+    if (!emailOk(email)) { note("E-poçt ünvanı düzgün deyil."); return; }
+    if (pw.length < 8) { note("Şifrə ən azı 8 simvol olmalıdır."); return; }
+    busy(f, true); note("");
+    var r = await S.sb.auth.signUp({ email: email, password: pw, options: { data: { full_name: name }, emailRedirectTo: base() + "giris.html?next=" + encodeURIComponent(next) } });
+    busy(f, false);
+    if (r.error) { note(S.errText(r.error)); return; }
+    if (r.data && r.data.session) { location.href = next; return; }
+    f.reset();
+    note("Hesab yaradıldı. E-poçtuna təsdiq linki göndərdik: linkə basandan sonra daxil ola bilərsən. Gələn qutuda yoxdursa, spam qovluğuna bax.", true);
+  });
+
+  document.getElementById("f-forgot").addEventListener("submit", async function (e) {
+    e.preventDefault(); var f = e.target; var email = val(f, "email");
+    if (!emailOk(email)) { note("E-poçt ünvanı düzgün deyil."); return; }
+    busy(f, true);
+    var r = await S.sb.auth.resetPasswordForEmail(email, { redirectTo: base() + "giris.html?mode=reset" });
+    busy(f, false);
+    if (r.error) { note(S.errText(r.error)); return; }
+    note("Əgər bu e-poçtla hesab varsa, şifrəni yeniləmək üçün link göndərildi.", true);
+  });
+
+  document.getElementById("f-reset").addEventListener("submit", async function (e) {
+    e.preventDefault(); var f = e.target; var pw = f.elements.password.value;
+    if (pw.length < 8) { note("Şifrə ən azı 8 simvol olmalıdır."); return; }
+    busy(f, true);
+    var r = await S.sb.auth.updateUser({ password: pw });
+    busy(f, false);
+    if (r.error) { note(S.errText(r.error)); return; }
+    note("Şifrə yeniləndi. Kabinetə yönləndirilirsən…", true);
+    setTimeout(function () { location.href = "kabinet.html"; }, 1200);
+  });
+
+  S.sb.auth.onAuthStateChange(function (ev) { if (ev === "PASSWORD_RECOVERY") show("reset"); });
+
+  S.ready.then(function (st) {
+    if (isRecovery) { show("reset"); return; }
+    if (st.user) { location.replace(next); return; }
+    show(S.qs("mode") === "up" ? "up" : "in");
+  });
+})();
+
+</script>
+<footer class="site-foot"><div class="wrap">Azərbaycan dili — mövzu testləri, buraxılış və qəbul imtahanı variantları. Balans artırılarkən ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
