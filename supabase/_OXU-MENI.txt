@@ -1,0 +1,10 @@
+BU QOVLUĞU GITHUB-A YÜKLƏMƏYƏ EHTİYAC YOXDUR.
+Bu fayllar Supabase-də istifadə olunur (ana _OXU-MENI.txt, Mərhələ 2 və 3):
+
+  01-sxem.sql      → Supabase SQL Editor-da işə salın (bazanı qurur)
+  02-qiymetler.sql → Supabase SQL Editor-da işə salın (174 xidmətin qiyməti)
+  functions/balans-webhook/index.ts
+                   → Supabase Edge Function kimi yerləşdirin
+
+Saytın özü üçün yalnız index.html, digər .html fayllar və
+assets qovluğu lazımdır.

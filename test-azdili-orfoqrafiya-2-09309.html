@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orfoqrafiya — 2-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-azdili.html">Azərbaycan dili</a> › <a href="acilan-azdili-orfoqrafiya-977cb.html">Orfoqrafiya</a> › <span>2-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Orfoqrafiya — 2-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 12 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "azdili-orfoqrafiya-2", "title": "Orfoqrafiya — 2-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Hansı sözün yazılışı düzgündür?", "o": ["müəlim", "müəllım", "muəllim", "müəllim"], "a": 3, "e": "Qoşa «ll» ilə yazılır."}, {"s": "Hansı söz defislə yazılır?", "o": ["dəmiryolu", "tez-tez", "günəbaxan", "beşillik"], "a": 1, "e": "Eyni sözün təkrarı defislə yazılır."}, {"s": "«Qeyri-müəyyən» sözündə defis niyə var?", "o": ["«Qeyri-» önlüyü ilə yazılır", "Səhvdir", "Təkrardır", "Say var"], "a": 0, "e": "«Qeyri-, anti-, vitse-» önlükləri defislə birləşir."}, {"s": "Hansı cərgədə bütün sözlər bitişik yazılır?", "o": ["tez-tez, ata-ana", "kömək etmək, imza atmaq", "günəbaxan, dəmiryolu, boyunbağı", "beş-altı, iyirmi-otuz"], "a": 2, "e": "Mürəkkəb sözlər bitişik yazılır."}, {"s": "Hansı söz böyük hərflə yazılmalıdır?", "o": ["nazir", "direktor", "professor", "bakı"], "a": 3, "e": "Coğrafi ad — Bakı."}, {"s": "«Əlbəttə» sözünün düzgün yazılışı hansıdır?", "o": ["əlbətte", "əlbəttə", "əlbətdə", "albəttə"], "a": 1, "e": "Qoşa «tt» ilə yazılır."}, {"s": "Həftə günlərinin adı necə yazılır?", "o": ["ayrı", "böyük hərflə", "defislə", "bitişik"], "a": 3, "e": "Bazarertəsi, çərşənbəaxşamı — bitişik yazılır."}, {"s": "Hansı ifadə ayrı yazılır?", "o": ["beşillik", "kömək etmək", "istiot", "üçbucaq"], "a": 1, "e": "Köməkçi feillərlə birləşmələr ayrı yazılır."}, {"s": "«Ata-ana» niyə defislə yazılır?", "o": ["Yaxın mənalı sözlərdir", "Saydır", "Əks mənalıdır", "Təkrardır"], "a": 0, "e": "Yaxın mənalı sözlərin birləşməsi defislə yazılır."}, {"s": "Hansı sözün yazılışı səhvdir?", "o": ["doqquz", "hüceyrə", "təşəkkür", "səkiz"], "a": 3, "e": "Düzgünü «səkkiz» — qoşa «kk» ilə."}, {"s": "Vəzifə adları necə yazılır?", "o": ["Defislə", "Həmişə böyük hərflə", "Kiçik hərflə", "Dırnaqda"], "a": 2, "e": "Nazir, direktor, professor — kiçik hərflə."}, {"s": "«Gecə-gündüz» birləşməsində defis niyə var?", "o": ["Əks mənalı sözlərdir", "Mürəkkəb sözdür", "Yaxın mənalıdır", "Təkrardır"], "a": 0, "e": "Əks mənalı sözlər defislə yazılır."}]};
+  var ACAR = "azdili:orfoqrafiya";
+  CFG.meta = {"fenn": "azdili", "movzu": "orfoqrafiya", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Orfoqrafiya — 2-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Şəxsi kabinet — Sınaq</title>
+<meta name="description" content="İrəliləyişin, transkriptin, nəticələrin və balansın.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+
+<main class="wrap">
+<div id="k-yuklenir" class="notice">Kabinet yüklənir…</div>
+<div id="k-govde" class="gizli">
+
+  <div class="k-bas">
+    <div>
+      <p class="eyebrow">Şəxsi kabinet</p>
+      <h1 id="k-ad" style="font-size:clamp(1.7rem,4vw,2.3rem)">—</h1>
+      <p class="lead" id="k-alt" style="margin-top:8px"></p>
+    </div>
+    <div class="k-balans">
+      <span class="kb-etiket">Balans</span>
+      <span class="kb-mebleg" id="k-balans">—</span>
+      <a class="dugme" href="balans.html">Balansı artır</a>
+      <button class="kecid" id="k-cixis">Çıxış</button>
+    </div>
+  </div>
+
+  <div class="k-stat" id="k-stat"></div>
+
+  <nav class="k-teb">
+    <button class="kt-d aktiv" data-k="ireli">İrəliləyiş</button>
+    <button class="kt-d" data-k="transkript">Transkript</button>
+    <button class="kt-d" data-k="alislar">Alışlar</button>
+  </nav>
+
+  <section id="k-ireli" class="k-bolme"></section>
+  <section id="k-transkript" class="k-bolme gizli"></section>
+  <section id="k-alislar" class="k-bolme gizli"></section>
+
+</div>
+</main>
+<script src="assets/xerite.js"></script>
+<script src="assets/kabinet.js"></script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

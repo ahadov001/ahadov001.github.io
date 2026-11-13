@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leksika — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-azdili.html">Azərbaycan dili</a> › <a href="acilan-azdili-leksika-02919.html">Leksika</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Leksika — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 12 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "azdili-leksika-3", "title": "Leksika — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Leksik məna nədir?", "o": ["Sözün öz mənası", "Cümlənin mənası", "Vurğunun mənası", "Şəkilçinin verdiyi məna"], "a": 0, "e": "Qrammatik məna isə şəkilçilərlə ifadə olunur."}, {"s": "«Göz yummaq» frazeologizmi nə deməkdir?", "o": ["Görməzlikdən gəlmək", "Qorxmaq", "Ağlamaq", "Yatmaq"], "a": 0, "e": "Məcazi mənalı sabit birləşmədir."}, {"s": "Hansı ifadə frazeologizm deyil?", "o": ["dil tapmaq", "ürəyi düşmək", "kitab oxumaq", "əl-ələ vermək"], "a": 2, "e": "«Kitab oxumaq» həqiqi mənada adi birləşmədir."}, {"s": "Dialekt sözləri harada işlənir?", "o": ["Rəsmi sənədlərdə", "Yalnız müəyyən bölgədə", "Elmdə", "Hər yerdə"], "a": 1, "e": "Şivə sözləri məhdud ərazidə yayılıb."}, {"s": "Hansı əlamət sözün alınma olduğunu göstərir?", "o": ["Qısa olması", "Cəm şəkilçisi", "Tərkibində «j» olması", "Vurğusu"], "a": 2, "e": "«J» səsi əsl Azərbaycan sözlərində yoxdur."}, {"s": "«Şirin söhbət» ifadəsində «şirin» hansı mənadadır?", "o": ["Termin", "Məcazi", "Həqiqi", "Omonim"], "a": 1, "e": "Xoş, maraqlı mənasında."}, {"s": "Omonimi çoxmənalılıqdan necə ayırmaq olar?", "o": ["Mənalar arasında əlaqənin olub-olmamasına görə", "Vurğuya görə", "Yazılışına görə", "Uzunluğuna görə"], "a": 0, "e": "Omonimdə əlaqə yoxdur."}, {"s": "Hansı söz mücərrəd isimdir?", "o": ["dostluq", "ağac", "su", "daş"], "a": 0, "e": "Duyğu üzvləri ilə hiss olunmur."}, {"s": "«Burnunu soxmaq» nə deməkdir?", "o": ["Gizlənmək", "Xəstələnmək", "Axtarmaq", "Lazımsız qarışmaq"], "a": 3, "e": "Frazeoloji birləşmədir."}, {"s": "Hansı cərgədə ərəb-fars mənşəli sözlər var?", "o": ["kompüter, futbol", "ana, ata, su", "kitab, məktəb, zəhmət", "stol, şkaf"], "a": 2, "e": "Bunlar ərəb-fars mənşəlidir."}, {"s": "Jarqon nədir?", "o": ["Köhnə söz", "Müəyyən qrupun istifadə etdiyi söz", "Elmi termin", "Yeni söz"], "a": 1, "e": "Peşə və ya sosial qrupa xas sözlərdir."}, {"s": "«Ağır xəstə» ifadəsində «ağır» hansı mənadadır?", "o": ["Həqiqi (çəki)", "Məcazi (ciddi)", "Omonim", "Arxaik"], "a": 1, "e": "Çəki deyil, vəziyyətin ciddiliyini bildirir."}]};
+  var ACAR = "azdili:leksika";
+  CFG.meta = {"fenn": "azdili", "movzu": "leksika", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Leksika — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

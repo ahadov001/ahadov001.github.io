@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Söz yaradıcılığı — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-azdili.html">Azərbaycan dili</a> › <a href="acilan-azdili-sozyaradiciligi-7beaf.html">Söz yaradıcılığı</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Söz yaradıcılığı — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 12 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "azdili-sozyaradiciligi-3", "title": "Söz yaradıcılığı — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Morfem nədir?", "o": ["Sözün ən kiçik mənalı hissəsi", "Səs", "Cümlə", "Söz"], "a": 0, "e": "Kök və şəkilçi morfemlərdir."}, {"s": "Hansı söz sadədir?", "o": ["duzlar", "duzlu", "duzluq", "duzsuz"], "a": 0, "e": "«-lar» qrammatik şəkilçidir, söz sadə qalır."}, {"s": "«Əlüzyuyan» sözü neçə kökdən ibarətdir?", "o": ["4", "1", "3", "2"], "a": 2, "e": "Əl + üz + yu(y)an."}, {"s": "Hansı şəkilçi mücərrəd isim düzəldir?", "o": ["-lı, -li", "-çı", "-sız", "-lıq, -lik"], "a": 3, "e": "Dostluq, gözəllik."}, {"s": "«Tez-tez» sözü necə yaranıb?", "o": ["Birləşmə ilə", "Təkrar yolu ilə", "Şəkilçi ilə", "İxtisarla"], "a": 1, "e": "Eyni sözün təkrarı mürəkkəb söz yaradır."}, {"s": "Hansı şəkilçi sahiblik bildirən sifət düzəldir?", "o": ["-çı", "-lı, -li", "-sız", "-lıq"], "a": 1, "e": "Duzlu, ağıllı, pullu."}, {"s": "Söz yaradıcılığının sintaktik üsulu nədir?", "o": ["Şəkilçi artırmaq", "Sözlərin birləşməsi", "İxtisar", "Məna dəyişməsi"], "a": 1, "e": "Dəmir + yol → dəmiryolu."}, {"s": "«Seçim» sözündə hansı şəkilçi var və nə düzəldib?", "o": ["-im, feildən isim", "-çim, sifət", "-m, zərf", "-im, feil"], "a": 0, "e": "Seç (feil) + im = seçim (isim)."}, {"s": "Hansı söz mürəkkəbdir?", "o": ["gözlər", "gözəllik", "gözlük", "qaragöz"], "a": 3, "e": "İki kökdən ibarətdir: qara + göz."}, {"s": "«Peyk» sözünün yeni məna qazanması hansı üsuldur?", "o": ["Morfoloji", "Sintaktik", "İxtisar", "Leksik-semantik"], "a": 3, "e": "Köhnə söz yeni anlayışı bildirməyə başlayıb."}, {"s": "Şəkilçilərin düzgün ardıcıllığı hansıdır?", "o": ["kök → mənsubiyyət → cəm → hal", "sabit ardıcıllıq yoxdur", "kök → hal → cəm → mənsubiyyət", "kök → cəm → mənsubiyyət → hal"], "a": 3, "e": "Dost + lar + ımız + dan."}, {"s": "Hansı şəkilçi yoxluq bildirir?", "o": ["-sız, -siz", "-lı", "-çı", "-lıq"], "a": 0, "e": "Duzsuz, işsiz, susuz."}]};
+  var ACAR = "azdili:sozyaradiciligi";
+  CFG.meta = {"fenn": "azdili", "movzu": "sozyaradiciligi", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Söz yaradıcılığı — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
