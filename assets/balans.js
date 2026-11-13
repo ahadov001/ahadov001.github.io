@@ -54,7 +54,8 @@ var basla = function () {
       if (aktiv) {
         var ayirici = link.indexOf("?") > -1 ? "&" : "?";
         link += ayirici + "checkout[custom][uid]=" + encodeURIComponent(S.istifadeci.id) +
-                "&checkout[email]=" + encodeURIComponent(S.istifadeci.email);
+                "&checkout[email]=" + encodeURIComponent(S.istifadeci.email) +
+                "&checkout[billing_address][country]=AZ";
       }
       h += '<div class="bkart' + (p.secilen ? " secilen" : "") + '">' +
         (p.secilen ? '<span class="bk-nisan">ən çox seçilən</span>' : '') +
