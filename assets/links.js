@@ -23,5 +23,5 @@ var ALIS_LINKLERI = {
   "qar-sehv": "",              // Səhv tapma testi  →  test-sehvtapma-a29e.html
   "qar-cetin": "",             // Çətin suallar toplusu  →  test-cetin-u53b.html
   "qar-suret": "",             // Sürət testi  →  test-suret-q81h.html
-  "paket": "",              // Tam paket  →  bütün fayllar
+  "paket": "https://testtoplusu.lemonsqueezy.com/checkout/buy/6f2aba67-113e-4105-bf5c-67a27f58eba8",              // Tam paket  →  bütün fayllar
 };
