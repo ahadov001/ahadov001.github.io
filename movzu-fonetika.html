@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fonetika — Azərbaycan dili</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">Az</span>Azərbaycan dili</a><nav aria-label="Əsas menyu"><a href="index.html">Mövzular</a><a href="index.html#imtahan">İmtahan topluları</a><a href="index.html#qarisiq">Qarışıq testlər</a><a href="index.html#paket">Qiymətlər</a></nav></div></header>
+<main class="wrap narrow">
+<div class="hero" style="padding:34px 0 18px"><p class="eyebrow">1-ci mövzu · pulsuz</p><h1 style="font-size:clamp(1.9rem,4.5vw,2.8rem)">Fonetika</h1><p class="lead" style="margin-top:12px">Saitlər, samitlər, heca, vurğu, ahəng qanunu, fonetik hadisələr</p></div>
+<div class="lesson">
+<h3>Səs və hərf</h3>
+<p>Danışarkən tələffüz etdiyimiz şey səs, yazıda onu göstərən işarə isə hərfdir. Azərbaycan əlifbası
+32 hərfdən ibarətdir: 9 sait, 23 samit.</p>
+
+<h3>Saitlər</h3>
+<p>Saitlər ağız boşluğundan sərbəst çıxan səslərdir: <b>a, e, ə, i, ı, o, ö, u, ü</b>. Üç cür bölünür:</p>
+<div class="tscroll"><table>
+<tr><th>Bölgü</th><th>Qrup</th><th>Saitlər</th></tr>
+<tr><td rowspan="2">Dilin arxa və ön hissəsinə görə</td><td>Qalın</td><td>a, ı, o, u</td></tr>
+<tr><td>İncə</td><td>e, ə, i, ö, ü</td></tr>
+<tr><td rowspan="2">Dodaqların vəziyyətinə görə</td><td>Dodaqlanan</td><td>o, ö, u, ü</td></tr>
+<tr><td>Dodaqlanmayan</td><td>a, e, ə, i, ı</td></tr>
+<tr><td rowspan="2">Ağzın açılma dərəcəsinə görə</td><td>Qapalı</td><td>ı, i, u, ü</td></tr>
+<tr><td>Açıq</td><td>a, e, ə, o, ö</td></tr>
+</table></div>
+
+<h3>Samitlər</h3>
+<p>Samitlər kar və cingiltili olmaqla iki yerə bölünür. Çoxu cütlük təşkil edir:
+b–p, v–f, g–k, ğ–x, d–t, j–ş, z–s, c–ç.</p>
+<ul>
+<li><b>Kar qarşılığı olmayan</b> (sonor) samitlər: y, l, m, n, r</li>
+<li><b>Cingiltili qarşılığı olmayan</b> samit: h</li>
+</ul>
+
+<h3>Heca və vurğu</h3>
+<p>Hecaların sayı sözdəki saitlərin sayına bərabərdir: <i>mü-əl-lim</i> — 3 sait, 3 heca.
+Azərbaycan dilində vurğu əsasən son hecaya düşür. Zərflərdə isə çox vaxt birinci hecaya düşür:
+<i>dü</i>nən, <i>in</i>di.</p>
+<div class="ex">Vurğu bəzən mənanı dəyişir: alm<b>á</b> (meyvə) — <b>á</b>lma (almamaq əmri).</div>
+
+<h3>Ahəng qanunu</h3>
+<p>Sözdə saitlərin ya hamısının qalın, ya da hamısının incə olmasına ahəng qanunu deyilir:
+<i>qapılar</i> (hamısı qalın), <i>gözlük</i> (hamısı incə). Alınma sözlərin bir çoxu bu qanuna tabe deyil:
+<i>kitab, ilan, işıq</i>.</p>
+
+<h3>Başlıca fonetik hadisələr</h3>
+<ul>
+<li><b>Saitin düşməsi:</b> ağız → ağzı, burun → burnu, sinif → sinfi</li>
+<li><b>Samitin artması</b> (bitişdirici y, n, s): ata → atası, ata → ataya</li>
+<li><b>Səs əvəzlənməsi:</b> çörək → çörəyi (k → y)</li>
+<li><b>Karlaşma:</b> «kitab» sözü [kitap], «palıd» sözü [palıt] kimi tələffüz olunur</li>
+</ul>
+</div>
+<section class="plain" style="padding-top:38px"><h2 style="margin-bottom:6px">Mövzu testi</h2><p class="lead" style="font-size:1rem">18 sual. Cavabı seçən kimi izahı görünür.</p><div id="quiz"></div></section>
+</main>
+<script src="assets/quiz.js"></script>
+<script>AzQuiz.mount({el:"quiz",id:"movzu-fonetika",title:"Fonetika \u2014 test",mode:"learn",minutes:0,questions:[{"s": "Azərbaycan əlifbasında neçə hərf var?", "o": ["29", "31", "32", "33"], "a": 2, "e": "Azərbaycan əlifbası 32 hərfdən ibarətdir: 9 sait, 23 samit."}, {"s": "Azərbaycan dilində neçə sait səs var?", "o": ["6", "8", "9", "10"], "a": 2, "e": "Saitlər: a, e, ə, i, ı, o, ö, u, ü — cəmi 9."}, {"s": "Hansı cərgədəki saitlərin hamısı qalındır?", "o": ["a, ı, o, u", "ə, i, ö, ü", "a, e, o, u", "ı, i, u, ü"], "a": 0, "e": "Qalın saitlər: a, ı, o, u. Qalan beşi (e, ə, i, ö, ü) incədir."}, {"s": "Hansı cərgədəki saitlərin hamısı incədir?", "o": ["a, ı, o, u", "e, ə, i, ö, ü", "a, e, i, o", "ı, o, u, ü"], "a": 1, "e": "İncə saitlər: e, ə, i, ö, ü."}, {"s": "Hansı cərgədəki saitlərin hamısı dodaqlanandır?", "o": ["a, ı, e, ə", "o, u, ö, ü", "i, ü, e, o", "a, o, u, ı"], "a": 1, "e": "Dodaqlanan saitlər: o, u, ö, ü. Qalanları dodaqlanmayandır."}, {"s": "Azərbaycan dilində neçə samit var?", "o": ["21", "23", "25", "26"], "a": 1, "e": "32 hərfdən 9-u sait, 23-ü samitdir."}, {"s": "Kar qarşılığı olmayan (sonor) samitlər hansı cərgədədir?", "o": ["y, l, m, n, r", "b, v, g, d", "p, t, k, s", "c, ç, j, ş"], "a": 0, "e": "y, l, m, n, r sonor samitlərdir — kar qarşılığı yoxdur."}, {"s": "Cingiltili qarşılığı olmayan kar samit hansıdır?", "o": ["p", "t", "h", "ş"], "a": 2, "e": "h samitinin cingiltili qarşılığı yoxdur. p-b, t-d, ş-j cütlük təşkil edir."}, {"s": "«Məktəb» sözü neçə hecadan ibarətdir?", "o": ["1", "2", "3", "4"], "a": 1, "e": "mək-təb — 2 heca. Hecaların sayı saitlərin sayına bərabərdir."}, {"s": "«Müəllim» sözü neçə hecadan ibarətdir?", "o": ["2", "3", "4", "5"], "a": 1, "e": "mü-əl-lim — 3 heca, çünki sözdə 3 sait var."}, {"s": "Azərbaycan dilində vurğu əsasən hansı hecanın üzərinə düşür?", "o": ["Birinci heca", "İkinci heca", "Son heca", "Sondan əvvəlki heca"], "a": 2, "e": "Azərbaycan dilində vurğu əsas etibarilə son hecaya düşür."}, {"s": "Hansı söz ahəng qanununa tabe deyil?", "o": ["qapılar", "uşaqlar", "kitab", "gözlük"], "a": 2, "e": "«Kitab» sözündə həm incə (i), həm qalın (a) sait var — ahəng qanununa tabe deyil. Alınma sözdür."}, {"s": "Sait səslə bitən sözə sait səslə başlayan şəkilçi artırılarkən hansı bitişdirici samitlərdən istifadə olunur?", "o": ["y, n, s", "b, d, g", "k, q, x", "l, m, r"], "a": 0, "e": "Bitişdirici samitlər: y, n, s. Məsələn: ata-s-ı, ata-y-a, ev-i-n-in."}, {"s": "«Ağız» sözünə mənsubiyyət şəkilçisi artırıldıqda hansı fonetik hadisə baş verir?", "o": ["Saitin artması", "Saitin düşməsi", "Samitin artması", "Heç bir dəyişiklik olmur"], "a": 1, "e": "ağız → ağzı. İkinci hecadakı sait düşür. Eyni hadisə: burun → burnu, oğul → oğlu."}, {"s": "«Çörək» sözünə «-i» şəkilçisi artırıldıqda son samit necə dəyişir?", "o": ["k → g", "k → y", "k → q", "Dəyişmir"], "a": 1, "e": "çörək → çörəyi. Söz sonundakı «k» saitlə başlayan şəkilçi qarşısında «y»-yə çevrilir."}, {"s": "«Palıd» sözünün sonundakı «d» samiti necə tələffüz olunur?", "o": ["d kimi", "t kimi", "z kimi", "s kimi"], "a": 1, "e": "Söz sonunda cingiltili samitlər karlaşır: palıd [palıt], kitab [kitap]."}, {"s": "Hansı sözdə qoşa samit var?", "o": ["dost", "hiss", "üst", "səs"], "a": 1, "e": "«Hiss» sözündə qoşa «s» samiti var. Digərlərində iki müxtəlif samit yanaşıdır."}, {"s": "«Ailə» sözü neçə hecadan ibarətdir?", "o": ["2", "3", "4", "1"], "a": 1, "e": "a-i-lə — 3 heca, 3 sait var."}]});</script>
+<footer class="site-foot"><div class="wrap">Azərbaycan dili — mövzu testləri, buraxılış və qəbul imtahanı variantları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
