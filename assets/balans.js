@@ -1,3 +1,5 @@
+(function () {
+var basla = function () {
 /* Balans artırma səhifəsi */
 (function () {
   "use strict";
@@ -66,4 +68,8 @@
     });
     el("b-paketler").innerHTML = h;
   }
+})();
+};
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", basla);
+else basla();
 })();
