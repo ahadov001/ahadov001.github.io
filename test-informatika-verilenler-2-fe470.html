@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verilənlər bazası — 2-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-informatika.html">İnformatika</a> › <a href="acilan-informatika-verilenler-0ade8.html">Verilənlər bazası</a> › <span>2-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Verilənlər bazası — 2-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "informatika-verilenler-2", "title": "Verilənlər bazası — 2-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "UPDATE əmri nə edir?", "o": ["Silir", "Yaradır", "Mövcud qeydləri dəyişir", "Seçir"], "a": 2, "e": "SET ilə yeni dəyər verilir."}, {"s": "WHERE bəndi nə üçündür?", "o": ["Sıralama", "Şərt qoymaq", "Qruplaşdırma", "Birləşdirmə"], "a": 1, "e": "Yalnız uyğun qeydlər seçilir."}, {"s": "ORDER BY nə edir?", "o": ["Qruplaşdırır", "Nəticəni sıralayır", "Silir", "Süzür"], "a": 1, "e": "ASC və DESC istiqamətləri var."}, {"s": "GROUP BY nə üçündür?", "o": ["Sıralama", "Silmə", "Qruplaşdırıb yekun hesablamalar aparmaq", "Əlavə"], "a": 2, "e": "COUNT, SUM ilə birgə işlənir."}, {"s": "JOIN nə edir?", "o": ["Silir", "Sıralayır", "Şifrələyir", "İki və daha çox cədvəli birləşdirir"], "a": 3, "e": "Əlaqəli məlumat çıxarır."}, {"s": "İndeks nə üçündür?", "o": ["Axtarışı sürətləndirmək", "Silmə", "Rəng", "Saxlama"], "a": 0, "e": "Kitabın əlifba göstəricisi kimi."}, {"s": "Normallaşdırma nə üçündür?", "o": ["Çap", "Şifrələmə", "Sürət azaltmaq", "Təkrarlanmanı azaldıb strukturu optimallaşdırmaq"], "a": 3, "e": "Normal formalar mövcuddur."}, {"s": "Verilənlərin bütövlüyü nə deməkdir?", "o": ["Sürət", "Rəng", "Həcm", "Məlumatın düzgün və ziddiyyətsiz olması"], "a": 3, "e": "Məhdudiyyətlərlə təmin olunur."}, {"s": "Hansı sistem verilənlər bazasını idarə edir?", "o": ["Redaktor", "VBİS (MySQL, PostgreSQL, Oracle)", "Antivirus", "Brauzer"], "a": 1, "e": "Database Management System."}, {"s": "NoSQL bazalar nə ilə fərqlənir?", "o": ["SQL istifadə etmir heç", "Daha yavaşdır", "Çevik, cədvəlsiz struktura malikdir", "Cədvəl əsaslıdır"], "a": 2, "e": "MongoDB nümunədir."}]};
+  var ACAR = "informatika:verilenler";
+  CFG.meta = {"fenn": "informatika", "movzu": "verilenler", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Verilənlər bazası — 2-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

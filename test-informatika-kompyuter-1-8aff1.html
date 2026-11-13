@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kompüterin quruluşu — 1-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-informatika.html">İnformatika</a> › <a href="acilan-informatika-kompyuter-8983f.html">Kompüterin quruluşu</a> › <span>1-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Kompüterin quruluşu — 1-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "informatika-kompyuter-1", "title": "Kompüterin quruluşu — 1-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Prosessor (CPU) nə işi görür?", "o": ["Çap edir", "Əmrləri yerinə yetirir və hesablama aparır", "Şəbəkə qurur", "Məlumat saxlayır"], "a": 1, "e": "Kompüterin «beyni»dir."}, {"s": "ƏYQ (RAM) nəyə deyilir?", "o": ["Müvəqqəti (operativ) yaddaş", "Daimi yaddaş", "Monitor", "Prosessor"], "a": 0, "e": "Enerji kəsiləndə məlumat silinir."}, {"s": "ROM nədir?", "o": ["Disk", "Operativ yaddaş", "Prosessor", "Yalnız oxunan daimi yaddaş"], "a": 3, "e": "BIOS burada saxlanır."}, {"s": "Hansı qurğu daxiletmə qurğusudur?", "o": ["Klaviatura", "Printer", "Dinamik", "Monitor"], "a": 0, "e": "İstifadəçidən məlumat alır."}, {"s": "Hansı qurğu xaricetmə qurğusudur?", "o": ["Klaviatura", "Siçan", "Skaner", "Monitor"], "a": 3, "e": "Nəticəni istifadəçiyə göstərir."}, {"s": "Ana lövhə (motherboard) nə üçündür?", "o": ["Hesablama", "Bütün komponentləri birləşdirmək", "Çap", "Saxlama"], "a": 1, "e": "Əsas platadır."}, {"s": "Prosessorun tezliyi hansı vahidlə ölçülür?", "o": ["Herts (GHz)", "Bayt", "Vatt", "Bit"], "a": 0, "e": "Saniyədə əməliyyat sayı ilə əlaqəlidir."}, {"s": "SSD HDD-dən nə ilə fərqlənir?", "o": ["Daha böyükdür", "Daha yavaşdır", "Hərəkət edən hissəsi yoxdur, daha sürətlidir", "Fərq yoxdur"], "a": 2, "e": "Fləş yaddaş texnologiyası."}, {"s": "Videokart nə üçündür?", "o": ["Səs", "Saxlama", "Qrafik təsvirin formalaşdırılması", "Şəbəkə"], "a": 2, "e": "Oyun və dizayn üçün vacibdir."}, {"s": "Hansı komponent kompüteri enerji ilə təchiz edir?", "o": ["RAM", "Disk", "Qida bloku", "Prosessor"], "a": 2, "e": "Cərəyanı çevirir və paylayır."}]};
+  var ACAR = "informatika:kompyuter";
+  CFG.meta = {"fenn": "informatika", "movzu": "kompyuter", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Kompüterin quruluşu — 1-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
