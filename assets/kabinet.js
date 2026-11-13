@@ -1,3 +1,5 @@
+(function () {
+var basla = function () {
 /* Şəxsi kabinet — irəliləyiş, transkript, alışlar */
 (function () {
   "use strict";
@@ -199,4 +201,8 @@
     });
     el("k-alislar").innerHTML = h + '</div>';
   }
+})();
+};
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", basla);
+else basla();
 })();
