@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statika və hidrostatika — 1-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-fizika.html">Fizika</a> › <a href="acilan-fizika-statika-cb0e0.html">Statika və hidrostatika</a> › <span>1-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Statika və hidrostatika — 1-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "fizika-statika-1", "title": "Statika və hidrostatika — 1-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Qüvvə momenti necə hesablanır?", "o": ["M = l/F", "M = F·l", "M = F/l", "M = F + l"], "a": 1, "e": "N·m ilə ölçülür."}, {"s": "Bərk cismin tarazlıq şərti nədir?", "o": ["Kütlə sabit", "Qüvvələrin və momentlərin cəmi sıfır olmalıdır", "Yalnız qüvvələr sıfır", "Momentlər sıfır"], "a": 1, "e": "İki şərt birlikdə."}, {"s": "Ağırlıq mərkəzi nədir?", "o": ["Həcm", "Həndəsi mərkəz", "Ağırlıq qüvvəsinin tətbiq nöqtəsi", "Kütlə"], "a": 2, "e": "Cismin xaricində də ola bilər."}, {"s": "Təzyiq necə hesablanır?", "o": ["p = F·S", "p = F + S", "p = F/S", "p = S/F"], "a": 2, "e": "Paskalla ölçülür."}, {"s": "Təzyiqin SI vahidi nədir?", "o": ["Paskal", "Bar", "Coul", "Nyuton"], "a": 0, "e": "1 Pa = 1 N/m²."}, {"s": "Paskal qanunu nəyi ifadə edir?", "o": ["Təzyiq sıfırdır", "Təzyiq artır", "Mayeyə edilən təzyiq bütün istiqamətlərdə bərabər ötürülür", "Təzyiq azalır"], "a": 2, "e": "Hidravlik presin əsasıdır."}, {"s": "Maye sütununun təzyiqi necə hesablanır?", "o": ["p = gh", "p = ρg", "p = ρh", "p = ρgh"], "a": 3, "e": "Hidrostatik təzyiqdir."}, {"s": "Arximed qüvvəsi necə hesablanır?", "o": ["F = gV", "F = ρV", "F = mg", "F = ρgV"], "a": 3, "e": "Sıxışdırılan mayenin çəkisinə bərabərdir."}, {"s": "Cisim nə vaxt mayenin üzərində üzür?", "o": ["ρcisim > ρmaye", "Bərabər olanda batır", "Həmişə", "ρcisim < ρmaye"], "a": 3, "e": "Arximed qüvvəsi ağırlıqdan böyükdür."}, {"s": "Cisim nə vaxt mayedə asılı qalır?", "o": ["ρcisim > ρmaye", "ρcisim < ρmaye", "ρcisim = ρmaye", "Heç vaxt"], "a": 2, "e": "Qüvvələr bərabərləşir."}]};
+  var ACAR = "fizika:statika";
+  CFG.meta = {"fenn": "fizika", "movzu": "statika", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Statika və hidrostatika — 1-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xəritəşünaslıq — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-cografiya.html">Coğrafiya</a> › <span>Xəritəşünaslıq · 3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Xəritəşünaslıq — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "cografiya-xerite-3", "title": "Xəritəşünaslıq — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Kiçik miqyaslı xəritədə nə göstərilir?", "o": ["Bina", "Yalnız şəhər", "Kiçik ərazi dəqiq", "Böyük ərazi ümumiləşdirilmiş şəkildə"], "a": 3, "e": "1:1 000 000 və daha kiçik."}, {"s": "Qnomonik, silindrik, konik — bunlar nədir?", "o": ["Relyef növləri", "İqlim tipləri", "Torpaq növləri", "Kartoqrafik proyeksiyalar"], "a": 3, "e": "Yerin səthini müstəviyə köçürmə üsulları."}, {"s": "Niyə xəritədə təhriflər olur?", "o": ["Miqyas", "Çap xətası", "Rəng", "Kürəvi səthi müstəviyə köçürmək mümkün deyil"], "a": 3, "e": "Sahə, bucaq və ya məsafə təhrif olur."}, {"s": "Mütləq hündürlük nədən hesablanır?", "o": ["Qonşu zirvədən", "Dəniz səviyyəsindən", "Çaydan", "Yerin mərkəzindən"], "a": 1, "e": "Nisbi hündürlük iki nöqtə arasındakı fərqdir."}, {"s": "Şərti işarələr nə üçün lazımdır?", "o": ["Rəng", "Obyektləri xəritədə göstərmək", "Gözəllik", "Miqyas"], "a": 1, "e": "Legend (açar) ilə izah olunur."}, {"s": "Qlobus nədir?", "o": ["Proyeksiya", "Plan", "Yerin kiçildilmiş modeli", "Yastı xəritə"], "a": 2, "e": "Təhrif minimumdur."}, {"s": "GPS nə üçün istifadə olunur?", "o": ["Temperatur ölçmə", "Xəritə çəkmə yalnız", "Hava proqnozu", "Mövqenin dəqiq təyini"], "a": 3, "e": "Peyk naviqasiya sistemidir."}, {"s": "Aeroşəkil və kosmik şəkillər nə üçündür?", "o": ["Xəritələrin tərtibi və monitorinq", "Dekorasiya", "Rəng", "Miqyas"], "a": 0, "e": "Məsafədən zondlama."}, {"s": "Xəritədə mavi rəng nəyi göstərir?", "o": ["Dağları", "Suları", "Səhrayı", "Meşəni"], "a": 1, "e": "Çay, göl, dəniz."}, {"s": "Qəhvəyi rəng xəritədə nəyi göstərir?", "o": ["Dağları (yüksəklikləri)", "Suyu", "Şəhəri", "Meşəni"], "a": 0, "e": "Tündləşdikcə hündürlük artır."}]};
+  var ACAR = null;
+  CFG.meta = {"fenn": "cografiya", "movzu": "xerite", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Xəritəşünaslıq — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

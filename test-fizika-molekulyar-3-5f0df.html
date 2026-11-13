@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molekulyar fizika — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-fizika.html">Fizika</a> › <a href="acilan-fizika-molekulyar-cd871.html">Molekulyar fizika</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Molekulyar fizika — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "fizika-molekulyar-3", "title": "Molekulyar fizika — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Sıxlıq necə hesablanır?", "o": ["ρ = mV", "ρ = m/V", "ρ = m + V", "ρ = V/m"], "a": 1, "e": "kq/m³ ilə ölçülür."}, {"s": "Molekulların orta kinetik enerjisi nədən asılıdır?", "o": ["Təzyiqdən", "Kütlədən", "Həcmdən", "Yalnız mütləq temperaturdan"], "a": 3, "e": "E = 3kT/2."}, {"s": "27°C neçə Kelvindir?", "o": ["27 K", "246 K", "273 K", "300 K"], "a": 3, "e": "T = 27 + 273 = 300 K."}, {"s": "Hansı proses zamanı daxili enerji dəyişmir?", "o": ["İzotermik (ideal qazda)", "İzoxorik", "Adiabatik", "İzobarik"], "a": 0, "e": "Temperatur sabitdir."}, {"s": "Doymuş buxar nədir?", "o": ["Qaz", "Quru buxar", "Öz mayesi ilə dinamik tarazlıqda olan buxar", "Soyuq buxar"], "a": 2, "e": "Təzyiqi temperaturdan asılıdır."}, {"s": "Şeh nöqtəsi nədir?", "o": ["Qaynama nöqtəsi", "Buxarın doymuş hala keçdiyi temperatur", "Donma nöqtəsi", "Ərimə nöqtəsi"], "a": 1, "e": "Rütubətlə əlaqədardır."}, {"s": "Niyə yaş paltar küləkdə tez qurur?", "o": ["Soyuqdur", "Buxarlanma sürətlənir", "Təzyiq artır", "Kütlə azalır"], "a": 1, "e": "Buxar səthdən uzaqlaşdırılır."}, {"s": "Qazın həcmi 2 dəfə azalarsa (T sabit) təzyiq necə dəyişər?", "o": ["2 dəfə artar", "4 dəfə artar", "Dəyişməz", "2 dəfə azalar"], "a": 0, "e": "Boyl-Mariott qanunu."}, {"s": "Monokristala nümunə hansıdır?", "o": ["Şüşə", "Rezin", "Qaya duzu kristalı", "Plastik"], "a": 2, "e": "Nizamlı tək kristal."}, {"s": "Anizotropiya nədir?", "o": ["Şəffaflıq", "Bərklik", "Xassələrin istiqamətdən asılı olması", "Eyni xassə"], "a": 2, "e": "Kristallara xasdır."}]};
+  var ACAR = "fizika:molekulyar";
+  CFG.meta = {"fenn": "fizika", "movzu": "molekulyar", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Molekulyar fizika — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

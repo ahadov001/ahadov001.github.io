@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kinematika — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-fizika.html">Fizika</a> › <span>Kinematika · 3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Kinematika — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "fizika-kinematika-3", "title": "Kinematika — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Nisbi sürət nədir?", "o": ["Ani sürət", "Bir cismin digərinə nəzərən sürəti", "Mütləq sürət", "Orta sürət"], "a": 1, "e": "Vektorların fərqi ilə tapılır."}, {"s": "İki cisim bir-birinə doğru 10 və 15 m/s sürətlə hərəkət edirsə, yaxınlaşma sürəti neçədir?", "o": ["25 m/s", "12,5 m/s", "150 m/s", "5 m/s"], "a": 0, "e": "Sürətlər toplanır."}, {"s": "Ani sürət nədir?", "o": ["Orta sürət", "Maksimum sürət", "Verilən anda sürət", "Başlanğıc sürət"], "a": 2, "e": "Çox kiçik zaman intervalında."}, {"s": "Yuxarıya atılan cismin ən yüksək nöqtəsində sürəti neçədir?", "o": ["Sıfır", "Sonsuz", "Maksimum", "Başlanğıc sürətə bərabər"], "a": 0, "e": "Təcil isə g-ə bərabər qalır."}, {"s": "Bucaq sürətinin vahidi nədir?", "o": ["N", "rad/s", "Hz", "m/s"], "a": 1, "e": "ω = 2π/T."}, {"s": "Xətti və bucaq sürəti arasında əlaqə necədir?", "o": ["v = ωR", "v = R/ω", "v = ω/R", "v = ω + R"], "a": 0, "e": "Radius nə qədər böyükdürsə, xətti sürət böyükdür."}, {"s": "Qrafikdə düz xətt v–t koordinatında nəyi göstərir?", "o": ["Dairəvi", "Sükunət", "Bərabərtəcilli hərəkət", "Bərabərsürətli"], "a": 2, "e": "Mailliyi təcili verir."}, {"s": "Hansı hərəkətdə təcil sürətin istiqamətinə əksdir?", "o": ["Yavaşıyan hərəkət", "Dairəvi", "Sürətlənən", "Bərabərsürətli"], "a": 0, "e": "Mənfi təcil (ləngimə)."}, {"s": "Üfüqi atılan cismin uçuş müddəti nədən asılıdır?", "o": ["Başlanğıc sürətdən", "Rəngdən", "Kütlədən", "Hündürlükdən"], "a": 3, "e": "t = √(2h/g)."}, {"s": "Hansı kəmiyyət vektordur?", "o": ["Zaman", "Yol", "Yerdəyişmə", "Kütlə"], "a": 2, "e": "İstiqaməti var."}]};
+  var ACAR = null;
+  CFG.meta = {"fenn": "fizika", "movzu": "kinematika", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Kinematika — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

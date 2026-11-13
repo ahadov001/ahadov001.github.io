@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Litosfer — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-cografiya.html">Coğrafiya</a> › <a href="acilan-cografiya-litosfer-ecb18.html">Litosfer</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Litosfer — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "cografiya-litosfer-3", "title": "Litosfer — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Litosfer lövhələri toqquşanda nə yaranır?", "o": ["Dağ silsilələri və dərin çökəkliklər", "Ovalıq", "Yarıq", "Göl"], "a": 0, "e": "Himalay dağları buna nümunədir."}, {"s": "Sakit okean «od halqası» nə ilə məşhurdur?", "o": ["İsti su", "Buzlaqlar", "Vulkan və zəlzələlərin çoxluğu", "Mərcan"], "a": 2, "e": "Lövhə sərhədləri boyunca."}, {"s": "Yayla nədir?", "o": ["Ovalıq", "Yüksəklikdə yerləşən düzənlik", "Dərə", "Dağ zirvəsi"], "a": 1, "e": "500 m-dən yüksək düz səth."}, {"s": "Relyefin əsas formaları hansılardır?", "o": ["Yalnız dağ", "Çaylar", "Dağlar və düzənliklər", "Göllər"], "a": 2, "e": "Quru relyefinin əsasıdır."}, {"s": "Qum təpələri (barxanlar) hansı amillə yaranır?", "o": ["Su", "Külək", "Buz", "Vulkan"], "a": 1, "e": "Səhralarda yayılıb."}, {"s": "Karst relyefi hansı süxurlarda yaranır?", "o": ["Qum", "Əhəngdaşı (həll olan süxurlar)", "Qranit", "Bazalt"], "a": 1, "e": "Mağaralar formalaşır."}, {"s": "Palçıq vulkanları Azərbaycanda nə ilə əlaqədardır?", "o": ["Zəlzələ", "Meşə", "Neft-qaz yataqları", "Buzlaq"], "a": 2, "e": "Dünyada sayca lider ölkələrdəndir."}, {"s": "Yerin nüvəsi əsasən hansı metaldan ibarətdir?", "o": ["Dəmir və nikel", "Mis", "Alüminium", "Qurğuşun"], "a": 0, "e": "Maqnit sahəsinin mənbəyidir."}, {"s": "Mantiya nədir?", "o": ["Yer qabığı ilə nüvə arasındaki təbəqə", "Nüvə", "Atmosfer", "Ən üst təbəqə"], "a": 0, "e": "Yerin həcminin çox hissəsini tutur."}, {"s": "Platforma nədir?", "o": ["Tektonik cəhətdən sabit sahə", "Zəlzələ zonası", "Aktiv zona", "Vulkan"], "a": 0, "e": "Düzənliklər burada yerləşir."}]};
+  var ACAR = "cografiya:litosfer";
+  CFG.meta = {"fenn": "cografiya", "movzu": "litosfer", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Litosfer — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
