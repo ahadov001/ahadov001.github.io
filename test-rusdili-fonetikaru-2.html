@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Фонетика и орфоэпия — 2-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-rusdili.html">Rus dili</a> › <span>Фонетика и орфоэпия · 2-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Фонетика и орфоэпия — 2-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "rusdili-fonetikaru-2", "title": "Фонетика и орфоэпия — 2-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Сколько слогов в слове «учительница»?", "o": ["4", "5", "3", "6"], "a": 1, "e": "у-чи-тель-ни-ца — 5 heca."}, {"s": "Правильное ударение:", "o": ["зво́нит", "звонит́ь", "зво́нить", "звони́т"], "a": 3, "e": "Düzgün variant — «звони́т»."}, {"s": "Правильное ударение:", "o": ["до́говоры", "догово́р", "до́говор", "договоро́"], "a": 1, "e": "Ədəbi norma — «догово́р»."}, {"s": "Правильное ударение:", "o": ["катало́г", "ка́талог", "ката́лог", "каталого́"], "a": 0, "e": "«Катало́г» düzgündür."}, {"s": "Сколько звуков в слове «день»?", "o": ["3", "5", "4", "2"], "a": 0, "e": "[д'эн'] — ь səs vermir, 3 səs."}, {"s": "Какой согласный звучит в конце слова «друг»?", "o": ["[г']", "[к]", "[г]", "[х]"], "a": 1, "e": "Sözün sonunda cingiltili samit kar olur."}, {"s": "Что происходит с гласными в безударном положении?", "o": ["Исчезают", "Ослабляются (редукция)", "Удваиваются", "Усиливаются"], "a": 1, "e": "Reduksiya hadisəsidir."}, {"s": "В слове «молоко» первый гласный звучит как...", "o": ["[у]", "[о]", "[э]", "[а]"], "a": 3, "e": "Vurğusuz «о» [а] kimi tələffüz olunur."}, {"s": "Какие буквы обозначают два звука?", "o": ["б, в, г", "ы, э", "е, ё, ю, я (в начале слова)", "а, о, у"], "a": 2, "e": "Sözün əvvəlində [й] + sait verir."}, {"s": "Фонетическая транскрипция записывается в...", "o": ["дефисе", "кавычках", "квадратных скобках", "круглых скобках"], "a": 2, "e": "[ ] işarələri ilə."}]};
+  var ACAR = null;
+  CFG.meta = {"fenn": "rusdili", "movzu": "fonetikaru", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Фонетика и орфоэпия — 2-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

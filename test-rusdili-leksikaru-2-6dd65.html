@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лексика — 2-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-rusdili.html">Rus dili</a> › <a href="acilan-rusdili-leksikaru-d2f8c.html">Лексика</a> › <span>2-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Лексика — 2-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "rusdili-leksikaru-2", "title": "Лексика — 2-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Архаизмы — это...", "o": ["заимствованные", "диалектные", "устаревшие слова", "новые слова"], "a": 2, "e": "«Очи» — глаза."}, {"s": "Неологизмы — это...", "o": ["устаревшие слова", "антонимы", "новые слова", "синонимы"], "a": 2, "e": "Yeni yaranmış sözlər."}, {"s": "Диалектные слова употребляются...", "o": ["в науке", "везде", "в определённой местности", "в поэзии"], "a": 2, "e": "Yerli ləhcə sözləridir."}, {"s": "Профессионализмы — это слова...", "o": ["используемые в определённой профессии", "устаревшие", "новые", "общеупотребительные"], "a": 0, "e": "Peşə terminləridir."}, {"s": "Прямое значение слова — это...", "o": ["новое", "основное, первичное значение", "переносное", "устаревшее"], "a": 1, "e": "«Железная дверь» — birbaşa məna."}, {"s": "Переносное значение в словосочетании:", "o": ["железная труба", "железная дверь", "железный характер", "железный гвоздь"], "a": 2, "e": "«Железный характер» — məcazi."}, {"s": "Выберите пару омонимов:", "o": ["дом — здание", "день — ночь", "ключ (от двери) — ключ (источник)", "идти — шагать"], "a": 2, "e": "Yazılışı eyni, mənası fərqli."}, {"s": "Что означает фразеологизм «как рыба в воде»?", "o": ["неуверенно", "свободно, уверенно", "быстро", "молчаливо"], "a": 1, "e": "Öz mühitində rahat."}, {"s": "Лексическое значение слова даётся в...", "o": ["учебнике", "толковом словаре", "орфографическом словаре", "словаре синонимов"], "a": 1, "e": "İzahlı lüğətdə."}, {"s": "Что такое паронимы?", "o": ["близкие по звучанию, но разные по смыслу слова", "противоположные слова", "синонимы", "омонимы"], "a": 0, "e": "«Одеть» — «надеть»."}]};
+  var ACAR = "rusdili:leksikaru";
+  CFG.meta = {"fenn": "rusdili", "movzu": "leksikaru", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Лексика — 2-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

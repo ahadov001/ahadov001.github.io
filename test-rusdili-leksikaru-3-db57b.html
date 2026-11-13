@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лексика — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-rusdili.html">Rus dili</a> › <a href="acilan-rusdili-leksikaru-d2f8c.html">Лексика</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Лексика — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "rusdili-leksikaru-3", "title": "Лексика — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Выберите синоним к слову «быстро»:", "o": ["медленно", "скоро", "громко", "тихо"], "a": 1, "e": "Yaxın mənalı zərfdir."}, {"s": "Выберите антоним к слову «радость»:", "o": ["счастье", "смех", "веселье", "печаль"], "a": 3, "e": "Əks mənalıdır."}, {"s": "Что означает фразеологизм «водить за нос»?", "o": ["хвалить", "учить", "обманывать", "помогать"], "a": 2, "e": "Aldatmaq mənasında."}, {"s": "Какое слово является заимствованным?", "o": ["вода", "дом", "менеджер", "хлеб"], "a": 2, "e": "İngilis dilindən gəlib."}, {"s": "Какое слово устаревшее?", "o": ["школа", "компьютер", "ланиты", "телефон"], "a": 2, "e": "«Ланиты» — щёки."}, {"s": "Правильное употребление: «... пальто»", "o": ["одеть", "надеть", "положить", "обуть"], "a": 1, "e": "Paltarı «надеть», insanı «одеть»."}, {"s": "Тавтология — это...", "o": ["антонимия", "краткость", "синонимия", "неоправданное повторение однокоренных слов"], "a": 3, "e": "«Масло масляное»."}, {"s": "Что такое термин?", "o": ["слово, точно обозначающее научное понятие", "диалект", "разговорное слово", "жаргон"], "a": 0, "e": "Elmi anlayışı dəqiq ifadə edir."}, {"s": "Выберите фразеологизм:", "o": ["белый снег", "читать книгу", "спустя рукава", "идти домой"], "a": 2, "e": "Sabit söz birləşməsidir."}, {"s": "Что означает «спустя рукава»?", "o": ["очень старательно", "небрежно, плохо", "быстро", "аккуратно"], "a": 1, "e": "Səliqəsiz işləmək."}]};
+  var ACAR = "rusdili:leksikaru";
+  CFG.meta = {"fenn": "rusdili", "movzu": "leksikaru", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Лексика — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

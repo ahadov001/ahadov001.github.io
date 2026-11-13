@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Üçbucaqlar — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-riyaziyyat.html">Riyaziyyat</a> › <a href="acilan-riyaziyyat-ucbucaq-8fbf2.html">Üçbucaqlar</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Üçbucaqlar — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "riyaziyyat-ucbucaq-3", "title": "Üçbucaqlar — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Katetləri 6 və 8 olan üçbucağın sahəsi neçədir?", "o": ["48", "28", "24", "14"], "a": 2, "e": "S = 6·8/2 = 24."}, {"s": "Düzbucaqlı üçbucaqda sinus necə təyin olunur?", "o": ["Bitişik katet / hipotenuz", "Qarşı / bitişik", "Hipotenuz / katet", "Qarşı katet / hipotenuz"], "a": 3, "e": "sin α = qarşı/hipotenuz."}, {"s": "Kosinus necə təyin olunur?", "o": ["Qarşı/bitişik", "Bitişik katet/hipotenuz", "Hipotenuz/qarşı", "Qarşı/hipotenuz"], "a": 1, "e": "cos α = bitişik/hipotenuz."}, {"s": "sin²α + cos²α neçəyə bərabərdir?", "o": ["0", "2", "1", "α"], "a": 2, "e": "Əsas triqonometrik eyniliyidir."}, {"s": "Bərabərtərəfli üçbucağın sahəsi düsturu hansıdır?", "o": ["a²/2", "a²√2/4", "a²√3/4", "a²"], "a": 2, "e": "Tərəfi a olan bərabərtərəfli üçbucaq üçün."}, {"s": "Üçbucağın orta xətti nədir?", "o": ["İki tərəfin ortalarını birləşdirən parça", "Hündürlük", "Tənbölən", "Median"], "a": 0, "e": "Üçüncü tərəfə paralel və onun yarısına bərabərdir."}, {"s": "Üçbucaqlar hansı əlamətə görə bərabər sayılır?", "o": ["Yalnız bucaqlar", "İki tərəf və aralarındakı bucaq", "Yalnız sahə", "Yalnız perimetr"], "a": 1, "e": "Bərabərlik əlamətlərindən biridir."}, {"s": "Tərəfləri 5, 12, 13 olan üçbucaq necədir?", "o": ["Düzbucaqlı", "Bərabərtərəfli", "İtibucaqlı", "Korbucaqlı"], "a": 0, "e": "25+144 = 169 = 13²."}, {"s": "Üçbucağın perimetri 24, tərəflərindən ikisi 8 və 9-dursa, üçüncüsü neçədir?", "o": ["5", "8", "6", "7"], "a": 3, "e": "24 − 17 = 7."}, {"s": "Korbucaqlı üçbucaqda neçə kor bucaq ola bilər?", "o": ["2", "3", "1", "0"], "a": 2, "e": "İki kor bucaq cəmi 180°-ni keçərdi."}]};
+  var ACAR = "riyaziyyat:ucbucaq";
+  CFG.meta = {"fenn": "riyaziyyat", "movzu": "ucbucaq", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Üçbucaqlar — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

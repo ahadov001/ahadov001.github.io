@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kimyəvi rabitə — 3-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-kimya.html">Kimya</a> › <a href="acilan-kimya-rabite-138a6.html">Kimyəvi rabitə</a> › <span>3-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Kimyəvi rabitə — 3-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "kimya-rabite-3", "title": "Kimyəvi rabitə — 3-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Niyə suyun qaynama temperaturu yüksəkdir?", "o": ["Metal rabitəsi", "Hidrogen rabitələri", "İon rabitəsi", "Ağır molekul"], "a": 1, "e": "Molekullararası güclü cazibə."}, {"s": "Hansı maddə elektrik cərəyanını keçirir?", "o": ["Şəkər məhlulu", "Quru NaCl kristalı", "Distillə suyu", "NaCl məhlulu"], "a": 3, "e": "Sərbəst ionlar olur."}, {"s": "Elektrolit nədir?", "o": ["Məhlulda ionlara ayrılan və cərəyan keçirən maddə", "Metal", "Cərəyan keçirməyən", "Qaz"], "a": 0, "e": "Turşu, əsas və duzlar."}, {"s": "Qeyri-elektrolitə nümunə hansıdır?", "o": ["NaOH", "Şəkər", "NaCl", "HCl"], "a": 1, "e": "Məhlulda ionlara ayrılmır."}, {"s": "σ (siqma) rabitə necə yaranır?", "o": ["Orbitalların oxboyu örtülməsi", "Hidrogen", "İon cəlbi", "Yan örtülmə"], "a": 0, "e": "Daha möhkəmdir."}, {"s": "π (pi) rabitə necə yaranır?", "o": ["İon", "Metal", "Oxboyu örtülmə", "Yan örtülmə"], "a": 3, "e": "İkiqat və üçqat rabitələrdə olur."}, {"s": "İkiqat rabitədə neçə σ və π rabitə var?", "o": ["2π", "1σ + 1π", "2σ", "1σ"], "a": 1, "e": "N₂-də 1σ + 2π var."}, {"s": "Hansı maddədə ion rabitəsi var?", "o": ["CO₂", "CH₄", "KBr", "H₂O"], "a": 2, "e": "Metal və qeyri-metal birləşməsi."}, {"s": "Metalların plastikliyi nə ilə izah olunur?", "o": ["İon rabitəsi", "Hidrogen", "Metal rabitəsi — ion qatları sürüşə bilir", "Kovalent"], "a": 2, "e": "Elektron «buludu» rabitəni saxlayır."}, {"s": "Rabitənin uzunluğu artdıqca möhkəmliyi necə dəyişir?", "o": ["Azalır", "Dəyişmir", "Artır", "Təsadüfi"], "a": 0, "e": "Qısa rabitə daha möhkəmdir."}]};
+  var ACAR = "kimya:rabite";
+  CFG.meta = {"fenn": "kimya", "movzu": "rabite", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Kimyəvi rabitə — 3-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

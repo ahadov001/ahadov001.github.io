@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metallar — 2-ci toplu — Sınaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="testler.html">Testlər</a> › <a href="fenn-test-kimya.html">Kimya</a> › <a href="acilan-kimya-metallar-420f8.html">Metallar</a> › <span>2-ci toplu</span></nav>
+<div class="hero" style="padding:26px 0 10px"><p class="eyebrow">Mövzu testi</p><h1 style="font-size:clamp(1.6rem,3.8vw,2.2rem)">Metallar — 2-ci toplu</h1><p class="lead" style="font-size:1rem;margin-top:10px">Cavabı seçən kimi düzgün variant və izahı görünür. 10 sual.</p></div>
+<div class="notice">Bu səhifənin linki yalnız ödəniş edənə göstərilir. Linki saxlayın — istənilən vaxt yenidən aça bilərsiniz.</div><div id="quiz" class="quiz"></div>
+</main>
+<script src="assets/quiz.js"></script>
+<script>
+(function(){
+  var CFG = {"el": "quiz", "id": "kimya-metallar-2", "title": "Metallar — 2-ci toplu", "mode": "learn", "minutes": 0, "negative": 0, "shuffle": true, "questions": [{"s": "Metalların fəaliyyət sırasında ən aktiv metal hansıdır?", "o": ["Fe", "K (və Li)", "Cu", "Au"], "a": 1, "e": "Qələvi metallar başda dayanır."}, {"s": "Hansı metal təbiətdə sərbəst halda tapılır?", "o": ["Qızıl", "K", "Ca", "Na"], "a": 0, "e": "Nəcib metallardır."}, {"s": "Metallurgiya nədir?", "o": ["Tökmə", "Filizlərdən metal alınması elmi", "Qaynaq", "Metalların rənglənməsi"], "a": 1, "e": "Pirometallurgiya, hidrometallurgiya və s."}, {"s": "Dəmir filizindən dəmir necə alınır?", "o": ["Elektroliz", "Buxarlanma", "Domna sobasında koksla reduksiya", "Həllolma"], "a": 2, "e": "CO reduksiyaedici rolunu oynayır."}, {"s": "Alüminium necə alınır?", "o": ["Qızdırmaqla", "Ərinmiş kriolitdə elektrolizlə", "Suda", "Koksla"], "a": 1, "e": "Boksit xammal olur."}, {"s": "Qələvi metalların oksidləşmə dərəcəsi neçədir?", "o": ["+2", "+1", "+3", "0"], "a": 1, "e": "Bir valent elektronu var."}, {"s": "Qələvi-torpaq metalların oksidləşmə dərəcəsi neçədir?", "o": ["+4", "+1", "+3", "+2"], "a": 3, "e": "İki valent elektronu var."}, {"s": "Suyun codluğu nə ilə əlaqədardır?", "o": ["Ca²⁺ və Mg²⁺ duzları", "Natrium", "Dəmir", "Xlor"], "a": 0, "e": "Sabunun köpüklənməsini azaldır."}, {"s": "Suyun codluğunu aradan qaldırmaq üçün nə istifadə olunur?", "o": ["Soda (Na₂CO₃)", "Turşu", "Duz", "Yağ"], "a": 0, "e": "Qaynatma da müvəqqəti codluğu aradan qaldırır."}, {"s": "Amfoter metala nümunə hansıdır?", "o": ["Al", "Ca", "K", "Na"], "a": 0, "e": "Həm turşu, həm qələvi ilə reaksiya verir."}]};
+  var ACAR = "kimya:metallar";
+  CFG.meta = {"fenn": "kimya", "movzu": "metallar", "nov": "test"};
+  CFG.onBitdi = function(n){
+    if (window.Sinaq && Sinaq.istifadeci) Sinaq.neticeYaz(n);
+  };
+  function basla(){ AzQuiz.mount(CFG); }
+  document.addEventListener("DOMContentLoaded", function(){
+    if (!ACAR) { basla(); return; }
+    if (!window.Sinaq) { basla(); return; }
+    Sinaq.kilidYoxla(ACAR, "Metallar — 2-ci toplu").then(function(ok){ if (ok) basla(); });
+  });
+})();
+</script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
