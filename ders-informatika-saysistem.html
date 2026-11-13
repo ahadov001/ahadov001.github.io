@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Say sistemləri — İnformatika — Sınaq</title>
+<meta name="description" content="İkilik, səkkizlik, onaltılıq; çevrilmələr">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="movzular.html">Mövzu izahları</a> › <a href="fenn-ders-informatika.html">İnformatika</a> › <span>Say sistemləri</span></nav>
+<div class="hero" style="padding:26px 0 18px"><p class="eyebrow">2-ci mövzu · izah pulsuzdur</p><h1 style="font-size:clamp(1.8rem,4.2vw,2.5rem)">Say sistemləri</h1><p class="lead" style="margin-top:12px">İkilik, səkkizlik, onaltılıq; çevrilmələr</p></div>
+<article class="lesson">
+<h3>Say sistemləri</h3>
+<p>Ədədləri yazmaq üsulu. <b>Əsas</b> (baza) — istifadə olunan rəqəmlərin sayı.</p>
+<div class="tscroll"><table>
+<tr><th>Sistem</th><th>Əsas</th><th>Rəqəmlər</th><th>Nə üçün</th></tr>
+<tr><td>İkilik</td><td>2</td><td>0, 1</td><td>Kompüterin daxili işi</td></tr>
+<tr><td>Səkkizlik</td><td>8</td><td>0–7</td><td>Köhnə sistemlər</td></tr>
+<tr><td>Onluq</td><td>10</td><td>0–9</td><td>İnsan üçün</td></tr>
+<tr><td>Onaltılıq</td><td>16</td><td>0–9, A–F</td><td>Proqramçılar üçün qısa yazılış</td></tr>
+</table></div>
+<div class="tip"><b>Niyə kompüter ikilikdən istifadə edir?</b> Tranzistor
+yalnız iki vəziyyəti etibarlı ayırd edir: cərəyan var (1) və ya yox (0).
+10 fərqli gərginlik səviyyəsini ayırmaq texniki olaraq çətin və
+səhvə meyllidir. Sadəlik etibarlılıq gətirir.</div>
+
+<h3>İkilikdən onluğa çevirmə</h3>
+<p>Hər rəqəmi 2-nin uyğun dərəcəsinə vurub toplayırsan.</p>
+<div class="ex"><b>1011₂ = ?</b><br>
+Sağdan sola dərəcələr: 2⁰=1, 2¹=2, 2²=4, 2³=8<br>
+1·8 + 0·4 + 1·2 + 1·1 = <b>11</b></div>
+
+<h3>Onluqdan ikiliyə çevirmə</h3>
+<p>2-yə ardıcıl bölürsən, qalıqları <b>tərs sırada</b> yazırsan.</p>
+<div class="ex"><b>13 = ?</b><br>
+13 : 2 = 6, qalıq <b>1</b><br>
+6 : 2 = 3, qalıq <b>0</b><br>
+3 : 2 = 1, qalıq <b>1</b><br>
+1 : 2 = 0, qalıq <b>1</b><br>
+Tərs oxuyuruq: <b>1101₂</b></div>
+
+<h3>2-nin dərəcələrini yadda saxla</h3>
+<div class="tip">1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024<br>
+Bunları bilsən çevirmələri sürətlə edirsən: 100 = 64+32+4 → 1100100₂.
+Bu cədvəl həm də yaddaş ölçülərində, rəng dərinliyində, şəbəkə maskalarında
+hər yerdə çıxır.</div>
+
+<h3>Onaltılıq sistem</h3>
+<p>Bir onaltılıq simvol <b>dəqiq 4 bit</b> əvəz edir — ona görə uzun ikilik
+kodları qısa yazmaq üçün idealdır.</p>
+<div class="tscroll"><table>
+<tr><td>0–9</td><td>eyni</td></tr>
+<tr><td>A = 10</td><td>B = 11</td></tr>
+<tr><td>C = 12</td><td>D = 13</td></tr>
+<tr><td>E = 14</td><td>F = 15</td></tr>
+</table></div>
+<div class="ex"><b>Rəng kodları:</b> #FF0000 = qırmızı.
+FF = 255 (maksimum qırmızı), 00 = yaşıl yox, 00 = mavi yox.<br>
+#FFFFFF = ağ, #000000 = qara, #00FF00 = yaşıl.
+Veb dizaynda hər gün istifadə olunur.</div>
+
+<h3>8 bitin əhəmiyyəti</h3>
+<p>8 bit ilə 2⁸ = <b>256</b> fərqli qiymət ifadə etmək olar (0–255).
+Ona görə bir baytda 256 simvol, bir rəng komponentində 256 çalar var.</p>
+</article>
+<section class="plain" style="padding-top:34px"><div class="sec-head"><h2>Bu mövzunun testləri</h2><p>İzahı oxuduqdan sonra biliyini yoxla. Hər səhv cavabın ətraflı izahı açılır.</p></div><div class="alqutu"><div><b>3 test toplusu · 30 sual</b><span>Bir dəfə alırsan, bütün toplular açılır və həmişəlik səninki olur.</span></div><div class="alsag"><span class="price big">2 AZN</span><a class="btn solid" data-al="informatika:saysistem" href="index.html#paket">Testləri al</a></div></div></section>
+</main>
+<script src="assets/al.js"></script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

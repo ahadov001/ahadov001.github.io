@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mətn və cədvəl redaktorları — İnformatika — Sınaq</title>
+<meta name="description" content="Word, Excel — formatlaşdırma, düsturlar">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="movzular.html">Mövzu izahları</a> › <a href="fenn-ders-informatika.html">İnformatika</a> › <span>Mətn və cədvəl redaktorları</span></nav>
+<div class="hero" style="padding:26px 0 18px"><p class="eyebrow">5-ci mövzu · izah pulsuzdur</p><h1 style="font-size:clamp(1.8rem,4.2vw,2.5rem)">Mətn və cədvəl redaktorları</h1><p class="lead" style="margin-top:12px">Word, Excel — formatlaşdırma, düsturlar</p></div>
+<article class="lesson">
+<h3>Mətn redaktoru</h3>
+<p>Sənəd yaratmaq və formatlamaq üçün proqram (Word, LibreOffice Writer,
+Google Docs).</p>
+
+<h3>Formatlaşdırma səviyyələri</h3>
+<ul>
+<li><b>Simvol</b> — şrift, ölçü, qalın/maili, rəng</li>
+<li><b>Abzas</b> — düzləndirmə, sətirarası məsafə, girinti</li>
+<li><b>Səhifə</b> — ölçü, kənarlar, istiqamət</li>
+<li><b>Sənəd</b> — üslublar, mündəricat, kolontitullar</li>
+</ul>
+<div class="tip"><b>Üslublardan (styles) istifadə et!</b> Başlıqları əl ilə
+qalın-böyük etmək yerinə «Başlıq 1» üslubunu tətbiq et. Üstünlükləri:
+mündəricat avtomatik qurulur, bütün başlıqların görünüşünü bir yerdən
+dəyişirsən, sənəd strukturlu olur. Peşəkar iş fərqi məhz buradadır.</div>
+
+<h3>Cədvəl redaktoru</h3>
+<p>Excel, LibreOffice Calc, Google Sheets. Əsas vahid — <b>xana</b>
+(sətir və sütunun kəsişməsi, ünvanı A1, B5 kimi).</p>
+
+<h3>Düsturlar</h3>
+<p>Həmişə <b>=</b> işarəsi ilə başlayır.</p>
+<div class="tscroll"><table>
+<tr><td>=A1+B1</td><td>Toplama</td></tr>
+<tr><td>=SUM(A1:A10)</td><td>Diapazonu topla</td></tr>
+<tr><td>=AVERAGE(A1:A10)</td><td>Orta qiymət</td></tr>
+<tr><td>=MAX() / =MIN()</td><td>Maksimum / minimum</td></tr>
+<tr><td>=COUNT()</td><td>Ədəd olan xanaları say</td></tr>
+<tr><td>=IF(şərt; doğru; yalan)</td><td>Şərtli nəticə</td></tr>
+</table></div>
+<div class="ex"><b>=IF(B2&gt;=50; "Keçdi"; "Kəsildi")</b><br>
+B2 xanasındaki bal 50-dən böyükdürsə «Keçdi», əksinə «Kəsildi» yazır.
+Bir düsturu aşağı sürükləyib yüzlərlə şagird üçün nəticə çıxarırsan.</div>
+
+<h3>Nisbi və mütləq ünvan</h3>
+<div class="tip"><b>A1</b> — nisbi ünvan, düsturu kopyalayanda dəyişir.<br>
+<b>$A$1</b> — mütləq ünvan, dəyişmir.<br>
+<b>Nə vaxt lazımdır?</b> Məsələn bütün qiymətləri bir xanadaki valyuta
+məzənnəsinə vurursan — məzənnə xanası sabit qalmalıdır: =B2*$D$1.
+Dollar işarəsi «bu hissəni dondur» deməkdir.</div>
+
+<h3>Faydalı alətlər</h3>
+<ul>
+<li><b>Sıralama</b> — verilənləri nizama salır</li>
+<li><b>Süzgəc (filter)</b> — şərtə uyğun sətirləri göstərir</li>
+<li><b>Şərti formatlaşdırma</b> — qiymətə görə rəngləmə</li>
+<li><b>Diaqram</b> — verilənlərin əyani təsviri</li>
+<li><b>Pivot cədvəl</b> — böyük verilənləri qruplaşdırıb yekunlaşdırır</li>
+</ul>
+
+<h3>Diaqram seçimi</h3>
+<div class="tscroll"><table>
+<tr><td><b>Sütun</b></td><td>Kateqoriyaları müqayisə etmək</td></tr>
+<tr><td><b>Xətt</b></td><td>Zaman üzrə dəyişmə, trend</td></tr>
+<tr><td><b>Dairəvi</b></td><td>Payların nisbəti (az sayda hissə)</td></tr>
+<tr><td><b>Nöqtəli</b></td><td>İki kəmiyyət arasında əlaqə</td></tr>
+</table></div>
+
+<h3>Təqdimat proqramı</h3>
+<p>PowerPoint, Impress, Google Slides. Əsas vahid — <b>slayd</b>.</p>
+<div class="ex"><b>Yaxşı slaydın qaydası:</b> bir slayd — bir fikir.
+Az mətn, böyük şrift, aydın vizual. Slaydı <b>oxumaq</b> deyil,
+danışmaq üçündür — mətni tam yazsan tamaşaçı səni dinləməz, oxuyar.</div>
+</article>
+<section class="plain" style="padding-top:34px"><div class="sec-head"><h2>Bu mövzunun testləri</h2><p>İzahı oxuduqdan sonra biliyini yoxla. Hər səhv cavabın ətraflı izahı açılır.</p></div><div class="alqutu"><div><b>3 test toplusu · 30 sual</b><span>Bir dəfə alırsan, bütün toplular açılır və həmişəlik səninki olur.</span></div><div class="alsag"><span class="price big">2 AZN</span><a class="btn solid" data-al="informatika:redaktor" href="index.html#paket">Testləri al</a></div></div></section>
+</main>
+<script src="assets/al.js"></script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>

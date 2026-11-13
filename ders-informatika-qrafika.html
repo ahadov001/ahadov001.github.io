@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qrafika və multimedia — İnformatika — Sınaq</title>
+<meta name="description" content="Rastr və vektor, rəng modelləri, format">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script src="assets/sb.js" type="module"></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="index.html"><span class="seal">S</span>Sınaq</a><nav aria-label="Əsas menyu"><a href="index.html">Ana səhifə</a><a href="movzular.html">Mövzu izahları</a><a href="testler.html">Testlər</a><a href="imtahan-qebul.html">İmtahanlar</a><a href="index.html#paket">Qiymətlər</a></nav><div id="hesab-nav" class="hesab-nav"></div></div></header>
+<main class="wrap narrow">
+<nav class="qirinti"><a href="index.html">Ana səhifə</a> › <a href="movzular.html">Mövzu izahları</a> › <a href="fenn-ders-informatika.html">İnformatika</a> › <span>Qrafika və multimedia</span></nav>
+<div class="hero" style="padding:26px 0 18px"><p class="eyebrow">11-ci mövzu · izah pulsuzdur</p><h1 style="font-size:clamp(1.8rem,4.2vw,2.5rem)">Qrafika və multimedia</h1><p class="lead" style="margin-top:12px">Rastr və vektor, rəng modelləri, format</p></div>
+<article class="lesson">
+<h3>İki qrafika növü</h3>
+<div class="tscroll"><table>
+<tr><th></th><th>Rastr</th><th>Vektor</th></tr>
+<tr><td>Nədən qurulur</td><td>Piksellərdən</td><td>Düstur və obyektlərdən</td></tr>
+<tr><td>Böyüdəndə</td><td>Keyfiyyət <b>itir</b></td><td>Keyfiyyət <b>itmir</b></td></tr>
+<tr><td>Fayl ölçüsü</td><td>Böyük</td><td>Kiçik</td></tr>
+<tr><td>Formatlar</td><td>JPG, PNG, BMP</td><td>SVG, AI, EPS</td></tr>
+<tr><td>Nə üçün</td><td>Fotolar</td><td>Loqo, ikon, sxem</td></tr>
+</table></div>
+<div class="tip"><b>Praktik qayda:</b> <b>foto</b> → rastr (JPG/PNG).
+<b>Loqo və ikon</b> → vektor (SVG). Loqonu JPG saxlasan, bilbordda
+pikselləşir. Vektor isə həm vizit kartda, həm bilbordda eyni keyfiyyətlə çıxır.</div>
+
+<h3>Piksel və ayırdetmə</h3>
+<p><b>Piksel</b> — rastr təsvirin ən kiçik elementi.
+<b>Ayırdetmə</b> — piksellərin sayı (1920×1080).</p>
+<ul>
+<li><b>PPI/DPI</b> — düym üzrə piksel/nöqtə sayı</li>
+<li>Ekran üçün 72–96 DPI kifayətdir</li>
+<li>Çap üçün <b>300 DPI</b> tələb olunur</li>
+</ul>
+<div class="ex"><b>Niyə internetdən götürülmüş şəkil çapda pis çıxır?</b>
+Çünki ekran üçün 72 DPI hazırlanıb. Çapda 300 DPI lazımdır —
+yəni dörd dəfə çox piksel. Kiçik şəkli böyütmək piksel əlavə etmir,
+mövcud pikselləri «dartır».</div>
+
+<h3>Rəng modelləri</h3>
+<div class="tscroll"><table>
+<tr><td><b>RGB</b></td><td>Qırmızı, yaşıl, mavi</td><td>Ekran — işıq əlavə olunur</td></tr>
+<tr><td><b>CMYK</b></td><td>Mavi, bənövşəyi, sarı, qara</td><td>Çap — boya üst-üstə düşür</td></tr>
+<tr><td><b>HSB</b></td><td>Rəng tonu, doyma, parlaqlıq</td><td>İnsan qavrayışına yaxın</td></tr>
+</table></div>
+<div class="tip"><b>Niyə ekranda gördüyün rəng çapda fərqli çıxır?</b>
+RGB işıq qarışdırır (üçü birlikdə <b>ağ</b> verir), CMYK boya qarışdırır
+(üçü birlikdə <b>qara</b>ya yaxın). İki fərqli fizika — ona görə
+çap üçün CMYK-da işləmək lazımdır.</div>
+
+<h3>Formatların seçimi</h3>
+<ul>
+<li><b>JPG</b> — fotolar, kiçik ölçü, şəffaflıq yoxdur</li>
+<li><b>PNG</b> — şəffaflıq lazımdırsa, itkisiz</li>
+<li><b>GIF</b> — sadə animasiya, az rəng</li>
+<li><b>SVG</b> — vektor, veb üçün ideal</li>
+<li><b>WebP</b> — müasir, yaxşı sıxılma</li>
+</ul>
+
+<h3>Təbəqələr (layers)</h3>
+<p>Təsvir elementlərini ayrı-ayrı redaktə etməyə imkan verir.
+Qeyri-dağıdıcı iş üsulu — bir təbəqəni dəyişsən digərləri toxunulmaz qalır.</p>
+
+<h3>Səs və video</h3>
+<ul>
+<li><b>Diskretləşdirmə tezliyi</b> — saniyədə nümunə sayı (44,1 kHz CD keyfiyyəti)</li>
+<li><b>Bit dərinliyi</b> — hər nümunənin dəqiqliyi</li>
+<li><b>Kadr tezliyi (fps)</b> — 24 kino, 30 TV, 60 oyun</li>
+<li><b>Bitreyt</b> — saniyədə məlumat həcmi, keyfiyyətə birbaşa təsir edir</li>
+</ul>
+<div class="ex"><b>Video faylın ölçüsü nədən asılıdır?</b>
+Uzunluq × ayırdetmə × kadr tezliyi × bitreyt.
+Ona görə 4K video Full HD-dən dəfələrlə böyük olur —
+hər kadrda dörd dəfə çox piksel var.</div>
+
+<h3>Dizayn əsasları</h3>
+<div class="tip">• <b>Kontrast</b> — mətn fonla kontrast olmalıdır (oxunaqlılıq)<br>
+• <b>Boşluq</b> — hər yeri doldurmaq lazım deyil, boşluq nəfəs verir<br>
+• <b>İyerarxiya</b> — vacib element böyük və diqqətçəkən olsun<br>
+• <b>Sadəlik</b> — 2–3 rəng, 2 şrift kifayətdir</div>
+</article>
+<section class="plain" style="padding-top:34px"><div class="sec-head"><h2>Bu mövzunun testləri</h2><p>İzahı oxuduqdan sonra biliyini yoxla. Hər səhv cavabın ətraflı izahı açılır.</p></div><div class="alqutu"><div><b>3 test toplusu · 30 sual</b><span>Bir dəfə alırsan, bütün toplular açılır və həmişəlik səninki olur.</span></div><div class="alsag"><span class="price big">2 AZN</span><a class="btn solid" data-al="informatika:qrafika" href="index.html#paket">Testləri al</a></div></div></section>
+</main>
+<script src="assets/al.js"></script>
+<footer class="site-foot"><div class="wrap">Sınaq — bütün fənlər üzrə mövzu izahları, test topluları və imtahan simulyasiyaları. Ödənişlər <a href="https://www.lemonsqueezy.com/">Lemon Squeezy</a> üzərindən emal olunur.</div></footer>
+</body>
+</html>
