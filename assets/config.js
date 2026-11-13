@@ -11,6 +11,6 @@
    serverdəki webhook funksiyasına qoyulur.
    ═══════════════════════════════════════════════════════════════ */
 window.SB_CONFIG = {
-  url: "",
-  anonKey: ""
+  url: "https://qgemauhpzwcryhpxsnsk.supabase.co",
+  anonKey: "sb_publishable_7FKUcekh-5O07hBUI-L16Q_cnMJOnX6"
 };
