@@ -1,0 +1,223 @@
+═══════════════════════════════════════════════════════════════════
+  SINAQ — qurulum təlimatı
+═══════════════════════════════════════════════════════════════════
+
+SAYTDA NƏ VAR
+  12 fənn · 160 mövzu · 160 dərs izahı · 480 test toplusu
+  5 928 sual · 21 imtahan modeli · 848 səhifə
+
+  Ana səhifədə 6 xidmət bölməsi:
+    1. Mövzu izahları   — PULSUZ, hamıya açıq, hesab tələb etmir
+    2. Testlər          — hər mövzuda 3 fərqli toplu
+    3. IX sinif buraxılış   — 2 model variant
+    4. XI sinif buraxılış   — 2 model variant
+    5. Qəbul blok imtahanı  — I, II, III, IV qrup × 2 variant
+    6. MİQ sertifikasiya    — 9 fənn üzrə
+
+  ŞƏXSİ KABİNET
+    • Balans — bir dəfə yüklə, hər xidməti bir klikə al
+    • İrəliləyiş — hansı mövzu işlənib, hansı qalıb (fənn-fənn)
+    • Transkript — bütün nəticələr, tarix və faizlə
+    • İnkişaf qrafiki — son 20 testin trendi
+    • Alışlar — nə alınıb, nə vaxt
+
+  Hər girişdə suallar VƏ variantlar qarışır — eyni test iki dəfə
+  eyni sıra ilə gəlmir.
+
+═══════════════════════════════════════════════════════════════════
+  QURULUM 4 MƏRHƏLƏDİR.  Birinci mərhələdən sonra sayt işləyir.
+═══════════════════════════════════════════════════════════════════
+
+
+───────────────────────────────────────────────────────────────────
+MƏRHƏLƏ 1 — GITHUB  (10 dəqiqə)
+───────────────────────────────────────────────────────────────────
+  1. github.com/ahadov001/ahadov001.github.io repozitoriyasını açın
+  2. Köhnə faylları silin
+  3. Bu qovluğun İÇİNDƏKİLƏRİ yükləyin:
+       • index.html və bütün .html fayllar
+       • assets QOVLUĞUNU bütöv halda
+
+     ⚠ assets qovluğunu SÜRÜKLƏYİB ATIN — açıb içindəkiləri
+       bir-bir yükləməyin, əks halda CSS işləməyəcək.
+
+  4. 1–2 dəqiqə sonra sayt açılır:  https://ahadov001.github.io
+
+  BU MƏRHƏLƏDƏN SONRA: mövzu izahları (160 dərs) tam işləkdir və
+  pulsuzdur. Tələbələri dərhal dəvət edə bilərsiniz. Testlər
+  "hazırlanır" görünəcək — onlar 2-ci mərhələdən sonra açılır.
+
+
+───────────────────────────────────────────────────────────────────
+MƏRHƏLƏ 2 — SUPABASE  (20 dəqiqə)  ← hesab və balans burada yaşayır
+───────────────────────────────────────────────────────────────────
+  Supabase pulsuz, kart tələb etmir. Pulsuz tarif: 500 MB baza,
+  ayda 50 000 istifadəçi. Sizin ölçüdə bu uzun müddət bəs edir.
+
+  2.1. supabase.com → Start your project → e-poçtla qeydiyyat
+  2.2. "New project" → ad: sinaq → region: Frankfurt (ən yaxını)
+       → güclü database parolu yazın və saxlayın
+  2.3. Proyekt hazır olana qədər ~2 dəqiqə gözləyin
+
+  2.4. Sol menyuda SQL Editor → "New query"
+       supabase/01-sxem.sql faylını açıb MƏTNİ BÜTÖV kopyalayın,
+       pəncərəyə yapışdırın → RUN
+       "Success" yazısı görünməlidir.
+
+  2.5. Yenə SQL Editor → New query
+       supabase/02-qiymetler.sql faylını eyni şəkildə RUN edin
+       (174 xidmətin qiymətini bazaya yazır)
+
+  2.6. Sol menyuda Project Settings → API
+       İki dəyəri kopyalayın:
+         • Project URL          (https://xxxx.supabase.co)
+         • anon public açarı    (uzun mətn)
+
+  2.7. assets/config.js faylını açıb o iki dəyəri yazın:
+
+         window.SB_CONFIG = {
+           url: "https://xxxx.supabase.co",
+           anonKey: "eyJhbGci..."
+         };
+
+       Faylı GitHub-a yenidən yükləyin.
+
+       ⚠ "service_role" açarını BURAYA YAZMAYIN. O açar yalnız
+         3-cü mərhələdə, serverdə istifadə olunur.
+         anon açarının saytda görünməsi normaldır — bazadaki
+         təhlükəsizlik qaydaları (RLS) hər şeyi qoruyur.
+
+  2.8. Authentication → Sign In / Providers → Email
+       "Confirm email" seçimini SÖNDÜRÜN (tələbələr e-poçt
+       təsdiqi gözləmədən dərhal başlasın). Sonra istəsəniz
+       yenidən yandıra bilərsiniz.
+
+  BU MƏRHƏLƏDƏN SONRA: qeydiyyat, giriş, şəxsi kabinet,
+  irəliləyiş, transkript — hamısı işləyir. Balans 0 olduğu üçün
+  testlər hələ alınmır. Özünüzə balans yazmaq üçün SQL Editor:
+
+      select public.balans_artir(
+        (select id from auth.users where email = 'sizin@mail.com'),
+        10000);          -- 100 AZN
+
+  Bununla bütün saytı özünüz yoxlaya bilərsiniz.
+
+
+───────────────────────────────────────────────────────────────────
+MƏRHƏLƏ 3 — ÖDƏNİŞ  (30 dəqiqə)  ← yalnız 4 məhsul!
+───────────────────────────────────────────────────────────────────
+  Köhnə planda 174 məhsul yaratmaq lazım idi. Balans sistemi ilə
+  CƏMİ 4 MƏHSUL kifayətdir — qalan hər şey sayt daxilində balansdan
+  gedir.
+
+  3.1. Lemon Squeezy → 4 məhsul yaradın:
+         "5 AZN balans"   · "10 AZN balans"
+         "25 AZN balans"  · "50 AZN balans"
+       Qiymətləri Lemon Squeezy-nin valyutasında uyğun qoyun.
+
+  3.2. Hər məhsulun VARIANT ID-sini tapın:
+       məhsulu açın → Variants bölməsi → ID rəqəmi
+       (yaxud məhsulun linkində /buy/xxxx hissəsindən sonra
+        Lemon Squeezy API-də görünür)
+
+  3.3. supabase/functions/balans-webhook/index.ts faylını açın,
+       PAKETLER siyahısını öz variant ID-lərinizlə doldurun:
+
+         const PAKETLER = {
+           "123456": 500,    // 5 AZN
+           "123457": 1000,   // 10 AZN
+           "123458": 2500,   // 25 AZN
+           "123459": 5000,   // 50 AZN
+         };
+
+       ⚠ Məbləğ niyə burada? Çünki istifadəçinin linkindən
+         gələn rəqəmə etibar etmək olmaz — adam 5 AZN ödəyib
+         linkdə 5000 yazardı. Variant ID Lemon Squeezy-nin
+         özündən gəlir, saxtalaşdırıla bilmir.
+
+  3.4. Supabase → Edge Functions → "Deploy a new function"
+       Ad: balans-webhook
+       index.ts faylının məzmununu yapışdırın → Deploy
+
+  3.5. Supabase → Edge Functions → Secrets bölməsində 3 dəyər:
+         SB_URL                = Project URL
+         SB_SERVICE_KEY        = service_role açarı (Settings → API)
+         LEMON_WEBHOOK_SECRET  = özünüz uzun təsadüfi mətn yazın
+                                 (məs. 32 simvol) və saxlayın
+
+  3.6. Lemon Squeezy → Settings → Webhooks → "+"
+         URL:     https://xxxx.supabase.co/functions/v1/balans-webhook
+         Secret:  3.5-də yazdığınız LEMON_WEBHOOK_SECRET
+         Events:  order_created  (yalnız bunu seçin)
+
+  3.7. 4 məhsulun "Share / Buy link" linklərini
+       assets/balans-paketleri.js faylına yazın və GitHub-a
+       yenidən yükləyin.
+
+  3.8. YOXLAMA — Lemon Squeezy-də Test mode açın, kart:
+         4242 4242 4242 4242 · istənilən tarix · CVC 123
+       Ödənişdən sonra kabinetdə balans artmalıdır.
+       Artmadısa: Supabase → Edge Functions → balans-webhook →
+       Logs bölməsinə baxın, səbəb orada yazılır.
+
+
+───────────────────────────────────────────────────────────────────
+MƏRHƏLƏ 4 — İSTİFADƏ
+───────────────────────────────────────────────────────────────────
+  QİYMƏTİ DƏYİŞMƏK (Supabase → SQL Editor):
+    -- bir mövzu
+    update public.qiymetler set qiymet = 300 where acar = 'kimya:rabite';
+    -- bütün mövzular 3 AZN
+    update public.qiymetler set qiymet = 300 where acar like '%:%';
+    -- bütün imtahanlar 5 AZN
+    update public.qiymetler set qiymet = 500
+      where acar ~ '^(qb|bx|miq)';
+    -- tam paket
+    update public.qiymetler set qiymet = 2000 where acar = 'paket';
+
+  KİMƏSƏ HƏDİYYƏ BALANS:
+    select public.balans_artir(
+      (select id from auth.users where email = 'telebe@mail.com'), 500);
+
+  FƏRQLİ E-POÇTLA ÖDƏYİB BALANSI GƏLMƏYƏNƏ:
+    select public.odenisi_bagla('lemon_order_id', 'telebe@mail.com');
+    (lemon_order_id-ni odenisler cədvəlindən tapın)
+
+  SATIŞ HESABATI:
+    select date_trunc('day', tarix) gun, count(*), sum(mebleg)/100.0 azn
+      from public.odenisler group by 1 order by 1 desc;
+
+    select q.ad, count(*) satis from public.alislar a
+      join public.qiymetler q on q.acar = a.acar
+      group by 1 order by 2 desc limit 20;
+
+
+───────────────────────────────────────────────────────────────────
+BİLMƏLİ OLDUĞUNUZ MƏHDUDİYYƏTLƏR
+───────────────────────────────────────────────────────────────────
+  • Supabase pulsuz tarifi 7 gün heç kim girməzsə proyekti
+    dayandırır. Gündəlik ziyarət varsa problem yoxdur; dayansa
+    panelden bir kliklə işə salınır.
+
+  • Test səhifələri statik fayllardır. Balans sistemi testə
+    KEÇİDİ qoruyur, lakin linki olan adam səhifənin mənbə kodunu
+    oxuyub sualları görə bilər. Linklər uzun və təsadüfidir, ona
+    görə praktikada tapılmır — amma kimsə linki paylaşarsa o bir
+    test açıq qalır. Tam qorumaq üçün sualları da bazaya köçürmək
+    lazımdır; istəsəniz bunu sonra edə bilərik.
+
+  • Ekranın şəklini çəkməyin qarşısını almaq texniki olaraq
+    mümkün deyil — heç bir saytda mümkün deyil. Mətn kopyalama
+    və sağ düymə bloklanıb, bu qədər.
+
+  • Admin qeydini görmək üçün:  https://ahadov001.github.io/?admin=1
+    İstifadəçilər bu qeydi görmür.
+
+
+───────────────────────────────────────────────────────────────────
+HANSI FAYLI REDAKTƏ EDİRƏM?
+───────────────────────────────────────────────────────────────────
+  assets/config.js             → Supabase url və anon açarı
+  assets/balans-paketleri.js   → 4 ödəniş linki
+  supabase/.../index.ts        → variant ID → balans uyğunluğu
+  Qalan fayllara toxunmayın.

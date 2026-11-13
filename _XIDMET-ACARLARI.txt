@@ -1,0 +1,190 @@
+XİDMƏT AÇARLARI
+═══════════════════════════════════════════════════════════════
+Bu fayl yalnız məlumat üçündür — redaktə etmək lazım deyil.
+
+Qiymətlər artıq saytda deyil, SUPABASE BAZASINDA saxlanılır
+(qiymetler cədvəli). Qiyməti dəyişmək üçün Supabase → SQL Editor:
+
+    update public.qiymetler set qiymet = 300 where acar = 'kimya:rabite';
+
+Bütün mövzuları 3 AZN etmək üçün:
+
+    update public.qiymetler set qiymet = 300 where acar like '%:%';
+
+Aşağıda saytdaki bütün xidmət açarları verilib.
+═══════════════════════════════════════════════════════════════
+
+  "azdili:orfoqrafiya": "",        // Azərbaycan dili · Orfoqrafiya (3 toplu)  →  acilan-azdili-orfoqrafiya-977cb.html
+  "azdili:orfoepiya": "",          // Azərbaycan dili · Orfoepiya (3 toplu)  →  acilan-azdili-orfoepiya-335a0.html
+  "azdili:leksika": "",            // Azərbaycan dili · Leksika (3 toplu)  →  acilan-azdili-leksika-02919.html
+  "azdili:sozyaradiciligi": "",    // Azərbaycan dili · Söz yaradıcılığı (3 toplu)  →  acilan-azdili-sozyaradiciligi-7beaf.html
+  "azdili:isim": "",               // Azərbaycan dili · İsim (3 toplu)  →  acilan-azdili-isim-36f4f.html
+  "azdili:sifet": "",              // Azərbaycan dili · Sifət (3 toplu)  →  acilan-azdili-sifet-c71a1.html
+  "azdili:say": "",                // Azərbaycan dili · Say (3 toplu)  →  acilan-azdili-say-3d2c0.html
+  "azdili:evezlik": "",            // Azərbaycan dili · Əvəzlik (3 toplu)  →  acilan-azdili-evezlik-1476d.html
+  "azdili:feil": "",               // Azərbaycan dili · Feil (3 toplu)  →  acilan-azdili-feil-09b6d.html
+  "azdili:zerf": "",               // Azərbaycan dili · Zərf (3 toplu)  →  acilan-azdili-zerf-0b64e.html
+  "azdili:komekci": "",            // Azərbaycan dili · Köməkçi nitq hissələri (3 toplu)  →  acilan-azdili-komekci-8afbf.html
+  "azdili:sozbirlesmesi": "",      // Azərbaycan dili · Söz birləşmələri (3 toplu)  →  acilan-azdili-sozbirlesmesi-55dd8.html
+  "azdili:cumleuzvleri": "",       // Azərbaycan dili · Cümlə üzvləri (3 toplu)  →  acilan-azdili-cumleuzvleri-819c1.html
+  "azdili:sadecumle": "",          // Azərbaycan dili · Sadə cümlə (3 toplu)  →  acilan-azdili-sadecumle-cbef1.html
+  "azdili:murekkebcumle": "",      // Azərbaycan dili · Mürəkkəb cümlə (3 toplu)  →  acilan-azdili-murekkebcumle-9234b.html
+  "azdili:durgu": "",              // Azərbaycan dili · Durğu işarələri (3 toplu)  →  acilan-azdili-durgu-3b2ae.html
+  "azdili:metn": "",               // Azərbaycan dili · Mətn və nitq mədəniyyəti (3 toplu)  →  acilan-azdili-metn-22c3a.html
+  "azdili:qar-sayevezlik": "",     // Azərbaycan dili · Say və əvəzlik — qarışıq  →  test-azdili-qar-sayevezlik-93a58.html
+  "azdili:qar-zerfkomekci": "",    // Azərbaycan dili · Zərf və köməkçi nitq hissələri  →  test-azdili-qar-zerfkomekci-aa761.html
+  "azdili:qar-sintaksis": "",      // Azərbaycan dili · Söz birləşmələri və cümlə üzvləri  →  test-azdili-qar-sintaksis-f7d1e.html
+  "azdili:qar-cumledurgu": "",     // Azərbaycan dili · Cümlə növləri və durğu işarələri  →  test-azdili-qar-cumledurgu-b52f3.html
+  "edebiyyat:dastanlar": "",       // Ədəbiyyat · Dastanlar (3 toplu)  →  acilan-edebiyyat-dastanlar-bb1a7.html
+  "edebiyyat:klassikpoeziya": "",  // Ədəbiyyat · Orta əsrlər poeziyası (3 toplu)  →  acilan-edebiyyat-klassikpoeziya-1f517.html
+  "edebiyyat:fuzuli": "",          // Ədəbiyyat · Füzuli və təsəvvüf poeziyası (3 toplu)  →  acilan-edebiyyat-fuzuli-1ea52.html
+  "edebiyyat:asiq": "",            // Ədəbiyyat · Aşıq ədəbiyyatı (3 toplu)  →  acilan-edebiyyat-asiq-b52e5.html
+  "edebiyyat:maarifcilik": "",     // Ədəbiyyat · XIX əsr maarifçilik (3 toplu)  →  acilan-edebiyyat-maarifcilik-e8470.html
+  "edebiyyat:sabirmolla": "",      // Ədəbiyyat · XX əsrin əvvəli (3 toplu)  →  acilan-edebiyyat-sabirmolla-79580.html
+  "edebiyyat:romantizm": "",       // Ədəbiyyat · Romantizm (3 toplu)  →  acilan-edebiyyat-romantizm-4a178.html
+  "edebiyyat:sovetnesr": "",       // Ədəbiyyat · Sovet dövrü ədəbiyyatı (3 toplu)  →  acilan-edebiyyat-sovetnesr-ceaf7.html
+  "edebiyyat:muasir": "",          // Ədəbiyyat · Müasir ədəbiyyat (3 toplu)  →  acilan-edebiyyat-muasir-3edee.html
+  "edebiyyat:nezeriyye": "",       // Ədəbiyyat · Ədəbiyyat nəzəriyyəsi (3 toplu)  →  acilan-edebiyyat-nezeriyye-ac899.html
+  "edebiyyat:dunyaedeb": "",       // Ədəbiyyat · Dünya ədəbiyyatı (3 toplu)  →  acilan-edebiyyat-dunyaedeb-d5e78.html
+  "riyaziyyat:kesrler": "",        // Riyaziyyat · Adi və onluq kəsrlər (3 toplu)  →  acilan-riyaziyyat-kesrler-47dca.html
+  "riyaziyyat:faiz": "",           // Riyaziyyat · Nisbət, tənasüb, faiz (3 toplu)  →  acilan-riyaziyyat-faiz-af2fe.html
+  "riyaziyyat:rasional": "",       // Riyaziyyat · Tam və rasional ədədlər (3 toplu)  →  acilan-riyaziyyat-rasional-6a151.html
+  "riyaziyyat:cebr": "",           // Riyaziyyat · Cəbri ifadələr (3 toplu)  →  acilan-riyaziyyat-cebr-a6a96.html
+  "riyaziyyat:tenlikler": "",      // Riyaziyyat · Tənliklər (3 toplu)  →  acilan-riyaziyyat-tenlikler-f4c8c.html
+  "riyaziyyat:berabersizlik": "",  // Riyaziyyat · Bərabərsizliklər (3 toplu)  →  acilan-riyaziyyat-berabersizlik-091e8.html
+  "riyaziyyat:funksiya": "",       // Riyaziyyat · Funksiyalar (3 toplu)  →  acilan-riyaziyyat-funksiya-fe061.html
+  "riyaziyyat:silsile": "",        // Riyaziyyat · Ardıcıllıqlar və silsilələr (3 toplu)  →  acilan-riyaziyyat-silsile-7524b.html
+  "riyaziyyat:ucbucaq": "",        // Riyaziyyat · Üçbucaqlar (3 toplu)  →  acilan-riyaziyyat-ucbucaq-8fbf2.html
+  "riyaziyyat:coxbucaqli": "",     // Riyaziyyat · Çoxbucaqlılar (3 toplu)  →  acilan-riyaziyyat-coxbucaqli-e6279.html
+  "riyaziyyat:cevre": "",          // Riyaziyyat · Çevrə və dairə (3 toplu)  →  acilan-riyaziyyat-cevre-f923f.html
+  "riyaziyyat:fezafiqur": "",      // Riyaziyyat · Fəza fiqurları (3 toplu)  →  acilan-riyaziyyat-fezafiqur-d7454.html
+  "riyaziyyat:ehtimal": "",        // Riyaziyyat · Ehtimal və statistika (3 toplu)  →  acilan-riyaziyyat-ehtimal-8a5da.html
+  "fizika:dinamika": "",           // Fizika · Dinamika (3 toplu)  →  acilan-fizika-dinamika-12064.html
+  "fizika:saxlanma": "",           // Fizika · Saxlanma qanunları (3 toplu)  →  acilan-fizika-saxlanma-763f3.html
+  "fizika:statika": "",            // Fizika · Statika və hidrostatika (3 toplu)  →  acilan-fizika-statika-cb0e0.html
+  "fizika:molekulyar": "",         // Fizika · Molekulyar fizika (3 toplu)  →  acilan-fizika-molekulyar-cd871.html
+  "fizika:termodinamika": "",      // Fizika · Termodinamika (3 toplu)  →  acilan-fizika-termodinamika-f552f.html
+  "fizika:elektrostatika": "",     // Fizika · Elektrostatika (3 toplu)  →  acilan-fizika-elektrostatika-d802f.html
+  "fizika:cereyan": "",            // Fizika · Sabit cərəyan (3 toplu)  →  acilan-fizika-cereyan-14304.html
+  "fizika:maqnit": "",             // Fizika · Maqnit sahəsi (3 toplu)  →  acilan-fizika-maqnit-409db.html
+  "fizika:induksiya": "",          // Fizika · Elektromaqnit induksiya (3 toplu)  →  acilan-fizika-induksiya-4c626.html
+  "fizika:reqsler": "",            // Fizika · Rəqs və dalğalar (3 toplu)  →  acilan-fizika-reqsler-77ba4.html
+  "fizika:optika": "",             // Fizika · Optika (3 toplu)  →  acilan-fizika-optika-ea301.html
+  "fizika:atom": "",               // Fizika · Atom və nüvə fizikası (3 toplu)  →  acilan-fizika-atom-a7cd8.html
+  "kimya:atomqurulus": "",         // Kimya · Atomun quruluşu (3 toplu)  →  acilan-kimya-atomqurulus-96151.html
+  "kimya:dovri": "",               // Kimya · Dövri qanun (3 toplu)  →  acilan-kimya-dovri-5f68d.html
+  "kimya:rabite": "",              // Kimya · Kimyəvi rabitə (3 toplu)  →  acilan-kimya-rabite-138a6.html
+  "kimya:sinifler": "",            // Kimya · Qeyri-üzvi birləşmələr (3 toplu)  →  acilan-kimya-sinifler-6f8e3.html
+  "kimya:mehlul": "",              // Kimya · Məhlullar (3 toplu)  →  acilan-kimya-mehlul-2abdd.html
+  "kimya:reaksiya": "",            // Kimya · Kimyəvi reaksiyalar (3 toplu)  →  acilan-kimya-reaksiya-b9ba2.html
+  "kimya:oksred": "",              // Kimya · Oksidləşmə-reduksiya (3 toplu)  →  acilan-kimya-oksred-6baa6.html
+  "kimya:metallar": "",            // Kimya · Metallar (3 toplu)  →  acilan-kimya-metallar-420f8.html
+  "kimya:qeyrimetal": "",          // Kimya · Qeyri-metallar (3 toplu)  →  acilan-kimya-qeyrimetal-17152.html
+  "kimya:karbohidrogen": "",       // Kimya · Karbohidrogenlər (3 toplu)  →  acilan-kimya-karbohidrogen-1c51e.html
+  "kimya:oksigenli": "",           // Kimya · Oksigenli üzvi birləşmələr (3 toplu)  →  acilan-kimya-oksigenli-2f5ae.html
+  "kimya:biopolimer": "",          // Kimya · Biopolimerlər (3 toplu)  →  acilan-kimya-biopolimer-5ed9a.html
+  "kimya:hesablama": "",           // Kimya · Kimyəvi hesablamalar (3 toplu)  →  acilan-kimya-hesablama-8f146.html
+  "biologiya:maddemubadile": "",   // Biologiya · Maddələr mübadiləsi (3 toplu)  →  acilan-biologiya-maddemubadile-ba82d.html
+  "biologiya:coxalma": "",         // Biologiya · Çoxalma və inkişaf (3 toplu)  →  acilan-biologiya-coxalma-00a6d.html
+  "biologiya:genetika": "",        // Biologiya · Genetika (3 toplu)  →  acilan-biologiya-genetika-abb1a.html
+  "biologiya:tekamul": "",         // Biologiya · Təkamül (3 toplu)  →  acilan-biologiya-tekamul-ae094.html
+  "biologiya:botanika": "",        // Biologiya · Bitkilərin quruluşu (3 toplu)  →  acilan-biologiya-botanika-6d565.html
+  "biologiya:bitkihayat": "",      // Biologiya · Bitkilərin həyat fəaliyyəti (3 toplu)  →  acilan-biologiya-bitkihayat-bdd2f.html
+  "biologiya:onurgasiz": "",       // Biologiya · Onurğasız heyvanlar (3 toplu)  →  acilan-biologiya-onurgasiz-8e5c7.html
+  "biologiya:onurgali": "",        // Biologiya · Onurğalı heyvanlar (3 toplu)  →  acilan-biologiya-onurgali-b10bf.html
+  "biologiya:dayaqqan": "",        // Biologiya · Dayaq-hərəkət və qan dövranı (3 toplu)  →  acilan-biologiya-dayaqqan-f3ff7.html
+  "biologiya:hezm": "",            // Biologiya · Həzm, tənəffüs, ifrazat (3 toplu)  →  acilan-biologiya-hezm-363f3.html
+  "biologiya:sinir": "",           // Biologiya · Sinir sistemi və analizatorlar (3 toplu)  →  acilan-biologiya-sinir-4b430.html
+  "biologiya:ekologiya": "",       // Biologiya · Ekologiya (3 toplu)  →  acilan-biologiya-ekologiya-aa4f7.html
+  "cografiya:litosfer": "",        // Coğrafiya · Litosfer (3 toplu)  →  acilan-cografiya-litosfer-ecb18.html
+  "cografiya:atmosfer": "",        // Coğrafiya · Atmosfer (3 toplu)  →  acilan-cografiya-atmosfer-e4c67.html
+  "cografiya:hidrosfer": "",       // Coğrafiya · Hidrosfer (3 toplu)  →  acilan-cografiya-hidrosfer-095af.html
+  "cografiya:biosfer": "",         // Coğrafiya · Biosfer və torpaq (3 toplu)  →  acilan-cografiya-biosfer-a360b.html
+  "cografiya:ehali": "",           // Coğrafiya · Dünya əhalisi (3 toplu)  →  acilan-cografiya-ehali-3a05e.html
+  "cografiya:teserrufat": "",      // Coğrafiya · Dünya təsərrüfatı (3 toplu)  →  acilan-cografiya-teserrufat-ca637.html
+  "cografiya:materikler": "",      // Coğrafiya · Materiklər və okeanlar (3 toplu)  →  acilan-cografiya-materikler-2b63f.html
+  "cografiya:azmovqe": "",         // Coğrafiya · Azərbaycanın coğrafi mövqeyi (3 toplu)  →  acilan-cografiya-azmovqe-ca015.html
+  "cografiya:aziqlim": "",         // Coğrafiya · Azərbaycanın iqlimi və suları (3 toplu)  →  acilan-cografiya-aziqlim-b1663.html
+  "cografiya:aztebii": "",         // Coğrafiya · Azərbaycanın təbii zonaları (3 toplu)  →  acilan-cografiya-aztebii-e0f9d.html
+  "cografiya:azteserrufat": "",    // Coğrafiya · Azərbaycanın əhalisi və təsərrüfatı (3 toplu)  →  acilan-cografiya-azteserrufat-d4c76.html
+  "aztarix:manna": "",             // Azərbaycan tarixi · Manna, Midiya, Atropatena (3 toplu)  →  acilan-aztarix-manna-ba067.html
+  "aztarix:albaniya": "",          // Azərbaycan tarixi · Qafqaz Albaniyası (3 toplu)  →  acilan-aztarix-albaniya-f7aca.html
+  "aztarix:ereb": "",              // Azərbaycan tarixi · Ərəb xilafəti dövrü (3 toplu)  →  acilan-aztarix-ereb-88a1c.html
+  "aztarix:sirvan": "",            // Azərbaycan tarixi · IX–XII əsr dövlətləri (3 toplu)  →  acilan-aztarix-sirvan-1f8a2.html
+  "aztarix:monqol": "",            // Azərbaycan tarixi · Monqol və Elxanilər dövrü (3 toplu)  →  acilan-aztarix-monqol-d60f8.html
+  "aztarix:qaraqoyunlu": "",       // Azərbaycan tarixi · Qaraqoyunlu və Ağqoyunlu (3 toplu)  →  acilan-aztarix-qaraqoyunlu-914c4.html
+  "aztarix:sefevi": "",            // Azərbaycan tarixi · Səfəvilər dövləti (3 toplu)  →  acilan-aztarix-sefevi-71bee.html
+  "aztarix:xanliqlar": "",         // Azərbaycan tarixi · Xanlıqlar dövrü (3 toplu)  →  acilan-aztarix-xanliqlar-c4b25.html
+  "aztarix:rusiya": "",            // Azərbaycan tarixi · Rusiya işğalı və XIX əsr (3 toplu)  →  acilan-aztarix-rusiya-568f4.html
+  "aztarix:adr": "",               // Azərbaycan tarixi · Azərbaycan Xalq Cümhuriyyəti (3 toplu)  →  acilan-aztarix-adr-213ae.html
+  "aztarix:sovet": "",             // Azərbaycan tarixi · Sovet dövrü (3 toplu)  →  acilan-aztarix-sovet-ec18c.html
+  "aztarix:musteqillik": "",       // Azərbaycan tarixi · Müstəqillik və Qarabağ (3 toplu)  →  acilan-aztarix-musteqillik-85342.html
+  "umumitarix:yunan": "",          // Ümumi tarix · Qədim Yunanıstan (3 toplu)  →  acilan-umumitarix-yunan-ea536.html
+  "umumitarix:roma": "",           // Ümumi tarix · Qədim Roma (3 toplu)  →  acilan-umumitarix-roma-ff17c.html
+  "umumitarix:erkenorta": "",      // Ümumi tarix · Erkən orta əsrlər (3 toplu)  →  acilan-umumitarix-erkenorta-50c3a.html
+  "umumitarix:avropa": "",         // Ümumi tarix · Orta əsrlərdə Avropa (3 toplu)  →  acilan-umumitarix-avropa-ea94f.html
+  "umumitarix:intibah": "",        // Ümumi tarix · İntibah və coğrafi kəşflər (3 toplu)  →  acilan-umumitarix-intibah-1ddd3.html
+  "umumitarix:inqilablar": "",     // Ümumi tarix · Burjua inqilabları (3 toplu)  →  acilan-umumitarix-inqilablar-432a5.html
+  "umumitarix:senaye": "",         // Ümumi tarix · Sənaye inqilabı (3 toplu)  →  acilan-umumitarix-senaye-322a5.html
+  "umumitarix:birinci": "",        // Ümumi tarix · I Dünya müharibəsi (3 toplu)  →  acilan-umumitarix-birinci-91d9b.html
+  "umumitarix:araliq": "",         // Ümumi tarix · İki müharibə arası dövr (3 toplu)  →  acilan-umumitarix-araliq-ddc8c.html
+  "umumitarix:ikinci": "",         // Ümumi tarix · II Dünya müharibəsi (3 toplu)  →  acilan-umumitarix-ikinci-fd158.html
+  "umumitarix:soyuq": "",          // Ümumi tarix · Soyuq müharibə (3 toplu)  →  acilan-umumitarix-soyuq-afd3f.html
+  "umumitarix:muasirdunya": "",    // Ümumi tarix · Müasir dünya (3 toplu)  →  acilan-umumitarix-muasirdunya-72719.html
+  "ingilis:pronouns": "",          // İngilis dili · Pronouns (3 toplu)  →  acilan-ingilis-pronouns-d669e.html
+  "ingilis:adjectives": "",        // İngilis dili · Adjectives and Adverbs (3 toplu)  →  acilan-ingilis-adjectives-847f4.html
+  "ingilis:present": "",           // İngilis dili · Present Tenses (3 toplu)  →  acilan-ingilis-present-e6ca9.html
+  "ingilis:past": "",              // İngilis dili · Past Tenses (3 toplu)  →  acilan-ingilis-past-02398.html
+  "ingilis:future": "",            // İngilis dili · Future Forms (3 toplu)  →  acilan-ingilis-future-9aff8.html
+  "ingilis:modals": "",            // İngilis dili · Modal Verbs (3 toplu)  →  acilan-ingilis-modals-a9685.html
+  "ingilis:passive": "",           // İngilis dili · Passive Voice (3 toplu)  →  acilan-ingilis-passive-d7220.html
+  "ingilis:conditionals": "",      // İngilis dili · Conditionals and Wishes (3 toplu)  →  acilan-ingilis-conditionals-b8119.html
+  "ingilis:reported": "",          // İngilis dili · Reported Speech (3 toplu)  →  acilan-ingilis-reported-30b95.html
+  "ingilis:prepositions": "",      // İngilis dili · Prepositions and Phrasal Verbs (3 toplu)  →  acilan-ingilis-prepositions-607f2.html
+  "ingilis:wordform": "",          // İngilis dili · Word Formation (3 toplu)  →  acilan-ingilis-wordform-7787c.html
+  "ingilis:reading": "",           // İngilis dili · Reading and Use of English (3 toplu)  →  acilan-ingilis-reading-a343a.html
+  "rusdili:leksikaru": "",         // Rus dili · Лексика (3 toplu)  →  acilan-rusdili-leksikaru-d2f8c.html
+  "rusdili:sostav": "",            // Rus dili · Состав слова (3 toplu)  →  acilan-rusdili-sostav-68188.html
+  "rusdili:sushestv": "",          // Rus dili · Имя существительное (3 toplu)  →  acilan-rusdili-sushestv-957a3.html
+  "rusdili:prilagat": "",          // Rus dili · Имя прилагательное (3 toplu)  →  acilan-rusdili-prilagat-65092.html
+  "rusdili:chislit": "",           // Rus dili · Числительное и местоимение (3 toplu)  →  acilan-rusdili-chislit-7ad24.html
+  "rusdili:glagol": "",            // Rus dili · Глагол (3 toplu)  →  acilan-rusdili-glagol-16f36.html
+  "rusdili:narechie": "",          // Rus dili · Наречие и служебные части речи (3 toplu)  →  acilan-rusdili-narechie-59d78.html
+  "rusdili:slovosoch": "",         // Rus dili · Словосочетание (3 toplu)  →  acilan-rusdili-slovosoch-c5eb9.html
+  "rusdili:prostoe": "",           // Rus dili · Простое предложение (3 toplu)  →  acilan-rusdili-prostoe-fa682.html
+  "rusdili:slozhnoe": "",          // Rus dili · Сложное предложение (3 toplu)  →  acilan-rusdili-slozhnoe-4559f.html
+  "rusdili:punktuaciya": "",       // Rus dili · Пунктуация (3 toplu)  →  acilan-rusdili-punktuaciya-6e52b.html
+  "rusdili:orfografiya": "",       // Rus dili · Орфография (3 toplu)  →  acilan-rusdili-orfografiya-f5bbe.html
+  "informatika:saysistem": "",     // İnformatika · Say sistemləri (3 toplu)  →  acilan-informatika-saysistem-a47b4.html
+  "informatika:kompyuter": "",     // İnformatika · Kompüterin quruluşu (3 toplu)  →  acilan-informatika-kompyuter-8983f.html
+  "informatika:os": "",            // İnformatika · Əməliyyat sistemləri (3 toplu)  →  acilan-informatika-os-c9022.html
+  "informatika:redaktor": "",      // İnformatika · Mətn və cədvəl redaktorları (3 toplu)  →  acilan-informatika-redaktor-252aa.html
+  "informatika:verilenler": "",    // İnformatika · Verilənlər bazası (3 toplu)  →  acilan-informatika-verilenler-0ade8.html
+  "informatika:alqoritm": "",      // İnformatika · Alqoritmlər (3 toplu)  →  acilan-informatika-alqoritm-7c9d1.html
+  "informatika:proqram": "",       // İnformatika · Proqramlaşdırma əsasları (3 toplu)  →  acilan-informatika-proqram-c8541.html
+  "informatika:sebeke": "",        // İnformatika · Şəbəkə və internet (3 toplu)  →  acilan-informatika-sebeke-115e6.html
+  "informatika:tehlukesizlik": "", // İnformatika · İnformasiya təhlükəsizliyi (3 toplu)  →  acilan-informatika-tehlukesizlik-cbefd.html
+  "informatika:qrafika": "",       // İnformatika · Qrafika və multimedia (3 toplu)  →  acilan-informatika-qrafika-b1e85.html
+  "informatika:modellesdirme": "", // İnformatika · Modelləşdirmə (3 toplu)  →  acilan-informatika-modellesdirme-4dad4.html
+  "qbi-1": "",                     // I qrup — Riyaziyyat · Fizika · Kimya · Variant 1  →  imtahan-qbi-1-cfeb4.html
+  "qbi-2": "",                     // I qrup — Riyaziyyat · Fizika · Kimya · Variant 2  →  imtahan-qbi-2-da716.html
+  "qbii-1": "",                    // II qrup — Riyaziyyat · Coğrafiya · Tarix · Variant 1  →  imtahan-qbii-1-b6613.html
+  "qbii-2": "",                    // II qrup — Riyaziyyat · Coğrafiya · Tarix · Variant 2  →  imtahan-qbii-2-b5504.html
+  "qbiii-1": "",                   // III qrup — Azərbaycan dili · Ədəbiyyat · Tarix · Variant 1  →  imtahan-qbiii-1-c050c.html
+  "qbiii-2": "",                   // III qrup — Azərbaycan dili · Ədəbiyyat · Tarix · Variant 2  →  imtahan-qbiii-2-8f71a.html
+  "qbiv-1": "",                    // IV qrup — Biologiya · Kimya · Fizika · Variant 1  →  imtahan-qbiv-1-188cc.html
+  "qbiv-2": "",                    // IV qrup — Biologiya · Kimya · Fizika · Variant 2  →  imtahan-qbiv-2-0911f.html
+  "bx11-1": "",                    // Buraxılış · XI sinif · Variant 1  →  imtahan-bx11-1-cbbea.html
+  "bx11-2": "",                    // Buraxılış · XI sinif · Variant 2  →  imtahan-bx11-2-ee094.html
+  "bx9-1": "",                     // Buraxılış · IX sinif · Variant 1  →  imtahan-bx9-1-1345d.html
+  "bx9-2": "",                     // Buraxılış · IX sinif · Variant 2  →  imtahan-bx9-2-66981.html
+  "miq-azdili": "",                // MİQ · Azərbaycan dili  →  imtahan-miq-azdili-51361.html
+  "miq-riyaziyyat": "",            // MİQ · Riyaziyyat  →  imtahan-miq-riyaziyyat-2e85d.html
+  "miq-fizika": "",                // MİQ · Fizika  →  imtahan-miq-fizika-e4abe.html
+  "miq-kimya": "",                 // MİQ · Kimya  →  imtahan-miq-kimya-f1e4d.html
+  "miq-biologiya": "",             // MİQ · Biologiya  →  imtahan-miq-biologiya-f9316.html
+  "miq-cografiya": "",             // MİQ · Coğrafiya  →  imtahan-miq-cografiya-e78b4.html
+  "miq-aztarix": "",               // MİQ · Azərbaycan tarixi  →  imtahan-miq-aztarix-b7cbf.html
+  "miq-ingilis": "",               // MİQ · İngilis dili  →  imtahan-miq-ingilis-1cc2c.html
+  "miq-informatika": "",           // MİQ · İnformatika  →  imtahan-miq-informatika-3bb84.html
+  "paket": "",                  // Tam paket  →  paket-acildi-d360d.html
