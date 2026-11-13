@@ -4,7 +4,7 @@
    Həmin məhsulun "Redirect URL" sahəsinə isə şərhdə göstərilən fayl adını yazın:
    məsələn  https://sizin-ad.github.io/test-leksika-k39d.html   */
 var ALIS_LINKLERI = {
-  "leksika": "",               // Leksika  →  test-leksika-k39d.html
+  "leksika": "https://testtoplusu.lemonsqueezy.com/checkout/buy/800991ac-6424-4e02-ae40-6e18cf93e2ad",               // Leksika  →  test-leksika-k39d.html
   "soz-yaradiciligi": "",      // Söz yaradıcılığı  →  test-sozyaradiciligi-p72v.html
   "isim": "",                  // İsim  →  test-isim-m85r.html
   "sifet": "",                 // Sifət  →  test-sifet-c41w.html
