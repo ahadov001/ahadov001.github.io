@@ -376,7 +376,12 @@
     e.preventDefault();
     if (hedef.scrollIntoView) hedef.scrollIntoView({ behavior: "smooth", block: "start" });
     else location.hash = "destek";
-    if (history.replaceState) history.replaceState(null, "", "#destek");
+  });
+
+  /* Səhifə brauzerin geri/irəli keşindən qayıdanda hər şey səliqəli başlanğıc vəziyyətinə qayıtsın
+     (açılmış menyu, seçimlər, qismən doldurulmuş sahələr qalmasın). */
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) location.reload();
   });
 
   function kacir(t) {

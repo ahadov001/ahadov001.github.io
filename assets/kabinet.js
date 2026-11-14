@@ -313,7 +313,7 @@ var basla = function () {
         : 0;
       var pay = Math.round(islenen.length / f.movzular.length * 100);
 
-      h += '<details class="kf"' + (islenen.length ? " open" : "") + '>' +
+      h += '<details class="kf">' +
         '<summary><span class="kf-ad">' + f.ad + '</span>' +
         '<span class="kf-say">' + islenen.length + " / " + f.movzular.length + ' mövzu</span>' +
         '<span class="kf-cubuq"><i style="width:' + pay + '%"></i></span>' +
