@@ -35,7 +35,6 @@ var basla = function () {
     el("k-ad").textContent = p.ad || "Kabinet";
     el("k-alt").textContent = S.istifadeci.email +
       (p.yaradildi ? " · " + tarix(p.yaradildi) + " tarixindən" : "");
-    el("k-balans").textContent = S.qepik(S.balans());
 
     el("k-cixis").addEventListener("click", function () {
       S.cixis().then(function () { location.href = "index.html"; });
@@ -182,8 +181,8 @@ var basla = function () {
     var a = Object.keys(S.alinmis || {});
     if (!a.length) {
       el("k-alislar").innerHTML =
-        '<div class="notice">Hələ heç nə almamısan. Balansını artırıb istənilən mövzunu ' +
-        'bir klikə aça bilərsən. <a href="balans.html">Balansı artır</a></div>';
+        '<div class="notice">Hələ heç nə almamısan. Aldığın mövzu və imtahan '
+        + 'variantları burada görünəcək.</div>';
       return;
     }
     var ad = {};
