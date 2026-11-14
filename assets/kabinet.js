@@ -31,10 +31,7 @@ var basla = function () {
     el("k-yuklenir").classList.add("gizli");
     el("k-govde").classList.remove("gizli");
 
-    var p = S.profil || {};
-    el("k-ad").textContent = p.ad || "Kabinet";
-    el("k-alt").textContent = S.istifadeci.email +
-      (p.yaradildi ? " · " + tarix(p.yaradildi) + " tarixindən" : "");
+    basliqCiz();
 
     el("k-cixis").addEventListener("click", function () {
       S.cixis().then(function () { location.href = "index.html"; });
@@ -45,7 +42,7 @@ var basla = function () {
         document.querySelectorAll(".kt-d").forEach(function (x) { x.classList.remove("aktiv"); });
         d.classList.add("aktiv");
         var k = d.getAttribute("data-k");
-        ["ireli", "transkript", "alislar"].forEach(function (n) {
+        ["ireli", "transkript", "alislar", "profil"].forEach(function (n) {
           el("k-" + n).classList.toggle("gizli", n !== k);
         });
       });
@@ -55,16 +52,206 @@ var basla = function () {
     ireliQur();
     transkriptQur();
     alislarQur();
+    profilQur();
 
     /* kabinet.html#transkript kimi keçidlər uyğun bölməni açır */
     function hashdanAc() {
       var h = (location.hash || "").replace("#", "");
-      if (["ireli", "transkript", "alislar"].indexOf(h) < 0) return;
+      if (["ireli", "transkript", "alislar", "profil"].indexOf(h) < 0) return;
       var d = document.querySelector('.kt-d[data-k="' + h + '"]');
       if (d) d.click();
     }
     hashdanAc();
     window.addEventListener("hashchange", hashdanAc);
+  }
+
+  /* ----------------------------------------------------- başlıq (avatar, ad, bio) */
+  var HEDEFLER = [
+    ["", "Seçilməyib"], ["IX sinif buraxılış", "IX sinif buraxılış"],
+    ["XI sinif buraxılış", "XI sinif buraxılış"], ["Qəbul imtahanı", "Qəbul imtahanı"],
+    ["MİQ", "MİQ — müəllim qəbulu"], ["Öyrənirəm", "Sadəcə öyrənirəm"]
+  ];
+  function basliqCiz() {
+    var p = S.profil || {};
+    el("k-av").innerHTML = S.avatar(p);
+    el("k-ad").textContent = p.ad || "Kabinet";
+    el("k-alt").textContent = S.istifadeci.email +
+      (p.yaradildi ? " · " + tarix(p.yaradildi) + " tarixindən" : "");
+    el("k-bio").textContent = p.bio || "";
+    el("k-bio").classList.toggle("gizli", !p.bio);
+    var c = "";
+    if (p.hedef && p.hedef !== "Öyrənirəm") c += '<span class="k-cip">🎯 ' + S.kacir(p.hedef) + '</span>';
+    else if (p.hedef) c += '<span class="k-cip">📚 Öyrənirəm</span>';
+    el("k-cipler").innerHTML = c;
+  }
+
+  /* ----------------------------------------------------- profil: şəkil, ad, görünüş, hesab */
+  var taslaq = {};
+  function profilQur() {
+    var p = S.profil || {};
+    taslaq = { ad: p.ad || "", bio: p.bio || "", hedef: p.hedef || "", avatar: p.avatar || "", reng: p.reng || "a1" };
+
+    var rnk = S.RENGLER.map(function (r) {
+      return '<button type="button" class="pf-rnk av-' + r + '" data-reng="' + r + '" aria-label="Rəng ' + r + '"></button>';
+    }).join("");
+    var emj = S.EMOJILER.map(function (e) {
+      return '<button type="button" class="pf-emj" data-emj="' + e + '" aria-label="' + e + '">' + e + '</button>';
+    }).join("");
+    var hd = HEDEFLER.map(function (x) {
+      return '<option value="' + S.kacir(x[0]) + '">' + S.kacir(x[1]) + '</option>';
+    }).join("");
+    var tm = S.tema();
+
+    el("k-profil").innerHTML =
+      '<div class="pf-qrid">' +
+        '<div class="pf-kart">' +
+          '<h3>Şəkil</h3>' +
+          '<div class="pf-onizle"><div class="pf-av" id="pf-av"></div>' +
+            '<div class="pf-dgm">' +
+              '<label class="btn sm solid pf-yukle" for="pf-fayl">Şəkil yüklə</label>' +
+              '<input type="file" id="pf-fayl" accept="image/*" hidden>' +
+              '<button type="button" class="btn sm" id="pf-sil">Şəkli sil</button>' +
+            '</div></div>' +
+          '<p class="pf-ipucu">Şəkil avtomatik kvadrata kəsilib kiçildilir. Və ya hazır emoji seç:</p>' +
+          '<div class="pf-emjler">' + emj + '</div>' +
+          '<p class="pf-ipucu" style="margin-top:14px">Fon rəngi:</p>' +
+          '<div class="pf-rnkler">' + rnk + '</div>' +
+        '</div>' +
+
+        '<div class="pf-kart">' +
+          '<h3>Haqqında</h3>' +
+          '<label class="pf-sah"><span>Ad</span>' +
+            '<input type="text" id="pf-ad" maxlength="60" autocomplete="name"></label>' +
+          '<label class="pf-sah"><span>Hədəfim</span>' +
+            '<select id="pf-hedef">' + hd + '</select></label>' +
+          '<label class="pf-sah"><span>Qısa məlumat <em id="pf-say">0/140</em></span>' +
+            '<textarea id="pf-bio" rows="3" maxlength="140" ' +
+            'placeholder="Məs.: Tibb universitetinə hazırlaşıram"></textarea></label>' +
+          '<div class="pf-alt"><button type="button" class="btn solid" id="pf-saxla">Yadda saxla</button>' +
+            '<span class="pf-xeber" id="pf-xeber" role="status"></span></div>' +
+        '</div>' +
+
+        '<div class="pf-kart">' +
+          '<h3>Görünüş</h3>' +
+          '<p class="pf-ipucu">Saytın rəng rejimi (yalnız bu brauzerdə yadda qalır):</p>' +
+          '<div class="pf-tema" id="pf-tema">' +
+            '<button type="button" data-t="sistem">Sistem</button>' +
+            '<button type="button" data-t="aciq">Açıq</button>' +
+            '<button type="button" data-t="tund">Tünd</button>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="pf-kart">' +
+          '<h3>Hesab</h3>' +
+          '<label class="pf-sah"><span>E-poçt</span>' +
+            '<input type="text" id="pf-eposta" readonly></label>' +
+          '<label class="pf-sah"><span>Yeni parol</span>' +
+            '<input type="password" id="pf-parol" minlength="6" autocomplete="new-password" ' +
+            'placeholder="Ən azı 6 simvol"></label>' +
+          '<div class="pf-alt"><button type="button" class="btn" id="pf-parol-d">Parolu dəyiş</button>' +
+            '<span class="pf-xeber" id="pf-parol-x" role="status"></span></div>' +
+        '</div>' +
+      '</div>';
+
+    el("pf-ad").value = taslaq.ad;
+    el("pf-bio").value = taslaq.bio;
+    el("pf-hedef").value = taslaq.hedef;
+    el("pf-eposta").value = S.istifadeci.email || "";
+    sayYaz();
+    onizleCiz();
+    temaIsaret(tm);
+
+    el("pf-ad").addEventListener("input", function () { taslaq.ad = this.value; onizleCiz(); });
+    el("pf-bio").addEventListener("input", function () { taslaq.bio = this.value; sayYaz(); });
+    el("pf-hedef").addEventListener("change", function () { taslaq.hedef = this.value; });
+
+    el("k-profil").addEventListener("click", function (e) {
+      var t = e.target;
+      var r = t.closest && t.closest("[data-reng]");
+      if (r) { taslaq.reng = r.getAttribute("data-reng"); onizleCiz(); return; }
+      var m = t.closest && t.closest("[data-emj]");
+      if (m) { taslaq.avatar = "e:" + m.getAttribute("data-emj"); onizleCiz(); return; }
+      var tt = t.closest && t.closest("#pf-tema [data-t]");
+      if (tt) { S.tema(tt.getAttribute("data-t")); temaIsaret(tt.getAttribute("data-t")); }
+    });
+    el("pf-sil").addEventListener("click", function () { taslaq.avatar = ""; onizleCiz(); });
+    el("pf-fayl").addEventListener("change", function () {
+      var f = this.files && this.files[0]; this.value = "";
+      if (!f) return;
+      sekilHazirla(f).then(function (u) { taslaq.avatar = u; onizleCiz(); },
+        function (m) { xeber("pf-xeber", m, true); });
+    });
+    el("pf-saxla").addEventListener("click", saxla);
+    el("pf-parol-d").addEventListener("click", parolDeyis);
+  }
+
+  function sayYaz() { el("pf-say").textContent = (taslaq.bio || "").length + "/140"; }
+  function temaIsaret(t) {
+    document.querySelectorAll("#pf-tema [data-t]").forEach(function (b) {
+      b.classList.toggle("aktiv", b.getAttribute("data-t") === t);
+    });
+  }
+  function onizleCiz() {
+    el("pf-av").innerHTML = S.avatar({ avatar: taslaq.avatar, reng: taslaq.reng, ad: taslaq.ad });
+    document.querySelectorAll("[data-reng]").forEach(function (b) {
+      b.classList.toggle("sec", b.getAttribute("data-reng") === taslaq.reng);
+    });
+    document.querySelectorAll("[data-emj]").forEach(function (b) {
+      b.classList.toggle("sec", taslaq.avatar === "e:" + b.getAttribute("data-emj"));
+    });
+  }
+  function xeber(id, m, xeta) {
+    var x = el(id); x.textContent = m; x.className = "pf-xeber" + (xeta ? " xeta" : " ok");
+  }
+
+  /* Şəkli kvadrata kəs, 192×192-yə kiçilt, JPEG-ə çevir */
+  function sekilHazirla(fayl) {
+    return new Promise(function (hell, rədd) {
+      if (!/^image\//.test(fayl.type)) return rədd("Yalnız şəkil faylı seçin.");
+      if (fayl.size > 12 * 1024 * 1024) return rədd("Şəkil çox böyükdür (12 MB-dan az olmalıdır).");
+      var url = URL.createObjectURL(fayl), im = new Image();
+      im.onload = function () {
+        var O = 192, c = document.createElement("canvas"); c.width = c.height = O;
+        var x = c.getContext("2d"), q = Math.min(im.width, im.height);
+        x.fillStyle = "#fff"; x.fillRect(0, 0, O, O);
+        x.drawImage(im, (im.width - q) / 2, (im.height - q) / 2, q, q, 0, 0, O, O);
+        URL.revokeObjectURL(url);
+        var d = c.toDataURL("image/jpeg", 0.82);
+        if (d.length > 58000) d = c.toDataURL("image/jpeg", 0.6);
+        d.length > 58000 ? rədd("Şəkil işlənə bilmədi, başqa şəkil seçin.") : hell(d);
+      };
+      im.onerror = function () { URL.revokeObjectURL(url); rədd("Bu şəkil oxunmadı. JPG və ya PNG seçin."); };
+      im.src = url;
+    });
+  }
+
+  function saxla() {
+    var b = el("pf-saxla");
+    var ad = (taslaq.ad || "").trim();
+    if (!ad) { xeber("pf-xeber", "Ad boş ola bilməz.", true); return; }
+    b.disabled = true; b.textContent = "Saxlanır…";
+    S.profilYaz({
+      ad: ad.slice(0, 60), bio: (taslaq.bio || "").trim().slice(0, 140) || null,
+      hedef: taslaq.hedef || null, avatar: taslaq.avatar || null, reng: taslaq.reng || "a1"
+    }).then(function (r) {
+      b.disabled = false; b.textContent = "Yadda saxla";
+      if (!r.ok) { xeber("pf-xeber", "Saxlanmadı: " + (r.mesaj || "xəta"), true); return; }
+      basliqCiz();
+      xeber("pf-xeber", r.yerel
+        ? "Saxlandı (yalnız bu cihazda — bütün cihazlar üçün baza yenilənməlidir)."
+        : "Saxlandı ✓", false);
+    });
+  }
+
+  function parolDeyis() {
+    var v = el("pf-parol").value;
+    if (v.length < 6) { xeber("pf-parol-x", "Parol ən azı 6 simvol olmalıdır.", true); return; }
+    var b = el("pf-parol-d"); b.disabled = true;
+    S.parolDeyis(v).then(function (r) {
+      b.disabled = false;
+      if (r.ok) { el("pf-parol").value = ""; xeber("pf-parol-x", "Parol dəyişdirildi ✓", false); }
+      else xeber("pf-parol-x", r.mesaj || "Dəyişdirilmədi", true);
+    });
   }
 
   /* ----------------------------------------------------- ümumi statistika */

@@ -8,3 +8,12 @@ Bu fayllar Supabase-də istifadə olunur (ana _OXU-MENI.txt, Mərhələ 2 və 3)
 
 Saytın özü üçün yalnız index.html, digər .html fayllar və
 assets qovluğu lazımdır.
+
+──────────────────────────────────────────────────────────────
+PROFİL FƏRDİLƏŞDİRMƏ (şəkil, bio, hədəf) — ixtiyari, amma tövsiyə olunur
+──────────────────────────────────────────────────────────────
+Supabase → SQL Editor → New query → 03-profil-ferdilesdirme.sql faylının
+məzmununu yapışdırın → Run.
+Bundan sonra istifadəçilərin profil şəkli və məlumatı bütün cihazlarında
+eyni görünür. İşə salınmasa da sayt xəta vermir — dəyişikliklər yalnız
+həmin brauzerdə saxlanır.

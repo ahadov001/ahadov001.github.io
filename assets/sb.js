@@ -66,9 +66,104 @@
       S.neticeler = d.neticeler || [];
       S.alinmis = {};
       (d.alislar || []).forEach(function (a) { S.alinmis[a.acar] = a.tarix; });
-      return S;
+      return S._sb.from("profiller").select("*").eq("id", S.istifadeci.id).maybeSingle()
+        .then(function (q) {
+          if (!S.profil) S.profil = {};
+          var sira = q && q.data;
+          if (sira) PROFIL_SAHELER.forEach(function (k) { if (k in sira) S.profil[k] = sira[k]; });
+          /* SQL 03 hələ işə salınmayıbsa — sahələr bu cihazdakı ehtiyatdan oxunur */
+          if (!(sira && "avatar" in sira)) {
+            var y = yerelOxu();
+            PROFIL_SAHELER.forEach(function (k) { if (y[k] !== undefined) S.profil[k] = y[k]; });
+          }
+          return S;
+        }, function () { return S; });
     });
   };
+
+  /* ---------------------------------------------------------- profil fərdiləşdirmə */
+  var PROFIL_SAHELER = ["ad", "avatar", "reng", "bio", "hedef"];
+  function yerelAcar() { return "dt:profil:" + (S.istifadeci ? S.istifadeci.id : "-"); }
+  function yerelOxu() {
+    try { return JSON.parse(localStorage.getItem(yerelAcar()) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function yerelYaz(patch) {
+    try {
+      var y = yerelOxu();
+      Object.keys(patch).forEach(function (k) { y[k] = patch[k]; });
+      localStorage.setItem(yerelAcar(), JSON.stringify(y));
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* patch: {ad, avatar, reng, bio, hedef} — nəticə: {ok, yerel?, mesaj?} */
+  S.profilYaz = function (patch) {
+    if (!S._sb || !S.istifadeci) return Promise.resolve({ ok: false, mesaj: "Giriş lazımdır" });
+    var tem = {};
+    PROFIL_SAHELER.forEach(function (k) { if (k in patch) tem[k] = patch[k]; });
+    function berkit(yerel) {
+      if (!S.profil) S.profil = {};
+      Object.keys(tem).forEach(function (k) { S.profil[k] = tem[k]; });
+      naviqasiyaQur();
+      return { ok: true, yerel: !!yerel };
+    }
+    return S._sb.from("profiller").update(tem).eq("id", S.istifadeci.id).select("id")
+      .then(function (r) {
+        if (!r.error) {
+          if (r.data && r.data.length) {
+            try { localStorage.removeItem(yerelAcar()); } catch (e) {}
+            return berkit(false);
+          }
+          return { ok: false, mesaj: "Profil sətri tapılmadı" };
+        }
+        var m = String(r.error.message || "") + " " + String(r.error.code || "");
+        if (/column|42703|PGRST204|schema cache/i.test(m)) {
+          yerelYaz(tem);                       /* SQL 03 hələ işə salınmayıb */
+          return berkit(true);
+        }
+        return { ok: false, mesaj: r.error.message };
+      });
+  };
+
+  S.parolDeyis = function (yeni) {
+    if (!S._sb || !S.istifadeci) return Promise.resolve({ ok: false, mesaj: "Giriş lazımdır" });
+    return S._sb.auth.updateUser({ password: yeni }).then(function (r) {
+      return r.error ? { ok: false, mesaj: r.error.message } : { ok: true };
+    });
+  };
+
+  S.RENGLER = ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8"];
+  S.EMOJILER = ["🦊", "🐼", "🦉", "🐯", "🚀", "🎯", "📚", "⚡", "🌟", "🎓", "🦁", "🐬"];
+
+  /* Avatar: foto (data:), emoji ("e:🦊") və ya baş hərf */
+  S.avatar = function (p, ad) {
+    p = p || {};
+    var rn = (S.RENGLER.indexOf(p.reng) > -1) ? p.reng : "a1";
+    var av = p.avatar || "", ic;
+    if (av.indexOf("data:image/") === 0) {
+      ic = '<img src="' + kacir(av) + '" alt="" draggable="false">';
+    } else if (av.indexOf("e:") === 0) {
+      ic = '<span class="av-e">' + kacir(av.slice(2)) + '</span>';
+    } else {
+      var n = String(p.ad || ad || "").trim();
+      ic = n ? '<span class="av-h">' + kacir(n.charAt(0).toUpperCase()) + '</span>' : IK_PROFIL;
+    }
+    return '<span class="av av-' + rn + '">' + ic + '</span>';
+  };
+
+  /* Görünüş: sistem / açıq / tünd — yalnız bu brauzerdə yadda qalır */
+  S.tema = function (t) {
+    try {
+      if (t === undefined) return localStorage.getItem("dt:tema") || "sistem";
+      if (t === "sistem") localStorage.removeItem("dt:tema"); else localStorage.setItem("dt:tema", t);
+    } catch (e) {}
+    var r = document.documentElement;
+    var cari = S.tema();
+    if (cari === "aciq") r.setAttribute("data-theme", "light");
+    else if (cari === "tund") r.setAttribute("data-theme", "dark");
+    else r.removeAttribute("data-theme");
+  };
+  S.tema();
 
   S.balans = function () { return (S.profil && S.profil.balans) || 0; };
 
@@ -177,7 +272,6 @@
 
     if (S.aktiv && S.istifadeci) {
       var ad = (S.profil && S.profil.ad) ? String(S.profil.ad).trim() : "";
-      var hrf = ad ? ad.charAt(0).toUpperCase() : "";
 
       h += '<a class="nav-bal" href="balans.html" title="Balansı artır">' +
            '<span class="nb-ad">Balans</span>' +
@@ -189,14 +283,15 @@
            '<button type="button" class="nav-ik nav-profil" id="nav-profil-d" ' +
            'aria-haspopup="true" aria-expanded="false" aria-controls="nav-acilan" ' +
            'aria-label="Profil menyusu" title="Profil">' +
-           (hrf ? '<span class="np-hrf">' + kacir(hrf) + '</span>' : IK_PROFIL) +
+           S.avatar(S.profil, ad) +
            '</button>' +
            '<div class="nav-acilan" id="nav-acilan" role="menu" hidden>' +
-             '<div class="na-bas">' +
-               '<b>' + kacir(ad || "Hesabım") + '</b>' +
-               '<span>' + kacir(S.istifadeci.email || "") + '</span>' +
+             '<div class="na-bas">' + S.avatar(S.profil, ad) +
+               '<span class="na-mtn"><b>' + kacir(ad || "Hesabım") + '</b>' +
+               '<span>' + kacir(S.istifadeci.email || "") + '</span></span>' +
              '</div>' +
              '<a role="menuitem" href="kabinet.html">Şəxsi kabinet</a>' +
+             '<a role="menuitem" href="kabinet.html#profil">Profili fərdiləşdir</a>' +
              '<a role="menuitem" href="kabinet.html#ireli">İrəliləyiş</a>' +
              '<a role="menuitem" href="kabinet.html#transkript">Transkript</a>' +
              '<a role="menuitem" href="kabinet.html#alislar">Alışlar</a>' +
