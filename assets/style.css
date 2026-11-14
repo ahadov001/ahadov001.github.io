@@ -754,3 +754,164 @@ dl.faq dd{margin:4px 0 0;color:var(--muted)}
   .destek-list { grid-template-columns: 1fr; }
   #destek { scroll-margin-top: 12px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   CİLA — minimalist, sakit, oxunaqlı  (bu blok əvvəlki qaydaları
+   yumşaq şəkildə üstələyir; sonuncu olduğu üçün qalib gəlir)
+   ═══════════════════════════════════════════════════════════════ */
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* --- üst panel: sakit, yüngül şəffaf --- */
+.site-head {
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px);
+}
+.site-head .wrap { min-height: 66px; gap: 22px; }
+.site-head nav { flex-wrap: nowrap; gap: 2px; margin-left: 6px; }
+.site-head nav a {
+  position: relative; padding: 8px 12px; border-radius: 8px; font-size: .92rem; font-weight: 500;
+  transition: color .15s, background .15s;
+}
+.site-head nav a.aktiv { background: color-mix(in srgb, var(--nar) 9%, transparent); }
+
+/* --- profil açılan menyusu --- */
+.nav-menyu { position: relative; }
+button.nav-ik { cursor: pointer; font: inherit; padding: 0; }
+.nav-acilan {
+  position: absolute; right: 0; top: calc(100% + 10px); width: 244px; z-index: 60;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px;
+  box-shadow: 0 16px 44px rgba(22,32,44,.2);
+}
+.nav-acilan[hidden] { display: none; }
+.na-bas { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px 12px;
+  margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+.na-bas b { font-size: .95rem; font-weight: 650; line-height: 1.25; overflow-wrap: anywhere; }
+.na-bas span { font-size: .78rem; color: var(--muted); overflow-wrap: anywhere; }
+.nav-acilan a, .nav-acilan .na-cixis {
+  display: block; width: 100%; text-align: left; padding: 10px 12px; border-radius: 9px;
+  font: inherit; font-size: .92rem; color: var(--ink); text-decoration: none;
+  background: none; border: 0; cursor: pointer; transition: background .12s;
+}
+.nav-acilan a:hover, .nav-acilan .na-cixis:hover { background: var(--sunk); }
+.nav-acilan .na-cixis { margin-top: 6px; border-top: 1px solid var(--line);
+  border-radius: 0 0 9px 9px; padding-top: 12px; color: var(--bad); font-weight: 600; }
+
+/* --- giriş səhifəsinin ritmi --- */
+.hero { padding: 76px 0 60px; }
+.hero .lead { margin-top: 20px; font-size: 1.1rem; line-height: 1.65; }
+.hero .eyebrow { display: inline-block; margin-bottom: 14px; }
+.slogan { font-weight: 700; letter-spacing: -.03em; }
+.stats { gap: 0; margin-top: 44px; padding-top: 0; border-top: 0; }
+.stats.merkezstat { justify-content: center; }
+.stat { padding: 4px 34px; text-align: center; }
+.stat + .stat { border-left: 1px solid var(--line); }
+.stat b { font-size: 1.8rem; }
+.stat span { display: block; margin-top: 6px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+
+section { padding: 68px 0; }
+.sec-head { margin-bottom: 34px; }
+.sec-head h2 { letter-spacing: -.015em; }
+.sec-head p { font-size: .96rem; line-height: 1.6; }
+
+/* «Sayt haqqında» — nömrəli sakit kartlar */
+section.band .grid { counter-reset: n; }
+section.band .grid > .card { counter-increment: n; box-shadow: none; padding: 24px 22px; gap: 10px; }
+section.band .grid > .card::before {
+  content: "0" counter(n); font-family: var(--display); font-weight: 700; font-size: .85rem;
+  letter-spacing: .08em; color: var(--nar);
+}
+section.band .grid > .card h3 { font-size: 1.12rem; }
+section.band .grid > .card p { line-height: 1.62; }
+
+/* --- qiymətlər --- */
+.ayri { max-width: 620px; margin: 56px auto 0; }
+.ayri-bas { font-size: 1.25rem; text-align: center; }
+.ayri-izah { text-align: center; color: var(--muted); font-size: .93rem; line-height: 1.6;
+  margin: 8px auto 22px; max-width: 46ch; }
+.qiy-list { list-style: none; margin: 0; padding: 0; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+.qiy-list li { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 20px; }
+.qiy-list li + li { border-top: 1px solid var(--line); }
+.ql-ad { display: flex; flex-direction: column; gap: 2px; font-weight: 600; font-size: .98rem; min-width: 0; }
+.ql-ad small { font-weight: 400; font-size: .82rem; color: var(--muted); line-height: 1.45; }
+.ql-qiy { flex: none; font-family: var(--body); font-weight: 700; font-size: 1rem; letter-spacing: .01em;
+  color: var(--nar); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ayri-qeyd { text-align: center; font-size: .82rem; color: var(--muted); margin-top: 14px; }
+
+.paket-qutu { padding: 28px 32px; border: 1.5px solid var(--nar); }
+.paket-qutu b { font-size: 2.1rem; letter-spacing: -.01em; }
+
+/* --- aşağı hissə --- */
+footer.site-foot { border-top: 1px solid var(--line); background: var(--sunk); padding: 0 0 38px; margin-top: 8px; }
+.destek { border-bottom: 1px solid var(--line); padding: 44px 0 34px; margin-bottom: 22px; }
+.foot-alt { font-size: .82rem; line-height: 1.6; color: var(--muted); max-width: 70ch; }
+.foot-alt a { color: var(--muted); text-underline-offset: 3px; }
+.foot-alt a:hover { color: var(--nar); }
+
+/* ───────────────────────── TELEFON ───────────────────────── */
+@media (max-width: 760px) {
+  html { scroll-padding-top: 16px; }
+
+  /* bir sıra: brend solda, hesab sağda; menyu altda üfüqi lent */
+  .site-head { position: static; -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--paper); }
+  .site-head .wrap {
+    display: grid; grid-template-columns: 1fr auto; grid-template-areas: "brand acct" "nav nav";
+    align-items: center; gap: 0; padding-top: 11px; min-height: 0;
+  }
+  .brand { grid-area: brand; padding-bottom: 0; }
+  .hesab-nav { grid-area: acct; order: 0; width: auto; margin: 0; gap: 8px; justify-content: flex-end; }
+  .site-head nav { grid-area: nav; margin: 9px -18px 0; padding: 0 14px 8px; gap: 0; }
+  .site-head nav a { padding: 9px 11px; }
+  /* sağ kənarda solma: menyunun sürüşdürüləcəyini göstərir */
+  .site-head nav { -webkit-mask-image: linear-gradient(90deg,#000 90%,transparent);
+    mask-image: linear-gradient(90deg,#000 90%,transparent); }
+  .nav-ik { width: 38px; height: 38px; }
+  .nav-bal { padding: 5px 11px; border-radius: 11px; }
+  .nb-ad { font-size: .66rem; }
+  .nb-bal { font-size: .84rem; }
+  .nav-giris { padding: 8px 12px; font-size: .8rem; }
+  .nav-acilan { width: min(260px, calc(100vw - 36px)); }
+
+  .hero { padding: 38px 0 34px; }
+  .hero .lead { font-size: 1.02rem; margin-top: 16px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 30px;
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+  .stat { padding: 16px 8px; }
+  .stat + .stat { border-left: 0; }
+  .stat:nth-child(even) { border-left: 1px solid var(--line); }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .stat b { font-size: 1.5rem; }
+
+  section { padding: 44px 0; }
+  .sec-head { margin-bottom: 22px; }
+
+  /* xidmət kartı: ikon solda, mətn sağda */
+  .xgrid { grid-template-columns: 1fr; gap: 12px; }
+  .xkart { display: grid; grid-template-columns: 46px 1fr; column-gap: 14px; row-gap: 5px;
+    padding: 18px 16px 16px; align-items: start; }
+  .xik { grid-row: 1 / 3; align-self: start; }
+  .xad { grid-column: 2; align-self: center; font-size: 1.08rem; }
+  .xtes { grid-column: 2; font-size: .88rem; }
+  .xqiy { grid-column: 1 / -1; margin-top: 8px; padding-top: 12px; }
+
+  section.band .grid > .card { padding: 20px 18px; }
+
+  .paket-qutu { padding: 22px 20px; flex-direction: column; align-items: stretch; text-align: center; gap: 16px; }
+  .paket-qutu .btn { width: 100%; }
+  .ayri { margin-top: 40px; }
+  .qiy-list li { padding: 14px 16px; gap: 12px; }
+
+  .destek { padding: 32px 0 26px; }
+  .destek-bas h2 { font-size: 1.2rem; }
+  footer.site-foot { padding-bottom: 30px; }
+
+  /* dərs səhifələrində cədvəl sığmasa üfüqi sürüşsün */
+  .lesson table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+@media (max-width: 400px) {
+  .site-head .wrap { padding-top: 10px; }
+  .brand { font-size: 1rem; }
+  .nav-bal { padding: 4px 9px; }
+}

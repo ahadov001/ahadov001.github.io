@@ -55,6 +55,16 @@ var basla = function () {
     ireliQur();
     transkriptQur();
     alislarQur();
+
+    /* kabinet.html#transkript kimi keçidlər uyğun bölməni açır */
+    function hashdanAc() {
+      var h = (location.hash || "").replace("#", "");
+      if (["ireli", "transkript", "alislar"].indexOf(h) < 0) return;
+      var d = document.querySelector('.kt-d[data-k="' + h + '"]');
+      if (d) d.click();
+    }
+    hashdanAc();
+    window.addEventListener("hashchange", hashdanAc);
   }
 
   /* ----------------------------------------------------- ümumi statistika */

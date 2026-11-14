@@ -185,11 +185,23 @@
 
       h += destekDugmesi();
 
-      h += '<a class="nav-ik nav-profil" href="kabinet.html" title="' +
-           kacir(ad ? ad + " — şəxsi kabinet" : "Şəxsi kabinet") + '" ' +
-           'aria-label="Şəxsi kabinet">' +
+      h += '<div class="nav-menyu">' +
+           '<button type="button" class="nav-ik nav-profil" id="nav-profil-d" ' +
+           'aria-haspopup="true" aria-expanded="false" aria-controls="nav-acilan" ' +
+           'aria-label="Profil menyusu" title="Profil">' +
            (hrf ? '<span class="np-hrf">' + kacir(hrf) + '</span>' : IK_PROFIL) +
-           '</a>';
+           '</button>' +
+           '<div class="nav-acilan" id="nav-acilan" role="menu" hidden>' +
+             '<div class="na-bas">' +
+               '<b>' + kacir(ad || "Hesabım") + '</b>' +
+               '<span>' + kacir(S.istifadeci.email || "") + '</span>' +
+             '</div>' +
+             '<a role="menuitem" href="kabinet.html">Şəxsi kabinet</a>' +
+             '<a role="menuitem" href="kabinet.html#ireli">İrəliləyiş</a>' +
+             '<a role="menuitem" href="kabinet.html#transkript">Transkript</a>' +
+             '<a role="menuitem" href="kabinet.html#alislar">Alışlar</a>' +
+             '<button role="menuitem" type="button" class="na-cixis" id="nav-cixis">Çıxış</button>' +
+           '</div></div>';
     } else if (S.aktiv) {
       h += destekDugmesi();
       h += '<a class="nav-giris" href="giris.html">Giriş / Qeydiyyat</a>';
@@ -200,6 +212,35 @@
 
     yer.innerHTML = h;
   }
+
+  /* Profil menyusu: aç/bağla, kənara basanda və Esc ilə bağlanır */
+  function menyuBagla() {
+    var m = document.getElementById("nav-acilan");
+    var d = document.getElementById("nav-profil-d");
+    if (m) m.hidden = true;
+    if (d) d.setAttribute("aria-expanded", "false");
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target;
+    var dugme = t && t.closest ? t.closest("#nav-profil-d") : null;
+    if (dugme) {
+      var m = document.getElementById("nav-acilan");
+      if (!m) return;
+      var ac = m.hidden;
+      m.hidden = !ac;
+      dugme.setAttribute("aria-expanded", ac ? "true" : "false");
+      return;
+    }
+    if (t && t.closest && t.closest("#nav-cixis")) {
+      S.cixis().then(function () { location.href = "index.html"; });
+      return;
+    }
+    if (!(t && t.closest && t.closest("#nav-acilan"))) menyuBagla();
+    else if (t.closest("a")) menyuBagla();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") menyuBagla();
+  });
 
   /* Dəstək ikonu — səhifənin altındaki dəstək bölməsinə yumşaq sürüşmə */
   document.addEventListener("click", function (e) {
