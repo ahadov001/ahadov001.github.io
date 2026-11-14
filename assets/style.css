@@ -1134,3 +1134,8 @@ button.qrp.sec .qik { background: var(--nar); color: #fff; }
 .mtl-bas{margin:34px 0 4px}
 .mtl-bas h2{margin:0 0 6px}
 .mtl-bas p{margin:0;color:var(--muted,inherit);opacity:.85}
+.hub2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:640px){.hub2{grid-template-columns:1fr}}
+.merkez-alt{margin-top:18px;font-weight:600}
+.merkez-alt a{color:var(--nar);text-decoration:none}
+.merkez-alt a:hover{text-decoration:underline}

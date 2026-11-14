@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════
---  XİDMƏT QİYMƏTLƏRİ — 174 xidmət. Qəpiklə: 200 = 2 AZN
+--  XİDMƏT QİYMƏTLƏRİ — 183 xidmət. Qəpiklə: 200 = 2 AZN
 --  Qiyməti dəyişmək üçün sadəcə bu faylı yenidən işə salın.
 -- ═══════════════════════════════════════════════════════════════
 insert into public.qiymetler (acar, ad, qiymet) values
@@ -176,5 +176,14 @@ insert into public.qiymetler (acar, ad, qiymet) values
   ('miq-aztarix', 'MİQ · Azərbaycan tarixi', 300),
   ('miq-ingilis', 'MİQ · İngilis dili', 300),
   ('miq-informatika', 'MİQ · İnformatika', 300),
+  ('sert-azdili', 'Sertifikasiya · Azərbaycan dili', 300),
+  ('sert-riyaziyyat', 'Sertifikasiya · Riyaziyyat', 300),
+  ('sert-fizika', 'Sertifikasiya · Fizika', 300),
+  ('sert-kimya', 'Sertifikasiya · Kimya', 300),
+  ('sert-biologiya', 'Sertifikasiya · Biologiya', 300),
+  ('sert-cografiya', 'Sertifikasiya · Coğrafiya', 300),
+  ('sert-aztarix', 'Sertifikasiya · Azərbaycan tarixi', 300),
+  ('sert-ingilis', 'Sertifikasiya · İngilis dili', 300),
+  ('sert-informatika', 'Sertifikasiya · İnformatika', 300),
   ('paket', 'Tam paket', 2500)
 on conflict (acar) do update set ad = excluded.ad, qiymet = excluded.qiymet;
