@@ -243,19 +243,22 @@
 
   AzQuiz.prototype.saatIsle = function () {
     var o = this, sahe = D.getElementById("vz-vaxt");
+    clearTimeout(o.saatId);
     function tik() {
-      if (o.bitdi) return;
+      if (o.bitdi || !sahe) return;
       sahe.textContent = vaxtYaz(o.qalan);
       sahe.classList.toggle("az", o.qalan <= 300);
       if (o.qalan <= 0) { o.bitir(true); return; }
       o.qalan--;
-      setTimeout(tik, 1000);
+      o.saatId = setTimeout(tik, 1000);
     }
     tik();
   };
 
   AzQuiz.prototype.klaviatura = function () {
     var o = this;
+    if (o.klavBagli) return;
+    o.klavBagli = true;
     D.addEventListener("keydown", function (e) {
       if (o.bitdi || !o.başladı) return;
       if (e.key >= "1" && e.key <= "5") {
