@@ -149,19 +149,71 @@
   };
 
   /* ---------------------------------------------------------- naviqasiya */
+  /* Sağ yuxarı küncdə üç komponent: balans · dəstək · profil */
+
+  var IK_DESTEK =
+    '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" ' +
+    'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<circle cx="12" cy="12" r="9"/>' +
+    '<path d="M9.7 9.4a2.4 2.4 0 1 1 3.4 2.2c-.7.45-1.1 1-1.1 1.8v.25"/>' +
+    '<path d="M12 17.1h.01"/></svg>';
+
+  var IK_PROFIL =
+    '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" ' +
+    'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<circle cx="12" cy="8.6" r="3.6"/>' +
+    '<path d="M5.2 19.8c0-3.5 3-5.4 6.8-5.4s6.8 1.9 6.8 5.4"/></svg>';
+
+  function destekDugmesi() {
+    return '<a class="nav-ik nav-destek" href="#destek" title="Dəstək və əlaqə" ' +
+           'aria-label="Dəstək və əlaqə">' + IK_DESTEK + '</a>';
+  }
+
   function naviqasiyaQur() {
     var yer = document.getElementById("hesab-nav");
     if (!yer) return;
-    if (!S.aktiv) { yer.innerHTML = ""; return; }
-    if (S.istifadeci) {
-      yer.innerHTML =
-        '<a class="nav-bal" href="kabinet.html" title="Şəxsi kabinet">' +
-        '<span class="nb-ad">' + (S.profil && S.profil.ad ? kacir(S.profil.ad) : "Kabinet") + '</span>' +
-        '<span class="nb-bal">' + qepik(S.balans()) + '</span></a>';
+
+    var h = "";
+
+    if (S.aktiv && S.istifadeci) {
+      var ad = (S.profil && S.profil.ad) ? String(S.profil.ad).trim() : "";
+      var hrf = ad ? ad.charAt(0).toUpperCase() : "";
+
+      h += '<a class="nav-bal" href="balans.html" title="Balansı artır">' +
+           '<span class="nb-ad">Balans</span>' +
+           '<span class="nb-bal">' + qepik(S.balans()) + '</span></a>';
+
+      h += destekDugmesi();
+
+      h += '<a class="nav-ik nav-profil" href="kabinet.html" title="' +
+           kacir(ad ? ad + " — şəxsi kabinet" : "Şəxsi kabinet") + '" ' +
+           'aria-label="Şəxsi kabinet">' +
+           (hrf ? '<span class="np-hrf">' + kacir(hrf) + '</span>' : IK_PROFIL) +
+           '</a>';
+    } else if (S.aktiv) {
+      h += destekDugmesi();
+      h += '<a class="nav-giris" href="giris.html">Giriş / Qeydiyyat</a>';
     } else {
-      yer.innerHTML = '<a class="nav-giris" href="giris.html">Giriş / Qeydiyyat</a>';
+      /* Hesab sistemi qurulmasa da dəstək keçidi qalır */
+      h += destekDugmesi();
     }
+
+    yer.innerHTML = h;
   }
+
+  /* Dəstək ikonu — səhifənin altındaki dəstək bölməsinə yumşaq sürüşmə */
+  document.addEventListener("click", function (e) {
+    var t = e.target, a = null;
+    try { a = t && t.closest ? t.closest('a[href="#destek"]') : null; } catch (_) { a = null; }
+    if (!a) return;
+    var hedef = document.getElementById("destek");
+    if (!hedef) return;              // bölmə yoxdursa adi keçid işləsin
+    e.preventDefault();
+    if (hedef.scrollIntoView) hedef.scrollIntoView({ behavior: "smooth", block: "start" });
+    else location.hash = "destek";
+    if (history.replaceState) history.replaceState(null, "", "#destek");
+  });
+
   function kacir(t) {
     return String(t).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
