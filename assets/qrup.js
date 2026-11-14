@@ -1,4 +1,5 @@
-/* Qəbul imtahanı: əvvəl qrup seçilir, sonra yalnız həmin qrupun variantları açılır */
+/* Qəbul imtahanı: əvvəl qrup seçilir, sonra yalnız həmin qrupun variantları açılır.
+   Heç nə yadda saxlanmır — hər girişdə səhifə yığcam başlayır. */
 (function () {
   "use strict";
   var ACAR = "dt:qrup";
@@ -7,12 +8,9 @@
   var KARTLAR = document.querySelectorAll("#qrup-xidmet .card[data-qrup]");
   if (!DUGMELER.length) return;
 
-  function oxu() {
-    var h = (location.hash || "").match(/^#qrup-?([1-4])$/);
-    if (h) return h[1];
-    try { var v = localStorage.getItem(ACAR); if (/^[1-4]$/.test(v || "")) return v; } catch (e) {}
-    return "";
-  }
+  /* Seçim yadda saxlanmır: səhifəyə hər girişdə hər şey yığcam görünür. */
+  try { localStorage.removeItem(ACAR); } catch (e) {}
+  if (/^#qrup-?[1-4]$/.test(location.hash || "") && history.replaceState) history.replaceState(null, "", location.pathname + location.search);
 
   function sec(q, qeyd, sürüş) {
     DUGMELER.forEach(function (d) {
@@ -35,20 +33,29 @@
     if (q) {
       document.getElementById("qrup-bash").textContent = AD[q] + " — imtahan variantları";
       document.getElementById("qrup-alt").textContent = say + " variant. Hər biri 45 sual, 180 dəqiqə.";
-      if (qeyd) {
-        try { localStorage.setItem(ACAR, q); } catch (e) {}
-        if (history.replaceState) history.replaceState(null, "", "#qrup-" + q);
-      }
       if (sürüş && bas.scrollIntoView) bas.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   }
 
   DUGMELER.forEach(function (d) {
-    d.addEventListener("click", function () { sec(d.getAttribute("data-qrup"), true, true); });
+    d.addEventListener("click", function () {
+      var q = d.getAttribute("data-qrup");
+      /* eyni qrupa təkrar klik — bağlayır */
+      sec(d.classList.contains("sec") ? "" : q, true, true);
+    });
   });
-  window.addEventListener("hashchange", function () {
-    var h = (location.hash || "").match(/^#qrup-?([1-4])$/);
-    if (h) sec(h[1], false, false);
-  });
-  sec(oxu(), false, false);
+  sec("", false, false);
+
+  /* Sertifikasiya bölməsi: düyməyə klikləyəndə açılır, təkrar klikdə bağlanır */
+  var SD = document.getElementById("sert-dugme"), SX = document.getElementById("sert-xidmet");
+  if (SD && SX) {
+    SD.addEventListener("click", function () {
+      var ac = SX.classList.contains("gizli");
+      SX.classList.toggle("gizli", !ac);
+      SD.classList.toggle("sec", ac);
+      SD.setAttribute("aria-pressed", ac ? "true" : "false");
+      SD.setAttribute("aria-expanded", ac ? "true" : "false");
+      if (ac && SX.scrollIntoView) SX.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
 })();

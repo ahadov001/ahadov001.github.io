@@ -1139,3 +1139,5 @@ button.qrp.sec .qik { background: var(--nar); color: #fff; }
 .merkez-alt{margin-top:18px;font-weight:600}
 .merkez-alt a{color:var(--nar);text-decoration:none}
 .merkez-alt a:hover{text-decoration:underline}
+.qruplar.sert-sec:has(button.qrp){grid-template-columns:minmax(0,1fr);max-width:520px;margin-top:8px}
+#sert-xidmet{margin-top:6px}
