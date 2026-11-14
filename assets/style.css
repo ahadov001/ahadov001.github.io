@@ -1111,3 +1111,26 @@ button.qrp.sec .qik { background: var(--nar); color: #fff; }
   border-radius: 18px; padding: 24px; box-shadow: 0 24px 60px rgba(16,52,110,.3); }
 .dlg-q p { font-size: 1.05rem; font-weight: 600; line-height: 1.45; margin-bottom: 20px; }
 .dlg-d { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+
+/* Müəllim imtahanlarına hazırlıq: izah səhifələri */
+.lesson ol{margin:10px 0 0;padding-left:22px}
+.lesson .tip{background:color-mix(in srgb,var(--nar) 9%,var(--surface));border-left:3px solid var(--nar);padding:10px 14px;margin-top:12px;border-radius:0 6px 6px 0;font-size:.96rem}
+.lesson b{font-weight:650}
+.yox-qrup{display:grid;gap:10px}
+.yox{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0;box-shadow:var(--shadow)}
+.yox summary{cursor:pointer;list-style:none;padding:14px 16px;font-size:.98rem;line-height:1.5}
+.yox summary::-webkit-details-marker{display:none}
+.yox summary::after{content:"Cavaba bax";float:right;margin-left:12px;font-size:.8rem;font-weight:600;color:var(--nar)}
+.yox[open] summary::after{content:"Bağla"}
+.yox ol{margin:0;padding:0 16px 0 40px}
+.yox li{margin:4px 0}
+.yox li.duz{color:var(--ok);font-weight:600}
+.yox .cav{margin:10px 16px 14px;padding:10px 12px;background:var(--sunk);border-radius:8px;font-size:.94rem}
+.kecid{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px}
+.kecid a{font-weight:600;color:var(--nar);text-decoration:none;max-width:48%}
+.kecid a:hover{text-decoration:underline}
+@media (max-width:560px){.kecid a{max-width:100%}.yox summary::after{display:block;float:none;margin:6px 0 0}}
+.hero .tip{background:color-mix(in srgb,var(--nar) 9%,var(--surface));border-left:3px solid var(--nar);padding:10px 14px;border-radius:0 6px 6px 0;font-size:.94rem;max-width:720px}
+.mtl-bas{margin:34px 0 4px}
+.mtl-bas h2{margin:0 0 6px}
+.mtl-bas p{margin:0;color:var(--muted,inherit);opacity:.85}
