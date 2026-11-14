@@ -50,6 +50,8 @@
 
   /* ---------- məzmun qoruması ---------- */
   var qorumaQurulub = false;
+  var ortuSus = 0;                       /* bu vaxta qədər örtük açılmır (təsdiq pəncərəsi və s.) */
+  function ortuSusdur(ms) { ortuSus = Date.now() + ms; }
   function qorumaQur(kök) {
     kök.classList.add("qoruma");
     if (qorumaQurulub) return;
@@ -86,7 +88,10 @@
       + '<span>Səhifəyə qayıtmaq üçün buraya toxunun.</span></div>');
     D.body.appendChild(ortu);
     ortu.addEventListener("click", function () { ortu.classList.remove("acq"); });
+    function ortuBagla() { ortu.classList.remove("acq"); }
+    W.ortuBagla = ortuBagla;
     function ortuAc(mətn) {
+      if (Date.now() < ortuSus) return;
       var b = ortu.querySelector("b");
       if (mətn) b.textContent = mətn;
       ortu.classList.add("acq");
@@ -98,6 +103,7 @@
     W.ortuAc = ortuAc;
   }
   function ortuAc(m) { if (W.ortuAc) W.ortuAc(m); }
+  function ortuBagla() { if (W.ortuBagla) W.ortuBagla(); }
 
   var sonXeber = 0;
   function xeberdar(mətn) {
@@ -340,7 +346,10 @@
       var boş = o.suallar.length - o.cavabSayi();
       var mətn = boş > 0 ? boş + " sual cavabsızdır. Testi bitirmək istəyirsiniz?"
                          : "Testi bitirmək istəyirsiniz?";
-      if (confirm(mətn)) o.bitir(false);
+      ortuSusdur(600000);                /* confirm() pəncərə fokusunu aparır — örtük açılmasın */
+      var beli = confirm(mətn);
+      ortuSusdur(1500);
+      if (beli) o.bitir(false);
     };
 
     /* sual xəritəsi */
@@ -363,6 +372,9 @@
   /* ---------- nəticə ---------- */
   AzQuiz.prototype.bitir = function (vaxtBitdi) {
     this.bitdi = true;
+    ortuSusdur(1500);
+    ortuBagla();
+    this.kök.classList.remove("qoruma");   /* nəticə ekranında fokus itəndə məzmun gizlədilmir */
     var n = this.hesabla(), ü = this.suallar.length;
     if (this.onBitdi) {
       try {
@@ -420,6 +432,7 @@
       o.cavablar = new Array(ü).fill(null);
       o.bayraq = []; o.indeks = 0; o.bitdi = false;
       o.qalan = o.dəqiqə * 60;
+      if (o.qoruma) o.kök.classList.add("qoruma");
       o.yaddaSaxla();
       if (o.rejim === "exam" && o.qaydalar) o.qaydalarEkrani();
       else { o.qur(); }
