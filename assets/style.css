@@ -773,7 +773,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 84px; }
   position: relative; padding: 8px 12px; border-radius: 8px; font-size: .92rem; font-weight: 500;
   transition: color .15s, background .15s;
 }
-.site-head nav a.aktiv { background: color-mix(in srgb, var(--nar) 9%, transparent); }
+.site-head nav a { border: 1px solid transparent; }
+.site-head nav a.aktiv {
+  color: var(--nar); font-weight: 650; background: var(--surface); border-color: var(--line);
+  box-shadow: 0 1px 2px rgba(22,32,44,.06), inset 0 -2px 0 var(--nar);
+}
 
 /* --- profil açılan menyusu --- */
 .nav-menyu { position: relative; }
@@ -802,12 +806,12 @@ button.nav-ik { cursor: pointer; font: inherit; padding: 0; }
 .hero .lead { margin-top: 20px; font-size: 1.1rem; line-height: 1.65; }
 .hero .eyebrow { display: inline-block; margin-bottom: 14px; }
 .slogan { font-weight: 700; letter-spacing: -.03em; }
-.stats { gap: 0; margin-top: 44px; padding-top: 0; border-top: 0; }
+.stats { gap: 14px; margin-top: 44px; padding-top: 0; border-top: 0; }
 .stats.merkezstat { justify-content: center; }
-.stat { padding: 4px 34px; text-align: center; }
-.stat + .stat { border-left: 1px solid var(--line); }
-.stat b { font-size: 1.8rem; }
-.stat span { display: block; margin-top: 6px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+.stat { min-width: 138px; padding: 20px 26px 18px; text-align: center; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+.stat b { font-size: 1.85rem; }
+.stat span { display: block; margin-top: 8px; font-size: .74rem; letter-spacing: .09em; text-transform: uppercase; }
 
 section { padding: 68px 0; }
 .sec-head { margin-bottom: 34px; }
@@ -876,12 +880,8 @@ footer.site-foot { border-top: 1px solid var(--line); background: var(--sunk); p
 
   .hero { padding: 38px 0 34px; }
   .hero .lead { font-size: 1.02rem; margin-top: 16px; }
-  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 30px;
-    border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
-  .stat { padding: 16px 8px; }
-  .stat + .stat { border-left: 0; }
-  .stat:nth-child(even) { border-left: 1px solid var(--line); }
-  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
+  .stat { min-width: 0; padding: 16px 8px 14px; border-radius: 12px; }
   .stat b { font-size: 1.5rem; }
 
   section { padding: 44px 0; }
