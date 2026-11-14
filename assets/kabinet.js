@@ -42,7 +42,7 @@ var basla = function () {
         document.querySelectorAll(".kt-d").forEach(function (x) { x.classList.remove("aktiv"); });
         d.classList.add("aktiv");
         var k = d.getAttribute("data-k");
-        ["ireli", "transkript", "alislar", "profil"].forEach(function (n) {
+        ["ireli", "transkript", "alislar"].forEach(function (n) {
           el("k-" + n).classList.toggle("gizli", n !== k);
         });
       });
@@ -53,11 +53,15 @@ var basla = function () {
     transkriptQur();
     alislarQur();
     profilQur();
+    el("k-qelem").addEventListener("click", function () {
+      profilAc(el("k-profil").classList.contains("gizli"));
+    });
 
     /* kabinet.html#transkript kimi keçidlər uyğun bölməni açır */
     function hashdanAc() {
       var h = (location.hash || "").replace("#", "");
-      if (["ireli", "transkript", "alislar", "profil"].indexOf(h) < 0) return;
+      if (h === "profil") { profilAc(true); return; }
+      if (["ireli", "transkript", "alislar"].indexOf(h) < 0) return;
       var d = document.querySelector('.kt-d[data-k="' + h + '"]');
       if (d) d.click();
     }
@@ -183,6 +187,15 @@ var basla = function () {
     });
     el("pf-saxla").addEventListener("click", saxla);
     el("pf-parol-d").addEventListener("click", parolDeyis);
+  }
+
+  /* qələm düyməsi: fərdiləşdirmə panelini aç / bağla */
+  function profilAc(ac) {
+    var p = el("k-profil"), d = el("k-qelem");
+    p.classList.toggle("gizli", !ac);
+    d.setAttribute("aria-expanded", ac ? "true" : "false");
+    d.classList.toggle("aktiv", !!ac);
+    if (ac && p.scrollIntoView) p.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function sayYaz() { el("pf-say").textContent = (taslaq.bio || "").length + "/140"; }

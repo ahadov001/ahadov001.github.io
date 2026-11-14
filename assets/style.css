@@ -1034,3 +1034,72 @@ button.qrp.sec .qik { background: var(--nar); color: #fff; }
 .qruplar:has(button.qrp) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 900px) { .qruplar:has(button.qrp) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .qruplar:has(button.qrp) { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   ÜST PANEL — hamburger menyu (sol), hesab komponentləri (sağ)
+   ═══════════════════════════════════════════════════════════════ */
+.site-head { position: sticky; top: 0; }
+.site-head .wrap { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center;
+  justify-content: space-between; gap: 12px; min-height: 64px; padding-top: 0; padding-bottom: 0; }
+.head-sol { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-head .brand { padding: 0; font-size: 1.28rem; flex: none; }
+.site-head .hesab-nav { order: 0; width: auto; margin-left: auto; gap: 8px; flex: none; }
+
+.nav-hamb { position: relative; flex: none; }
+.nav-hamb > summary { list-style: none; cursor: pointer; width: 40px; height: 40px; }
+.nav-hamb > summary::-webkit-details-marker { display: none; }
+.nav-hamb[open] > summary { color: var(--nar); border-color: var(--nar); background: var(--nar-a); }
+.site-head .nav-hamb nav {
+  position: absolute; left: 0; top: calc(100% + 12px); width: 264px; z-index: 70;
+  display: flex; flex-direction: column; flex-wrap: nowrap; gap: 2px; margin: 0; padding: 8px;
+  overflow: visible; -webkit-mask-image: none; mask-image: none;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(16,52,110,.22);
+}
+.site-head .nav-hamb nav a {
+  display: block; padding: 11px 14px; font-size: .97rem; font-weight: 550; color: var(--ink);
+  border: 1px solid transparent; border-radius: 10px; white-space: normal;
+}
+.site-head .nav-hamb nav a:hover { background: var(--sunk); color: var(--ink); }
+.site-head .nav-hamb nav a.aktiv { background: var(--nar-a); color: var(--nar-t); font-weight: 700;
+  border-color: color-mix(in srgb, var(--nar) 30%, transparent); box-shadow: inset 3px 0 0 var(--nar); }
+.nm-alt { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; padding-top: 8px;
+  border-top: 1px solid var(--line); }
+.nm-alt:empty { display: none; }
+.site-head .nav-hamb nav .nm-alt a { display: flex; align-items: center; gap: 11px; }
+.nm-profil .av { width: 28px; height: 28px; font-size: .85rem; }
+.nm-profil .av span { font-size: inherit; }
+.nm-profil .av .av-e { font-size: 1rem; }
+.nm-cixis { display: block; width: 100%; text-align: left; padding: 11px 14px; border: 0; border-radius: 10px;
+  background: none; font: inherit; font-size: .97rem; font-weight: 550; color: var(--bad); cursor: pointer; }
+.nm-cixis:hover { background: color-mix(in srgb, var(--bad) 10%, transparent); }
+.nm-giris { color: var(--nar-t) !important; font-weight: 650 !important; }
+
+@media (max-width: 760px) {
+  .site-head { position: sticky; }
+  .site-head .wrap { display: flex; padding-top: 0; min-height: 60px; }
+  .site-head .hesab-nav { order: 0; width: auto; margin-left: auto; justify-content: flex-end; }
+  .site-head .brand { font-size: 1.12rem; }
+  .site-head .nav-hamb nav { width: min(280px, calc(100vw - 30px)); }
+}
+@media (max-width: 440px) {
+  .head-sol { gap: 8px; }
+  .site-head .brand { font-size: 1rem; }
+  .site-head .hesab-nav { gap: 6px; }
+  .site-head .wrap { gap: 6px; }
+  .nav-hamb > summary, .nav-ik { width: 36px; height: 36px; }
+  .nav-bal { padding: 3px 8px; }
+  .nb-bal { font-size: .82rem; }
+}
+
+/* --- kabinet: qələm düyməsi və açılan fərdiləşdirmə paneli --- */
+.k-av-qab { position: relative; flex: none; }
+.k-qelem { position: absolute; right: -4px; bottom: -2px; width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer; padding: 0;
+  background: var(--surface); color: var(--nar); border: 1.5px solid var(--line);
+  box-shadow: 0 4px 12px rgba(16,52,110,.2); transition: .15s; }
+.k-qelem:hover, .k-qelem.aktiv { background: var(--nar); color: #fff; border-color: var(--nar); }
+.k-profil-panel { margin: 22px 0 4px; padding: 20px; background: var(--sunk); border: 1px solid var(--line);
+  border-radius: 20px; }
+.k-profil-panel .pf-qrid { margin: 0; }
+@media (max-width: 760px) { .k-profil-panel { padding: 12px; border-radius: 16px; } }

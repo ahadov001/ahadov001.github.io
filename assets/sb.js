@@ -291,7 +291,6 @@
                '<span>' + kacir(S.istifadeci.email || "") + '</span></span>' +
              '</div>' +
              '<a role="menuitem" href="kabinet.html">Şəxsi kabinet</a>' +
-             '<a role="menuitem" href="kabinet.html#profil">Profili fərdiləşdir</a>' +
              '<a role="menuitem" href="kabinet.html#ireli">İrəliləyiş</a>' +
              '<a role="menuitem" href="kabinet.html#transkript">Transkript</a>' +
              '<a role="menuitem" href="kabinet.html#alislar">Alışlar</a>' +
@@ -306,7 +305,23 @@
     }
 
     yer.innerHTML = h;
+
+    /* Hamburger menyunun altı: profil + çıxış (və ya giriş) */
+    var alt = document.getElementById("nm-alt");
+    if (alt) {
+      if (S.aktiv && S.istifadeci) {
+        alt.innerHTML =
+          '<a href="kabinet.html" class="nm-profil">' + S.avatar(S.profil, ad0()) +
+          '<span>Profil</span></a>' +
+          '<button type="button" class="nm-cixis" id="nm-cixis">Çıxış</button>';
+      } else if (S.aktiv) {
+        alt.innerHTML = '<a href="giris.html" class="nm-giris">Giriş / Qeydiyyat</a>';
+      } else {
+        alt.innerHTML = "";
+      }
+    }
   }
+  function ad0() { return (S.profil && S.profil.ad) ? String(S.profil.ad).trim() : ""; }
 
   /* Profil menyusu: aç/bağla, kənara basanda və Esc ilə bağlanır */
   function menyuBagla() {
@@ -322,19 +337,33 @@
       var m = document.getElementById("nav-acilan");
       if (!m) return;
       var ac = m.hidden;
+      hambBagla();
       m.hidden = !ac;
       dugme.setAttribute("aria-expanded", ac ? "true" : "false");
       return;
     }
-    if (t && t.closest && t.closest("#nav-cixis")) {
+    if (t && t.closest && t.closest("#nav-cixis, #nm-cixis")) {
       S.cixis().then(function () { location.href = "index.html"; });
       return;
     }
     if (!(t && t.closest && t.closest("#nav-acilan"))) menyuBagla();
     else if (t.closest("a")) menyuBagla();
   });
+  function hambBagla() {
+    var h = document.getElementById("nav-hamb");
+    if (h && h.open) h.open = false;
+  }
+  document.addEventListener("click", function (e) {
+    var h = document.getElementById("nav-hamb");
+    if (!h || !h.open) return;
+    var t = e.target;
+    if (t && t.closest && (!t.closest("#nav-hamb") || t.closest("#esas-menyu a"))) hambBagla();
+  });
+  document.addEventListener("toggle", function (e) {
+    if (e.target && e.target.id === "nav-hamb" && e.target.open) menyuBagla();
+  }, true);
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") menyuBagla();
+    if (e.key === "Escape") { menyuBagla(); hambBagla(); }
   });
 
   /* Dəstək ikonu — səhifənin altındaki dəstək bölməsinə yumşaq sürüşmə */
