@@ -1012,3 +1012,25 @@ h1 { font-weight: 800; }
 .na-bas .na-mtn > span { font-size: .78rem; color: var(--muted); }
 .na-bas .av, .na-bas .av span { font-size: 1.15rem; color: #fff; overflow-wrap: normal; }
 .na-bas .av .av-e { font-size: 1.3rem; }
+
+/* --- qrup seçimi (qəbul imtahanı) --- */
+button.qrp { font: inherit; color: inherit; text-align: left; cursor: pointer; width: 100%;
+  position: relative; border: 1.5px solid var(--line); border-radius: 14px; padding: 16px;
+  transition: border-color .15s, box-shadow .15s, transform .15s, background .15s; }
+button.qrp:hover { border-color: var(--nar); transform: translateY(-1px); box-shadow: var(--shadow); }
+button.qrp.sec { border-color: var(--nar); background: var(--nar-a);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--nar) 18%, transparent); }
+button.qrp.sec .qik { background: var(--nar); color: #fff; }
+.qrp .qsec { position: absolute; top: 10px; right: 12px; width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--nar); color: #fff; font-size: .75rem;
+  font-weight: 700; opacity: 0; transform: scale(.6); transition: .15s; }
+.qrp.sec .qsec { opacity: 1; transform: none; color: #fff; }
+.qrup-ipucu { font-size: .98rem; color: var(--muted); padding: 16px 18px; border: 1.5px dashed var(--line);
+  border-radius: 12px; background: var(--surface); }
+.qrup-ipucu b { color: var(--ink); }
+.qrup-bas { margin: 4px 0 16px; }
+.qrup-bas h2 { font-size: 1.25rem; }
+.qrup-bas p { color: var(--muted); font-size: .9rem; margin-top: 4px; }
+.qruplar:has(button.qrp) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 900px) { .qruplar:has(button.qrp) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .qruplar:has(button.qrp) { grid-template-columns: 1fr; } }
