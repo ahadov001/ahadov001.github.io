@@ -105,6 +105,23 @@
   function ortuAc(m) { if (W.ortuAc) W.ortuAc(m); }
   function ortuBagla() { if (W.ortuBagla) W.ortuBagla(); }
 
+  function sehifeTesdiq(mətn, beli, xeyr, ugur) {
+    if (D.getElementById("dlg-tesdiq")) return;
+    var q = el("div", "dlg", '<div class="dlg-q" role="alertdialog" aria-modal="true" aria-labelledby="dlg-m">'
+      + '<p id="dlg-m">' + mətn + '</p>'
+      + '<div class="dlg-d"><button type="button" class="btn" id="dlg-x">' + xeyr + '</button>'
+      + '<button type="button" class="btn solid" id="dlg-b">' + beli + '</button></div></div>');
+    q.id = "dlg-tesdiq";
+    D.body.appendChild(q);
+    function bagla() { q.remove(); D.removeEventListener("keydown", klv, true); }
+    function klv(e) { if (e.key === "Escape") { e.preventDefault(); bagla(); } }
+    D.addEventListener("keydown", klv, true);
+    q.addEventListener("click", function (e) { if (e.target === q) bagla(); });
+    D.getElementById("dlg-x").onclick = bagla;
+    D.getElementById("dlg-b").onclick = function () { bagla(); ugur(); };
+    D.getElementById("dlg-b").focus();
+  }
+
   var sonXeber = 0;
   function xeberdar(mətn) {
     if (Date.now() - sonXeber < 1200) return;
@@ -346,10 +363,8 @@
       var boş = o.suallar.length - o.cavabSayi();
       var mətn = boş > 0 ? boş + " sual cavabsızdır. Testi bitirmək istəyirsiniz?"
                          : "Testi bitirmək istəyirsiniz?";
-      ortuSusdur(600000);                /* confirm() pəncərə fokusunu aparır — örtük açılmasın */
-      var beli = confirm(mətn);
-      ortuSusdur(1500);
-      if (beli) o.bitir(false);
+      /* brauzerin confirm() pəncərəsi əvəzinə səhifədaxili pəncərə: fokus itmir, örtük açılmır */
+      sehifeTesdiq(mətn, "Bəli, bitir", "Davam et", function () { o.bitir(false); });
     };
 
     /* sual xəritəsi */
