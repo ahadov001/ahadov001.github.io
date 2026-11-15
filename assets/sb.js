@@ -264,6 +264,10 @@
            'aria-label="Dəstək və əlaqə">' + IK_DESTEK + '</a>';
   }
 
+  /* Yalnız sayt sahibinin hesabında görünən keçid (həqiqi icazəni bazadakı qayda verir) */
+  var SAHIB_ID = "dcfa22a2-ca25-45a8-9916-3b0888d4a471";
+  function sahibdir() { return !!(S.istifadeci && S.istifadeci.id === SAHIB_ID); }
+
   function naviqasiyaQur() {
     var yer = document.getElementById("hesab-nav");
     if (!yer) return;
@@ -294,6 +298,7 @@
              '<a role="menuitem" href="kabinet.html#ireli">İrəliləyiş</a>' +
              '<a role="menuitem" href="kabinet.html#transkript">Transkript</a>' +
              '<a role="menuitem" href="kabinet.html#alislar">Alışlar</a>' +
+             (sahibdir() ? '<a role="menuitem" href="geri-bildirimler.html">Geri bildirimlər</a>' : '') +
              '<button role="menuitem" type="button" class="na-cixis" id="nav-cixis">Çıxış</button>' +
            '</div></div>';
     } else if (S.aktiv) {
@@ -313,6 +318,7 @@
         alt.innerHTML =
           '<a href="kabinet.html" class="nm-profil">' + S.avatar(S.profil, ad0()) +
           '<span>Profil</span></a>' +
+          (sahibdir() ? '<a href="geri-bildirimler.html" class="nm-giris">Geri bildirimlər</a>' : '') +
           '<button type="button" class="nm-cixis" id="nm-cixis">Çıxış</button>';
       } else if (S.aktiv) {
         alt.innerHTML = '<a href="giris.html" class="nm-giris">Giriş / Qeydiyyat</a>';
@@ -471,6 +477,6 @@
 (function () {
   if (window.__dtGeri || document.querySelector('script[data-geri]')) return;
   var sc = document.createElement("script");
-  sc.src = "assets/geri.js?v=1"; sc.defer = true; sc.setAttribute("data-geri", "1");
+  sc.src = "assets/geri.js?v=2"; sc.defer = true; sc.setAttribute("data-geri", "1");
   document.head.appendChild(sc);
 })();

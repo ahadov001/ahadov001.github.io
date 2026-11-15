@@ -1141,3 +1141,27 @@ button.qrp.sec .qik { background: var(--nar); color: #fff; }
 .merkez-alt a:hover{text-decoration:underline}
 .qruplar.sert-sec:has(button.qrp){grid-template-columns:minmax(0,1fr);max-width:520px;margin-top:8px}
 #sert-xidmet{margin-top:6px}
+
+/* Geri bildirimlər (sahib səhifəsi) */
+.gb-hal{padding:16px 18px;border:1.5px dashed var(--line);border-radius:12px;color:var(--muted);margin:10px 0}
+.gb-hal a{color:var(--nar);font-weight:600}
+.gb-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 14px}
+.gb-f{font:600 .86rem/1 inherit;font-family:inherit;padding:9px 14px;border-radius:999px;cursor:pointer;border:1px solid var(--line);background:transparent;color:inherit}
+.gb-f b{margin-left:4px;opacity:.75}
+.gb-f[aria-pressed=true]{background:var(--nar);border-color:var(--nar);color:#fff}
+#gb-yenile{margin-left:auto}
+.gb-siyahi{display:grid;gap:12px;margin-bottom:40px}
+.gb-bos{color:var(--muted);padding:18px 4px}
+.gb-kart{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.gb-kart.gb-b{opacity:.72}
+.gb-bas{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.gb-nov{font-size:.74rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--nar-a);color:var(--nar)}
+.gb-nov.gb-sehv{background:rgba(220,70,60,.12);color:#c0392b}
+.gb-nov.gb-sikayet{background:rgba(230,150,30,.15);color:#b9770e}
+.gb-tarix{font-size:.82rem;color:var(--muted)}
+.gb-mesaj{white-space:pre-wrap;line-height:1.55;margin:0 0 8px;word-break:break-word}
+.gb-meta{font-size:.84rem;color:var(--muted);margin:2px 0;word-break:break-word}
+.gb-meta a{color:var(--nar)}
+.gb-ktx{font-size:.84rem;background:var(--sunk);border-radius:8px;padding:8px 10px;margin:6px 0;word-break:break-word}
+.gb-dugme{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap}
+.gb-sil{color:#c0392b}

@@ -1,5 +1,5 @@
 /* Geri bildirim: bütün səhifələrdə kiçik düymə. Səhv, təklif və ya şikayət yazılır;
-   mesaj Edge Function (geri-bildirim) vasitəsilə yalnız sayt sahibinə çatır.
+   mesaj bazadakı geri_bildirim_gonder funksiyası ilə yazılır; oxumaq yalnız sayt sahibinə açıqdır.
    Ziyarətçi heç bir ünvan və ya başqasının mesajını görmür. */
 (function () {
   "use strict";
@@ -125,23 +125,24 @@
       gonderilir = true; $("dt-geri-g").disabled = true;
       var t = $("dt-geri-t"); t.className = "gst"; t.textContent = "Göndərilir…";
       var yuk = {
-        nov: nov, mesaj: m, sehife: location.origin + location.pathname,
-        bashliq: D.title || "", kontekst: kontekst(),
-        elaqe: $("dt-geri-e").value.trim(), sayt: $("dt-geri-h").value
+        p_nov: nov, p_mesaj: m, p_sehife: location.origin + location.pathname,
+        p_bashliq: D.title || "", p_kontekst: kontekst(), p_elaqe: $("dt-geri-e").value.trim()
       };
-      fetch(CFG.url.replace(/\/$/, "") + "/functions/v1/geri-bildirim", {
+      /* Bot tələsi: gizli sahə doldurulubsa heç nə göndərmirik */
+      if ($("dt-geri-h").value) { t.className = "gst ok"; t.textContent = "Təşəkkürlər! Mesajın göndərildi."; setTimeout(bagla, 1600); return; }
+      fetch(CFG.url.replace(/\/$/, "") + "/rest/v1/rpc/geri_bildirim_gonder", {
         method: "POST",
         headers: { "Content-Type": "application/json", "apikey": CFG.anonKey },
         body: JSON.stringify(yuk)
       }).then(function (r) {
-        return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; });
+        return r.text().then(function (x) { return { ok: r.ok, s: r.status, x: x }; });
       }).then(function (o) {
-        if (o.j && o.j.ok) {
+        if (o.ok) {
           t.className = "gst ok"; t.textContent = "Təşəkkürlər! Mesajın göndərildi.";
           setTimeout(bagla, 1600);
         } else {
           gonderilir = false; $("dt-geri-g").disabled = false;
-          xeta(o.s === 429 ? "Çox tez-tez göndərdin. Bir az sonra yenidən cəhd et." :
+          xeta(o.x.indexOf("tez-tez") >= 0 ? "Çox tez-tez göndərdin. Bir az sonra yenidən cəhd et." :
                o.s === 400 ? "Mesaj qəbul olunmadı. Mətni yoxla." :
                "Göndərmək alınmadı. Bir az sonra yenidən cəhd et.");
         }
