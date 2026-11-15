@@ -1,0 +1,108 @@
+{
+ "__q": {
+  "t": "Conditionals and Wishes — Сборник 3",
+  "q": [
+   {
+    "s": "Complete: «Should you need help, ___ me.»",
+    "o": [
+     "calling",
+     "to call",
+     "call",
+     "called"
+    ],
+    "e": "Условие I типа с инверсией."
+   },
+   {
+    "s": "Choose: «Were I rich, I would travel» is:",
+    "o": [
+     "Type 3",
+     "Type 1",
+     "Type 2 with inversion",
+     "Type 0"
+    ],
+    "e": "Инверсия в формальном стиле."
+   },
+   {
+    "s": "Complete: «He wishes he ___ the truth earlier.»",
+    "o": [
+     "knew",
+     "knows",
+     "had known",
+     "would know"
+    ],
+    "e": "Сожаление о прошлом."
+   },
+   {
+    "s": "Choose: «as long as» expresses:",
+    "o": [
+     "condition",
+     "time only",
+     "contrast",
+     "reason"
+    ],
+    "e": "Выражает условие."
+   },
+   {
+    "s": "Complete: «If I ___ earlier, I wouldn't be late now.»",
+    "o": [
+     "left",
+     "had left",
+     "leave",
+     "would leave"
+    ],
+    "e": "Смешанный тип: условие в прошлом, результат в настоящем."
+   },
+   {
+    "s": "Choose the meaning: «If only he would listen!»",
+    "o": [
+     "I want him to listen but he doesn't",
+     "he will listen",
+     "he listened",
+     "he listens"
+    ],
+    "e": "Недовольство текущим поведением."
+   },
+   {
+    "s": "Complete: «In case it ___ , take an umbrella.»",
+    "o": [
+     "will rain",
+     "would rain",
+     "rains",
+     "rained"
+    ],
+    "e": "«In case» + Present Simple."
+   },
+   {
+    "s": "Choose: «Otherwise» means:",
+    "o": [
+     "although",
+     "if not",
+     "because",
+     "therefore"
+    ],
+    "e": "Имеет значение «в противном случае»."
+   },
+   {
+    "s": "Complete: «He behaves as if he ___ the boss.»",
+    "o": [
+     "were",
+     "was",
+     "is",
+     "will be"
+    ],
+    "e": "«As if» + were (нереальное)."
+   },
+   {
+    "s": "Choose the correct mixed conditional.",
+    "o": [
+     "If I studied, I will be a doctor.",
+     "If I had studied medicine, I would be a doctor now.",
+     "If I had studied, I will be a doctor.",
+     "If I study, I would be a doctor."
+    ],
+    "e": "Условие в прошлом → результат в настоящем."
+   }
+  ]
+ },
+ "Conditionals and Wishes — 3-ci toplu": "Conditionals and Wishes — Сборник 3"
+}
