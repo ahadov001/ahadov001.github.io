@@ -283,7 +283,6 @@
     if (o.klavBagli) return;
     o.klavBagli = true;
     D.addEventListener("keydown", function (e) {
-      if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
       if (o.bitdi || !o.başladı) return;
       if (e.key >= "1" && e.key <= "5") {
         var i = parseInt(e.key, 10) - 1;
@@ -325,11 +324,6 @@
   AzQuiz.prototype.ciz = function () {
     var o = this, s = this.suallar[this.indeks], seçim = this.cavablar[this.indeks];
     var hərf = ["A", "B", "C", "D", "E"];
-    /* Geri bildirim pəncərəsi hazırkı sualı da məlumata əlavə edir */
-    W.dtGeriKontekst = function () {
-      var x = o.suallar[o.indeks];
-      return x ? "Sual " + (o.indeks + 1) + "/" + o.suallar.length + ": " + String(x.s).replace(/<[^>]*>/g, "").slice(0, 300) : "";
-    };
 
     var h = '<div class="q-sual"><span class="q-say">' + (this.indeks + 1) + '.</span> ' + s.s + '</div>';
     h += '<div class="opts">';

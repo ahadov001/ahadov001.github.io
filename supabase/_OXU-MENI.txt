@@ -17,24 +17,3 @@ məzmununu yapışdırın → Run.
 Bundan sonra istifadəçilərin profil şəkli və məlumatı bütün cihazlarında
 eyni görünür. İşə salınmasa da sayt xəta vermir — dəyişikliklər yalnız
 həmin brauzerdə saxlanır.
-
-──────────────────────────────────────────────────────────────
-GERİ BİLDİRİM (səhv / təklif / şikayət) — mesajlar sizə e-poçtla gəlir
-──────────────────────────────────────────────────────────────
-Saytın hər səhifəsində aşağı küncdə "Geri bildirim" düyməsi var. Ziyarətçi
-yalnız mesajını yazır; sizin e-poçt ünvanınız saytda heç yerdə görünmür.
-
-1) Supabase → SQL Editor → 04-geri-bildirim.sql məzmununu yapışdırın → Run.
-2) Supabase → Edge Functions → yeni funksiya, adı: geri-bildirim
-   functions/geri-bildirim/index.ts məzmununu yapışdırıb Deploy edin.
-   "Verify JWT" seçimini SÖNDÜRÜN.
-3) E-poçt üçün resend.com-da pulsuz hesab açın, API Key yaradın.
-   Supabase → Edge Functions → Secrets bölməsinə əlavə edin:
-     RESEND_API_KEY = (Resend-dən aldığınız açar)
-     SAHIB_EMAIL    = mesajların gələcəyi e-poçtunuz
-   (SB_URL və SB_SERVICE_KEY secrets-i balans-webhook üçün artıq var.)
-   Qeyd: öz domeniniz Resend-də təsdiqlənməyibsə, mesaj yalnız Resend-ə
-   qeydiyyatdan keçdiyiniz e-poçta gələ bilər. Başqa ünvan istəsəniz
-   domeni təsdiqləyib RESEND_FROM secrets-ini də əlavə edin.
-E-poçt işləməsə belə bütün mesajlar Supabase → Table Editor →
-geri_bildirimler cədvəlində saxlanılır.
