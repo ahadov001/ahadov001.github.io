@@ -50,17 +50,36 @@
   }
 
   /* ---------- rus rejimi: lüğət ---------- */
-  document.write('<script src="assets/ru.js?v=1"><\/script>');
+  document.write('<script src="assets/ru.js?v=' + Math.floor(Date.now() / 600000) + '"><\/script>');
   var page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
   window.__ruPage = page;
-
-  function ruQur() {
-    var D = window.RU_DICT || {}, RX = window.RU_RX || [], PD = {};
+  var PDC = null;
+  function loadPD() {
+    if (PDC) return PDC;
+    PDC = {};
     var pages = window.RU_PAGES || {};
     if (pages[page]) {
       var x = new XMLHttpRequest();
-      try { x.open("GET", "assets/ru/" + page + ".json?v=" + pages[page], false); x.send(); if (x.status === 200) PD = JSON.parse(x.responseText); } catch (e) {}
+      try { x.open("GET", "assets/ru/" + page + ".json?v=" + pages[page], false); x.send(); if (x.status === 200) PDC = JSON.parse(x.responseText); } catch (e) {}
     }
+    return PDC;
+  }
+  /* quiz.js çağırır: sual konfiqurasiyasını (başlıq, sual, variant, izah) rusca ilə əvəz edir */
+  window.ruCfg = function (cfg) {
+    var q = loadPD().__q;
+    if (!q || !cfg || !cfg.questions) return cfg;
+    if (q.t) cfg.title = q.t;
+    cfg.questions.forEach(function (it, i) {
+      var r = q.q && q.q[i]; if (!r) return;
+      if (r.s) it.s = r.s;
+      if (r.o && r.o.length === (it.o || []).length) it.o = r.o;
+      if (r.e) it.e = r.e;
+    });
+    return cfg;
+  };
+
+  function ruQur() {
+    var D = window.RU_DICT || {}, RX = window.RU_RX || [], PD = loadPD();
     var hasPage = Object.keys(PD).length > 0;
 
     function norm(t) {
@@ -98,6 +117,17 @@
       });
     };
 
+    /* mövzu mətnləri: yarpaq blokların innerHTML-i səhifə lüğətində dəqiq uyğunlaşdırılır */
+    function blokGez(root) {
+      var els = (root.nodeType === 1 ? [root] : []).concat([].slice.call(root.querySelectorAll("*")));
+      for (var i = 0; i < els.length; i++) {
+        var e = els[i];
+        if (!e.firstChild || SKIP.test(e.tagName.toUpperCase()) || e.hasAttribute("data-ru")) continue;
+        if (e.children.length === 0 && e.childNodes.length === 1) continue;
+        var h = e.innerHTML.replace(/\s+/g, " ").trim(), v = PD[h];
+        if (v !== undefined) { e.innerHTML = v; e.setAttribute("data-ru", "1"); }
+      }
+    }
     var ATTR = ["placeholder", "title", "aria-label", "alt", "content", "value"];
     var SKIP = /^(SCRIPT|STYLE|TEXTAREA|CODE|PRE|NOSCRIPT|SVG)$/;
     function sat(el) {
@@ -154,6 +184,7 @@
       if (root.nodeType === 3) { snode(root); return; }
       if (root.nodeType !== 1 && root.nodeType !== 9) return;
       if (root.nodeType === 1) { if (root.closest && root.closest("[data-no-i18n]")) return; sat(root); }
+      if (hasPage && root.nodeType !== 3) blokGez(root);
       var tw = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, null, false), n;
       while ((n = tw.nextNode())) {
         if (n.nodeType === 3) snode(n);

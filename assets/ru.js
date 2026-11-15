@@ -233,7 +233,7 @@ window.RU_DICT={
 "Natural ədədlər": "Натуральные числа",
 "Necə işləyir": "Как это работает",
 "Nisbət, tənasüb, faiz": "Отношение, пропорция, проценты",
-"Növ": "Залог",
+"Növ": "Тип",
 "Növbəti mövzu →": "Следующая тема →",
 "Nümunə": "Пример",
 "Nümunə mövzu — hər üç toplu pulsuzdur.": "Пример темы — все три сборника бесплатны.",
@@ -779,5 +779,5 @@ window.RU_DICT={
 "Kapital Bank kartı": "Карта Kapital Bank",
 "ABB kartı": "Карта ABB"
 };
-window.RU_RX=[[/^Salam, (.+?)!$/,'Здравствуйте, $1!']];
+window.RU_RX=[[/^Salam, (.+?)!$/,'Здравствуйте, $1!'],[/^(.+?) — (\d+)-ci toplu$/,'$1 — Сборник $2'],[/^(.+?) — (\d+)-ci variant$/,'$1 — Вариант $2'],[/^(\d+)-ci toplu$/,'Сборник $1'],[/^(\d+)-ci mövzu · izah pulsuzdur$/,'Тема $1 · объяснение бесплатно']];
 window.RU_PAGES={};

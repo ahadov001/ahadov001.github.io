@@ -488,6 +488,7 @@
   /* ---------- ixrac ---------- */
   W.AzQuiz = {
     mount: function (cfg) {
+      if (W.ruCfg) cfg = W.ruCfg(cfg);
       var kök = D.getElementById(cfg.el || "quiz");
       if (!kök) return;
       var q = new AzQuiz(cfg);
