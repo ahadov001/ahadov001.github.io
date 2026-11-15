@@ -298,7 +298,8 @@
              '<a role="menuitem" href="kabinet.html#ireli">İrəliləyiş</a>' +
              '<a role="menuitem" href="kabinet.html#transkript">Transkript</a>' +
              '<a role="menuitem" href="kabinet.html#alislar">Alışlar</a>' +
-             (sahibdir() ? '<a role="menuitem" href="geri-bildirimler.html">Geri bildirimlər</a>' : '') +
+             (sahibdir() ? '<a role="menuitem" href="odenis-sorgulari.html">Ödəniş sorğuları <span class="os-nisan" hidden></span></a>' +
+                           '<a role="menuitem" href="geri-bildirimler.html">Geri bildirimlər</a>' : '') +
              '<button role="menuitem" type="button" class="na-cixis" id="nav-cixis">Çıxış</button>' +
            '</div></div>';
     } else if (S.aktiv) {
@@ -310,6 +311,7 @@
     }
 
     yer.innerHTML = h;
+    setTimeout(sahibNisan, 0);
 
     /* Hamburger menyunun altı: profil + çıxış (və ya giriş) */
     var alt = document.getElementById("nm-alt");
@@ -318,7 +320,8 @@
         alt.innerHTML =
           '<a href="kabinet.html" class="nm-profil">' + S.avatar(S.profil, ad0()) +
           '<span>Profil</span></a>' +
-          (sahibdir() ? '<a href="geri-bildirimler.html" class="nm-giris">Geri bildirimlər</a>' : '') +
+          (sahibdir() ? '<a href="odenis-sorgulari.html" class="nm-adm">Ödəniş sorğuları <span class="os-nisan" hidden></span></a>' +
+                        '<a href="geri-bildirimler.html" class="nm-adm">Geri bildirimlər</a>' : '') +
           '<button type="button" class="nm-cixis" id="nm-cixis">Çıxış</button>';
       } else if (S.aktiv) {
         alt.innerHTML = '<a href="giris.html" class="nm-giris">Giriş / Qeydiyyat</a>';
@@ -326,6 +329,16 @@
         alt.innerHTML = "";
       }
     }
+  }
+  /* Sahib üçün: yoxlanılmalı ödəniş sayı (menyuda nişan) */
+  function sahibNisan() {
+    if (!sahibdir() || !S._sb) return;
+    S._sb.rpc("adm_gozleyen_say").then(function (r) {
+      var n = (r && typeof r.data === "number") ? r.data : 0;
+      [].forEach.call(document.querySelectorAll(".os-nisan"), function (x) { x.hidden = !n; x.textContent = n; });
+      var h = document.querySelector(".nav-profil");
+      if (h) h.classList.toggle("nisanli", n > 0);
+    });
   }
   function ad0() { return (S.profil && S.profil.ad) ? String(S.profil.ad).trim() : ""; }
 
