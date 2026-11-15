@@ -23,23 +23,26 @@
     if (u.href === location.href) location.reload();
   };
 
-  /* ---------- dil düyməsi ---------- */
-  function sw(cls) {
+  /* ---------- dil paneli: səhifənin ən üstündə, bayraqlarla ---------- */
+  var FLAG = {
+    az: '<svg class="lg-fl" viewBox="0 0 24 16" width="24" height="16" aria-hidden="true"><rect width="24" height="16" fill="#0092bc"/><rect y="5.33" width="24" height="5.34" fill="#e8112d"/><rect y="10.67" width="24" height="5.33" fill="#00a651"/><circle cx="11.4" cy="8" r="2.25" fill="#fff"/><circle cx="12.1" cy="8" r="1.8" fill="#e8112d"/><path d="m14.6 6.9.35.8.85.1-.65.55.2.85-.75-.45-.75.45.2-.85-.65-.55.85-.1z" fill="#fff"/></svg>',
+    ru: '<svg class="lg-fl" viewBox="0 0 24 16" width="24" height="16" aria-hidden="true"><rect width="24" height="16" fill="#fff"/><rect y="5.33" width="24" height="5.34" fill="#0039a6"/><rect y="10.67" width="24" height="5.33" fill="#d52b1e"/></svg>'
+  };
+  function sw() {
     var d = document.createElement("div");
-    d.className = "lang-sw " + cls; d.setAttribute("role", "group"); d.setAttribute("aria-label", "Dil / Язык");
-    d.innerHTML = '<button type="button" data-l="az" aria-pressed="' + (L === "az") + '" lang="az">AZ</button>' +
-                  '<button type="button" data-l="ru" aria-pressed="' + (L === "ru") + '" lang="ru">RU</button>';
+    d.className = "lang-bar"; d.setAttribute("role", "group"); d.setAttribute("aria-label", "Dil / Язык");
+    d.setAttribute("data-no-i18n", "");
+    d.innerHTML = '<div class="wrap"><span class="lb-t" aria-hidden="true">Dil · Язык</span>' +
+      '<button type="button" data-l="az" aria-pressed="' + (L === "az") + '" lang="az">' + FLAG.az + '<span>Azərbaycanca</span></button>' +
+      '<button type="button" data-l="ru" aria-pressed="' + (L === "ru") + '" lang="ru">' + FLAG.ru + '<span>Русский</span></button></div>';
     return d;
   }
   function duymeQur() {
-    if (document.querySelector(".lang-sw")) return;
-    var h = document.getElementById("hesab-nav");
-    if (h && h.parentNode) h.parentNode.insertBefore(sw("lang-hd"), h.nextSibling);
-    var m = document.getElementById("esas-menyu");
-    if (m) m.appendChild(sw("lang-mob"));
+    if (document.querySelector(".lang-bar") || !document.body) return;
+    document.body.insertBefore(sw(), document.body.firstChild);
   }
   document.addEventListener("click", function (e) {
-    var b = e.target && e.target.closest && e.target.closest(".lang-sw button");
+    var b = e.target && e.target.closest && e.target.closest(".lang-bar button");
     if (b) window.dtSetLang(b.getAttribute("data-l"));
   });
 
