@@ -1397,3 +1397,10 @@ a.btn.wa.lg,a.btn.wa.tam{white-space:normal;text-align:center;line-height:1.3}
 .b-meb span{font-weight:800;font-size:1.1rem;color:var(--brand)}
 .b-meb-x{margin:0 0 20px;color:var(--muted)}
 .b-meb-x.xeta{color:var(--bad)}
+
+/* ---- 8 balans paketi ---- */
+.bgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:24px}
+.bkart{padding:26px 10px 24px;align-items:center;justify-content:center}
+.bk-mebleg{font-size:1.5rem;white-space:nowrap}
+.bkart.secilen{background:var(--brand-a)}
+@media (max-width:620px){.bgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-mebleg{font-size:1.35rem}}

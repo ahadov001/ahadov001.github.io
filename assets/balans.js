@@ -88,8 +88,8 @@ var basla = function () {
       return;
     }
 
+    paketCiz();
     usulCiz();
-    mebCiz();
     el("b-davam").addEventListener("click", davam);
     sorguCiz();
 
@@ -97,33 +97,36 @@ var basla = function () {
     izle();
   }
 
-  /* istənilən məbləğ: 1–500 AZN, ən çox 2 rəqəm kəsr */
-  function mebOxu(t) {
-    t = String(t || "").replace(/\s+/g, "").replace(",", ".");
-    if (!/^\d{1,3}(\.\d{1,2})?$/.test(t)) return null;
-    var q = Math.round(parseFloat(t) * 100);
-    return (q >= 100 && q <= 50000) ? q : null;
-  }
-  function mebCiz() {
-    var i = el("b-mebleg");
+  function paketCiz() {
+    var h = "";
+    P.forEach(function (p) {
+      h += '<button type="button" class="bkart" data-m="' + p.mebleg + '" aria-pressed="false">' +
+        (p.secilen ? '<span class="bk-nisan">ən çox seçilən</span>' : '') +
+        '<span class="bk-mebleg">' + azn(p.mebleg) + '</span></button>';
+    });
+    el("b-paketler").innerHTML = h;
+    el("b-paketler").addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest(".bkart");
+      if (!b) return;
+      secMebleg = parseInt(b.getAttribute("data-m"), 10);
+      [].forEach.call(el("b-paketler").querySelectorAll(".bkart"), function (x) {
+        x.classList.toggle("secilen", x === b);
+        x.setAttribute("aria-pressed", x === b ? "true" : "false");
+      });
+      yoxla();
+    });
+    /* xidmət üçün çatmayan məbləğ varsa, onu ödəyən ən kiçik paketi əvvəlcədən seç */
     var lazim = new URLSearchParams(location.search).get("lazim");
     if (lazim) {
       S.qiymet(lazim).then(function (q) {
         if (!q) return;
         var c = q.qiymet - S.balans();
-        if (c > 0 && !i.value) { i.value = (Math.max(100, Math.ceil(c / 100) * 100) / 100).toFixed(0); i.dispatchEvent(new Event("input")); }
+        if (c <= 0) return;
+        var u = P.filter(function (p) { return p.mebleg >= c; })[0] || P[P.length - 1];
+        var b = u && el("b-paketler").querySelector('.bkart[data-m="' + u.mebleg + '"]');
+        if (b) b.click();
       });
     }
-    i.addEventListener("input", function () {
-      var v = i.value.replace(/[^\d.,]/g, "");
-      if (v !== i.value) i.value = v;
-      var q = mebOxu(v), x = el("b-meb-x");
-      secMebleg = q;
-      x.className = "xirda b-meb-x" + (v && !q ? " xeta" : "");
-      x.textContent = !v ? "İstədiyin məbləği yaz: ən az 1 AZN, ən çox 500 AZN."
-        : (q ? "Balansına yazılacaq: " + azn(q) : "Məbləğ 1 ilə 500 AZN arasında olmalıdır (məs.: 12 və ya 7,50).");
-      yoxla();
-    });
   }
 
   /* ödəniş seçimləri: M10 + hər kart ayrıca seçim */
