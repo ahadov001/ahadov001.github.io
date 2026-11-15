@@ -1326,3 +1326,19 @@ button.bo-kop.ok{background:var(--green-a);color:var(--ok)}
   *,*::before,*::after{transition:none!important;animation:none!important}
   html{scroll-behavior:auto}
 }
+
+/* ---- WhatsApp çek göndərmə + kart siyahısı ---- */
+.btn.wa{background:#25D366;border-color:#25D366;color:#06371a;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.btn.wa:hover{background:#1fbd5a;border-color:#1fbd5a;color:#06371a}
+.btn.wa.lg{padding:15px 22px;font-size:1.02rem;width:100%;max-width:420px}
+.btn.wa.sm{padding:7px 12px;font-size:.82rem}
+.bo-wa{display:grid;justify-items:center;gap:8px;margin:18px 0 6px}
+.bo-wa small{color:var(--ink-3);font-size:.82rem;text-align:center}
+.bo-kartc{border:1.5px solid var(--line);border-radius:14px;padding:12px 12px 4px;margin-bottom:12px;background:var(--surface)}
+.bo-kartc-b{display:inline-block;font-size:.74rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.bo-kartc-i{margin:0 0 10px;color:var(--ink-2);font-size:.92rem}
+.os-kartlar{grid-column:1/-1;display:grid;gap:10px}
+.os-form fieldset>.btn{justify-self:start}
+.os-form fieldset>.os-kartlar,.os-form fieldset>.btn,.os-form fieldset>.xirda{grid-column:1/-1}
+.os-kart-s{display:grid;grid-template-columns:1.5fr 1.1fr 1fr auto;gap:8px;align-items:center}
+@media (max-width:767px){.os-kart-s{grid-template-columns:minmax(0,1fr);padding:12px;border:1.5px solid var(--line);border-radius:12px}.os-kart-s .btn{justify-self:start}}

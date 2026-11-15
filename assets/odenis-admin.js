@@ -102,12 +102,42 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ---------- ödəniş məlumatları formu ---------- */
   function formDoldur(m) {
     var f = $("os-form");
-    ["m10_nomre", "m10_ad", "kart_nomre", "kart_ad", "kart_bank", "telimat"].forEach(function (n) { f.elements[n].value = m[n] || ""; });
+    ["m10_nomre", "m10_ad", "whatsapp", "telimat"].forEach(function (n) { f.elements[n].value = m[n] || ""; });
     f.elements.lemon_aktiv.checked = !!m.lemon_aktiv;
+    kartlarCiz(m.kartlar || []);
     qr = m.m10_qr || ""; qrCiz();
-    var us = []; if (m.m10_nomre) us.push("M10"); if (m.kart_nomre) us.push("Kart"); if (m.lemon_aktiv) us.push("Lemon");
+    var us = []; if (m.m10_nomre) us.push("M10"); if ((m.kartlar || []).length) us.push("Kart (" + m.kartlar.length + ")"); if (m.whatsapp) us.push("WhatsApp"); if (m.lemon_aktiv) us.push("Lemon");
     $("os-ayar-hal").textContent = us.length ? "Aktiv: " + us.join(", ") : "Doldurulmayıb — istifadəçilər hələ ödəniş edə bilmir";
     $("os-ayar").open = !us.length;
+  }
+  function kartlarCiz(list) {
+    var q = $("os-kartlar"); q.innerHTML = "";
+    (list.length ? list : []).forEach(function (c) { kartSetir(c); });
+    $("os-kart-elave").hidden = q.children.length >= 6;
+  }
+  function kartSetir(c) {
+    var q = $("os-kartlar"), d = document.createElement("div"); d.className = "os-kart-s";
+    d.innerHTML = '<input data-k="nomre" inputmode="numeric" placeholder="Kart nömrəsi: 4169 0000 0000 0000" maxlength="30" aria-label="Kart nömrəsi">' +
+      '<input data-k="ad" placeholder="Kart sahibi" maxlength="80" aria-label="Kart sahibi">' +
+      '<input data-k="bank" placeholder="Bank" maxlength="60" aria-label="Bank">' +
+      '<button type="button" class="btn sm gb-sil" aria-label="Kartı sil">Sil</button>';
+    ["nomre", "ad", "bank"].forEach(function (n) { d.querySelector('[data-k="' + n + '"]').value = (c && c[n]) || ""; });
+    d.querySelector("button").onclick = function () { d.remove(); $("os-kart-elave").hidden = q.children.length >= 6; };
+    q.appendChild(d);
+    $("os-kart-elave").hidden = q.children.length >= 6;
+  }
+  $("os-kart-elave").addEventListener("click", function () { kartSetir({}); });
+  function kartlariTop() {
+    return [].map.call($("os-kartlar").children, function (d) {
+      var o = {}; ["nomre", "ad", "bank"].forEach(function (n) { o[n] = d.querySelector('[data-k="' + n + '"]').value.trim(); }); return o;
+    }).filter(function (o) { return o.nomre; });
+  }
+  function waNomre(v) {
+    var d = String(v || "").replace(/\D/g, "");
+    if (!d) return "";
+    if (d.length === 10 && d[0] === "0") d = "994" + d.slice(1);
+    else if (d.length === 9) d = "994" + d;
+    return d;
   }
   function qrCiz() { var i = $("os-qr-img"); i.hidden = !qr; if (qr) i.src = qr; }
   $("os-qr-fayl").addEventListener("change", function () {
@@ -128,9 +158,14 @@ document.addEventListener("DOMContentLoaded", function () {
   $("os-form").addEventListener("submit", function (e) {
     e.preventDefault();
     var f = this, x = $("os-form-x"), p = {};
-    ["m10_nomre", "m10_ad", "kart_nomre", "kart_ad", "kart_bank", "telimat"].forEach(function (n) { p[n] = f.elements[n].value; });
+    ["m10_nomre", "m10_ad", "telimat"].forEach(function (n) { p[n] = f.elements[n].value; });
     p.lemon_aktiv = f.elements.lemon_aktiv.checked; p.m10_qr = qr;
-    if (p.kart_nomre && !/^[\d\s]{12,23}$/.test(p.kart_nomre.trim())) { x.className = "pf-xeber xeta"; x.textContent = "Kart nömrəsi yalnız rəqəmlərdən ibarət olmalıdır."; return; }
+    p.kartlar = kartlariTop();
+    for (var i = 0; i < p.kartlar.length; i++) {
+      if (!/^[\d\s]{12,23}$/.test(p.kartlar[i].nomre)) { x.className = "pf-xeber xeta"; x.textContent = (i + 1) + "-ci kartın nömrəsi yalnız rəqəmlərdən (12–19) ibarət olmalıdır."; return; }
+    }
+    p.whatsapp = waNomre(f.elements.whatsapp.value);
+    if (p.whatsapp && (p.whatsapp.length < 9 || p.whatsapp.length > 15)) { x.className = "pf-xeber xeta"; x.textContent = "WhatsApp nömrəsi düzgün deyil."; return; }
     x.className = "pf-xeber"; x.textContent = "Saxlanır…";
     S._sb.rpc("adm_ayar_yaz", { p: p }).then(function (r) {
       if (r.error) { x.className = "pf-xeber xeta"; x.textContent = "Saxlanmadı: " + r.error.message; return; }

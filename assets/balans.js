@@ -26,6 +26,7 @@ var basla = function () {
     m10: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.8" width="11" height="18.4" rx="2.6"/><path d="M10.5 17.6h3"/><path d="M9 8.5h6M9 11.5h4"/></svg>',
     kart: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="5.2" width="18.4" height="13.6" rx="2.6"/><path d="M2.8 9.6h18.4M6.5 15h3.5"/></svg>',
     lemon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M3.6 12h16.8M12 3.4c2.4 2.4 3.6 5.3 3.6 8.6S14.4 18.2 12 20.6C9.6 18.2 8.4 15.3 8.4 12S9.6 5.8 12 3.4z"/></svg>',
+    wa: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 1.8a8 8 0 1 1-4.2 14.8l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.200 4.900 4.300 2.400.9 2.900.7 3.400.7.5-.1 1.700-.7 1.900-1.400.2-.7.2-1.200.2-1.400-.1-.1-.3-.2-.7-.4l-1.900-.9c-.3-.1-.5-.1-.7.1l-.9 1.100c-.2.2-.3.2-.6.1-.3-.2-1.200-.4-2.300-1.400-.9-.8-1.400-1.700-1.600-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.100c-.2-.5-.5-.5-.7-.5z"/></svg>',
     kopya: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.4"/><path d="M15.5 8.5V6.4A2.4 2.4 0 0 0 13.1 4H6.4A2.4 2.4 0 0 0 4 6.4v6.7a2.4 2.4 0 0 0 2.4 2.4h2.1"/></svg>',
     ok: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.4 2.7 2.7L16 9.6"/></svg>'
   };
@@ -40,7 +41,20 @@ var basla = function () {
   });
 
   function m10Var() { return !!M.m10_nomre; }
-  function kartVar() { return !!M.kart_nomre; }
+  function kartVar() { return !!(M.kartlar && M.kartlar.length); }
+  function waLink(s) {
+    if (!M.whatsapp) return "";
+    var ad = (S.profil && S.profil.ad) ? S.profil.ad : "";
+    var t = "Salam! Dərs Toplusu saytında balans artırma ödənişi etmişəm.\n" +
+      "Sorğu kodu: " + s.kod + "\nMəbləğ: " + (s.odenecek / 100).toFixed(2).replace(".", ",") + " AZN\n" +
+      "Üsul: " + (s.usul === "m10" ? "M10" : "Bank kartı") + "\n" +
+      (ad ? "Ad: " + ad + "\n" : "") + "Hesab: " + S.istifadeci.email + "\nÇeki əlavə edirəm.";
+    return "https://wa.me/" + M.whatsapp + "?text=" + encodeURIComponent(t);
+  }
+  function waDugme(s, sinif) {
+    var l = waLink(s); if (!l) return "";
+    return '<a class="btn wa ' + (sinif || "") + '" href="' + l + '" target="_blank" rel="noopener">' + IK.wa + ' Çeki WhatsApp-da göndər</a>';
+  }
   function lemonVar() { return !!M.lemon_aktiv && P.some(function (p) { return (p.link || "").indexOf("http") === 0; }); }
 
   function cariCiz() {
@@ -185,8 +199,12 @@ var basla = function () {
       '<h3>' + (m10 ? IK.m10 + " M10 ilə ödə" : IK.kart + " Kartla ödə") + '</h3>' +
       (m10
         ? setir("M10 nömrəsi", M.m10_nomre, String(M.m10_nomre).replace(/\s+/g, "")) + (M.m10_ad ? setir("Alan", M.m10_ad) : "")
-        : setir("Kart nömrəsi", kartFormat(M.kart_nomre), String(M.kart_nomre).replace(/\s+/g, "")) +
-          (M.kart_ad ? setir("Kart sahibi", M.kart_ad) : "") + (M.kart_bank ? setir("Bank", M.kart_bank) : "")) +
+        : (M.kartlar.length > 1 ? '<p class="bo-kartc-i">Aşağıdakı kartlardan <b>istənilən birinə</b> köçürə bilərsən:</p>' : "") +
+          M.kartlar.map(function (c, i) {
+            return '<div class="bo-kartc">' + (M.kartlar.length > 1 ? '<span class="bo-kartc-b">Kart ' + (i + 1) + '</span>' : "") +
+              setir("Kart nömrəsi", kartFormat(c.nomre), String(c.nomre).replace(/\s+/g, "")) +
+              (c.ad ? setir("Kart sahibi", c.ad) : "") + (c.bank ? setir("Bank", c.bank) : "") + '</div>';
+          }).join("")) +
       setir("Qeyd / təyinat", s.kod, s.kod) +
       '<ol class="bo-adim">' +
       (m10
@@ -194,7 +212,7 @@ var basla = function () {
         : '<li>Bank tətbiqində <b>kartdan karta köçürmə</b> bölməsini aç.</li>') +
       '<li>Nömrəni yaz və məbləğə dəqiq <b>' + azn(s.odenecek) + '</b> yaz.</li>' +
       '<li>Mümkündürsə qeyd hissəsinə <b>' + k(s.kod) + '</b> yaz.</li>' +
-      '<li>Ödənişdən sonra aşağıdakı düyməni bas.</li></ol>' +
+      '<li>Ödənişdən sonra aşağıdakı <b>«Ödəniş etdim»</b> düyməsini bas' + (M.whatsapp ? ', sonra <b>çekin şəklini WhatsApp ilə göndər</b>.' : '.') + '</li></ol>' +
       (M.telimat ? '<p class="bo-telimat">' + k(M.telimat) + '</p>' : '') +
       '</div>' +
       (m10 && M.m10_qr ? '<div class="bo-qr"><img src="' + k(M.m10_qr) + '" alt="M10 QR kodu"><span>M10 tətbiqi ilə skan et</span></div>' : '') +
@@ -219,7 +237,8 @@ var basla = function () {
         yenile(r.data);
         el("b-odenis").innerHTML = '<div class="bo bo-son">' + '<span class="bo-son-ik">' + IK.ok + '</span>' +
           '<h3>Ödənişin yoxlanılır</h3><p>Sorğu <b>' + k(s.kod) + '</b> · ' + azn(s.odenecek) +
-          '. Ödəniş təsdiqlənən kimi məbləğ avtomatik balansına yazılacaq — bu səhifəni açıq saxlasan, özü yenilənəcək.</p>' +
+          '. ' + (M.whatsapp ? '<b>Son addım:</b> ödəniş çekinin şəklini WhatsApp ilə göndər, yoxladıqdan sonra məbləğ balansına yazılacaq.' : 'Ödəniş təsdiqlənən kimi məbləğ balansına yazılacaq.') + ' Bu səhifəni açıq saxlasan, status özü yenilənəcək.</p>' +
+          (M.whatsapp ? '<div class="bo-wa">' + waDugme(s, "lg") + '<small>Mesaj hazır yazılacaq: kod, məbləğ və hesabın. Yalnız çeki əlavə et.</small></div>' : '') +
           '<div class="cta-d" style="justify-content:center"><a class="btn" href="kabinet.html">Kabinetə keç</a>' +
           '<button type="button" class="btn solid" id="bo-yeni">Başqa məbləğ</button></div></div>';
         el("bo-yeni").onclick = secimeQayit;
@@ -263,7 +282,8 @@ var basla = function () {
         '<span>' + (s.usul === "m10" ? "M10" : "Kart") + ' · ' + k(s.kod) + ' · ' + tarix(s.yaradildi) + '</span>' +
         (s.hal === "redd" && s.admin_qeyd ? '<small>' + k(s.admin_qeyd) + '</small>' : '') + '</div>' +
         '<span class="b-hal ' + h[1] + '">' + h[0] + '</span>' +
-        (s.hal === "yeni" ? '<button type="button" class="btn sm" data-ac="' + s.id + '">Davam et</button>' : '') + '</div>';
+        (s.hal === "yeni" ? '<button type="button" class="btn sm" data-ac="' + s.id + '">Davam et</button>' : '') +
+        (s.hal === "gozleyir" ? waDugme(s, "sm") : '') + '</div>';
     }).join("");
     [].forEach.call(q.querySelectorAll("[data-ac]"), function (b) {
       b.onclick = function () {
