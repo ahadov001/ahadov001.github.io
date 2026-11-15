@@ -303,7 +303,7 @@
            '</div></div>';
     } else if (S.aktiv) {
       h += destekDugmesi();
-      h += '<a class="nav-giris" href="giris.html">Giriş / Qeydiyyat</a>';
+      h += '<a class="nav-giris" href="giris.html" title="Giriş / Qeydiyyat">Giriş</a>';
     } else {
       /* Hesab sistemi qurulmasa da dəstək keçidi qalır */
       h += destekDugmesi();
@@ -461,7 +461,8 @@
         }
       });
     }
-    var ana = document.querySelector("main .wrap") || document.body;
+    /* kilid qutusu testin yerində görünsün */
+    var ana = q || document.querySelector("main .wrap") || document.querySelector("main") || document.body;
     ana.appendChild(qab);
   }
 

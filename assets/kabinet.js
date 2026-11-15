@@ -39,15 +39,22 @@ var basla = function () {
 
     document.querySelectorAll(".kt-d").forEach(function (d) {
       d.addEventListener("click", function () {
-        document.querySelectorAll(".kt-d").forEach(function (x) { x.classList.remove("aktiv"); });
-        d.classList.add("aktiv");
         var k = d.getAttribute("data-k");
+        /* həm yan menyuda, həm sekmələrdə eyni bölmə işarələnsin */
+        document.querySelectorAll(".kt-d").forEach(function (x) {
+          x.classList.toggle("aktiv", x.getAttribute("data-k") === k);
+        });
         ["ireli", "transkript", "alislar"].forEach(function (n) {
           el("k-" + n).classList.toggle("gizli", n !== k);
         });
+        var t = el("k-teb");
+        if (d.closest(".k-menyu") && t && t.scrollIntoView) t.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
+    var prm = el("k-param");
+    if (prm) prm.addEventListener("click", function () { profilAc(true); });
 
+    dashQur();
     statQur();
     ireliQur();
     transkriptQur();
@@ -78,7 +85,7 @@ var basla = function () {
   function basliqCiz() {
     var p = S.profil || {};
     el("k-av").innerHTML = S.avatar(p);
-    el("k-ad").textContent = p.ad || "Kabinet";
+    el("k-ad").textContent = p.ad ? "Salam, " + p.ad + "!" : "Salam!";
     el("k-alt").textContent = S.istifadeci.email +
       (p.yaradildi ? " · " + tarix(p.yaradildi) + " tarixindən" : "");
     el("k-bio").textContent = p.bio || "";
@@ -283,13 +290,97 @@ var basla = function () {
     }).length;
 
     el("k-stat").innerHTML =
-      kart(Object.keys(islenmis).length + "<small>/" + ummovzu + "</small>", "işlənmiş mövzu") +
-      kart(n.length, "həll edilmiş test") +
-      kart(ortaF + "%", "orta nəticə") +
-      kart(sonYeddi, "son 7 gündə");
+      kart(n.length, "həll edilmiş test", "k1", IK.test) +
+      kart(ortaF + "%", "orta nəticə", "k2", IK.chart) +
+      kart(Object.keys(islenmis).length + "<small>/" + ummovzu + "</small>", "işlənmiş mövzu", "k3", IK.book) +
+      kart(sonYeddi, "son 7 gündə", "k4", IK.clock);
   }
-  function kart(b, a) {
-    return '<div class="ks"><b>' + b + '</b><span>' + a + '</span></div>';
+  function kart(b, a, r, i) {
+    return '<div class="ks">' + (i ? '<span class="ki ' + r + '">' + i + '</span>' : '') +
+      '<b>' + b + '</b><span>' + a + '</span></div>';
+  }
+
+  /* ----------------------------------------------------- ümumi baxış (dashboard) */
+  function ik(p) {
+    return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>';
+  }
+  var IK = {
+    test: ik('<rect x="3.8" y="3.8" width="16.4" height="16.4" rx="4.2"/><path d="m8.2 12.2 2.7 2.7 4.9-5.6"/>'),
+    chart: ik('<path d="M4 20h16"/><path d="M7 16.5v-5M12 16.5V7M17 16.5v-8"/>'),
+    book: ik('<path d="M2.8 5.6C5.3 4.2 8 4.2 12 6.1c4-1.9 6.7-1.9 9.2-.5v13.6c-2.5-1.4-5.2-1.4-9.2.5-4-1.9-6.7-1.9-9.2-.5z"/><path d="M12 6.1v13.6"/>'),
+    clock: ik('<circle cx="12" cy="12" r="8.6"/><path d="M12 7.4V12l3 2"/>'),
+    flame: ik('<path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.4-5.4 3.6-7.8.5 1.6 1.4 2.6 2.4 3.1C11.6 6.8 12.8 4.4 15.2 3c-.4 2.8.9 4.6 2.2 6.3 1 1.3 1.6 2.7 1.6 4.6C19 18 16 21 12 21z"/>'),
+    star: ik('<path d="m12 3.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/>'),
+    trophy: ik('<path d="M8 4h8v5.2a4 4 0 0 1-8 0z"/><path d="M8 6H5.2v1.1A3.1 3.1 0 0 0 8.3 10.2M16 6h2.8v1.1a3.1 3.1 0 0 1-3.1 3.1"/><path d="M12 13.2v3.6M8.6 20.3h6.8M9.6 16.8h4.8"/>'),
+    bag: ik('<path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/>')
+  };
+  function gunAcar(t) { var d = new Date(t); return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate(); }
+  /* ardıcıl aktiv günlər: bu gündən (və ya dünəndən) geriyə fasiləsiz test həll edilən günlər */
+  function ardicil(n) {
+    var gunler = {};
+    n.forEach(function (r) { if (r.tarix) gunler[gunAcar(r.tarix)] = 1; });
+    var d = new Date(); d.setHours(12, 0, 0, 0);
+    if (!gunler[gunAcar(d)]) d.setDate(d.getDate() - 1);
+    var say = 0;
+    while (gunler[gunAcar(d)]) { say++; d.setDate(d.getDate() - 1); }
+    return say;
+  }
+  function dashQur() {
+    var n = S.neticeler || [], p = S.profil || {};
+    var islenmis = {}, ummovzu = 0;
+    n.forEach(function (r) { if (r.fenn && r.movzu) islenmis[r.fenn + ":" + r.movzu] = 1; });
+    X.fennler.forEach(function (f) { ummovzu += f.movzular.length; });
+    var pay = ummovzu ? Math.round(Object.keys(islenmis).length / ummovzu * 100) : 0;
+    var bal = Math.round(n.reduce(function (a, r) {
+      var b = (r.bal !== null && r.bal !== undefined) ? +r.bal : +r.dogru; return a + (isNaN(b) ? 0 : b);
+    }, 0) * 100) / 100;
+    var gun = ardicil(n);
+    var C = 2 * Math.PI * 50;
+    var d = el("k-dash");
+    if (d) d.innerHTML =
+      '<div class="k-salam">' +
+        '<div class="k-halqa"><svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="kgrad" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0" stop-color="#155EEF"/><stop offset="1" stop-color="#0BA5A4"/></linearGradient></defs>' +
+        '<circle cx="60" cy="60" r="50" class="hb"/><circle cx="60" cy="60" r="50" class="hf" stroke-dasharray="' +
+        (C * pay / 100).toFixed(1) + ' ' + C.toFixed(1) + '"/></svg><div><span><b>' + pay + '%</b><span>ümumi irəliləyiş</span></span></div></div>' +
+        '<div style="flex:1;min-width:0"><h2>' + (n.length ? "Davam et, yaxşı gedirsən!" : "Hazırlığa başla!") + '</h2>' +
+        '<p>' + Object.keys(islenmis).length + ' / ' + ummovzu + ' mövzu üzrə test həll etmisən.</p>' +
+        '<div class="k-zol"><i style="width:' + pay + '%"></i></div>' +
+        '<div class="k-cip2"><div><span class="ki k4">' + IK.flame + '</span><span><b>' + gun + ' gün</b><span>ardıcıl aktivlik</span></span></div>' +
+        '<div><span class="ki k1">' + IK.star + '</span><span><b>' + bal + '</b><span>toplam bal</span></span></div></div></div>' +
+      '</div>' +
+      '<div class="k-balans"><div><span class="kb-etiket">Mövcud balans</span><div class="kb-mebleg">' + S.qepik(S.balans()) + '</div></div>' +
+        '<a class="btn sm" href="balans.html">+ Balansı artır</a></div>';
+
+    /* son fəaliyyətlər və imtahan nəticələri */
+    function setir(r, ikon, cls) {
+      var f = faiz(r.dogru, r.umumi);
+      return '<div><span class="ki ' + cls + '">' + ikon + '</span><span class="ks-m"><b>' + S.kacir(r.movzu || r.test_id || "Test") +
+        '</b><span>' + tarix(r.tarix) + '</span></span><span class="tr-faiz ' + sinif(f) + '">' + f + '%</span></div>';
+    }
+    var son = n.slice(0, 5).map(function (r) { return setir(r, r.nov === "imtahan" ? IK.trophy : IK.test, r.nov === "imtahan" ? "k3" : "k1"); }).join("");
+    var imt = n.filter(function (r) { return r.nov === "imtahan"; }).slice(0, 5).map(function (r) { return setir(r, IK.trophy, "k3"); }).join("");
+    var iki = el("k-iki");
+    if (iki) iki.innerHTML =
+      '<div class="k-panel"><h3>Son fəaliyyətlər <a href="#k-teb" data-ac="transkript">Hamısı</a></h3><div class="k-son">' +
+        (son || '<p class="k-bos">Hələ test həll etməmisən. <a href="testler.html">Testlərə başla</a></p>') + '</div></div>' +
+      '<div class="k-panel"><h3>İmtahan nəticələri <a href="imtahan-qebul.html">İmtahanlar</a></h3><div class="k-son">' +
+        (imt || '<p class="k-bos">Hələ imtahan modeli həll etməmisən. <a href="imtahan-qebul.html">İmtahan seç</a></p>') + '</div></div>';
+    var hamisi = iki && iki.querySelector('[data-ac="transkript"]');
+    if (hamisi) hamisi.addEventListener("click", function (e) {
+      e.preventDefault(); var b = document.querySelector('.k-teb .kt-d[data-k="transkript"]'); if (b) b.click();
+      var t = el("k-teb"); if (t && t.scrollIntoView) t.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    /* premium kartı */
+    var pr = el("k-prem");
+    if (pr) {
+      var alinan = Object.keys(S.alinmis || {}).length;
+      pr.innerHTML = S.acilib("paket")
+        ? '<b>Tam paket aktivdir</b><p>Bütün testlər və imtahan modelləri həmişəlik açıqdır.</p>'
+        : '<b>Tam paket</b><p>' + (alinan ? alinan + ' xidmət alınıb. ' : '') + 'Hamısı bir ödənişlə — 25 AZN.</p><a href="index.html#paket">Ətraflı</a>';
+    }
   }
 
   /* ----------------------------------------------------- irəliləyiş */

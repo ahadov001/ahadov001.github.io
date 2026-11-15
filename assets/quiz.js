@@ -250,14 +250,33 @@
       + '<div class="vz-xett"><i id="vz-dolu"></i></div>';
     k.appendChild(zolaq);
 
+    /* görünüş: solda sual, sağda (telefonda yuxarıda, açılıb-bağlanan) sual xəritəsi */
+    var lay = el("div", "q-lay"), orta = el("div", "q-orta");
+    k.removeChild(zolaq);
+    orta.appendChild(zolaq);
+
     this.kart = el("div", "qcard");
-    k.appendChild(this.kart);
+    orta.appendChild(this.kart);
 
     this.naviq = el("div", "qnav");
-    k.appendChild(this.naviq);
+    orta.appendChild(this.naviq);
 
+    var xp = el("details", "q-xp");
+    xp.open = !(W.matchMedia && W.matchMedia("(max-width:1000px)").matches);
+    xp.innerHTML = '<summary>Sual xəritəsi <span class="xp-say" id="xp-say"></span></summary><div class="xp-ic"></div>';
     this.xerite = el("div", "map");
-    k.appendChild(this.xerite);
+    var ic = xp.querySelector(".xp-ic");
+    ic.appendChild(this.xerite);
+    ic.appendChild(el("div", "xp-stat",
+      '<div><b id="xp-c">0</b><span>cavablandı</span></div>'
+      + '<div><b id="xp-q">' + this.suallar.length + '</b><span>cavabsız</span></div>'));
+    ic.appendChild(el("div", "xp-leg",
+      '<span><i class="l-d"></i>Cavablandı</span><span><i class="l-c"></i>Cari sual</span>'
+      + '<span><i></i>Cavabsız</span><span><i class="l-b"></i>İşarəli</span>'));
+
+    lay.appendChild(orta);
+    lay.appendChild(xp);
+    k.appendChild(lay);
 
     this.klaviatura();
     if (this.dəqiqə) this.saatIsle();
@@ -320,6 +339,10 @@
     if (q) q.textContent = (ü - c) + " qalıb";
     if (f) { f.hidden = this.bayraq.length === 0; f.textContent = this.bayraq.length + " işarəli"; }
     if (d) d.style.width = (c / ü * 100) + "%";
+    var xc = D.getElementById("xp-c"), xq = D.getElementById("xp-q"), xs = D.getElementById("xp-say");
+    if (xc) xc.textContent = c;
+    if (xq) xq.textContent = ü - c;
+    if (xs) xs.textContent = (this.indeks + 1) + " / " + ü;
   };
 
   AzQuiz.prototype.ciz = function () {
@@ -419,9 +442,9 @@
       + '<text x="60" y="66" text-anchor="middle" class="num">' + faiz + '%</text></svg>'
       + '<div class="meta">'
       + (vaxtBitdi ? '<p class="vaxtbitdi">Vaxt bitdi — test avtomatik yekunlaşdı.</p>' : '')
-      + '<div class="mt"><b>' + n.düz + '</b><span>düz</span></div>'
+      + '<div class="mt"><b>' + n.düz + '</b><span>düzgün</span></div>'
       + '<div class="mt"><b>' + n.yanlış + '</b><span>səhv</span></div>'
-      + '<div class="mt"><b>' + n.boş + '</b><span>boş</span></div>'
+      + '<div class="mt"><b>' + n.boş + '</b><span>cavabsız</span></div>'
       + '<div class="mt"><b>' + n.bal + '</b><span>bal / ' + ü + '</span></div>'
       + (this.cərimə
           ? '<p class="qeyd">Səhv cavablar bala təsir etdi: hər ' + Math.round(1 / this.cərimə)
@@ -433,7 +456,7 @@
     for (var i = 0; i < ü; i++) {
       var s = this.suallar[i], c = this.cavablar[i];
       var vəz = c === null ? "bos" : (c === s.a ? "dz" : "sh");
-      var etiket = c === null ? "Boş" : (c === s.a ? "Düz" : "Səhv");
+      var etiket = c === null ? "Cavabsız" : (c === s.a ? "Düzgün" : "Səhv");
       h += '<div class="rev ' + vəz + '">'
         + '<div class="rev-bs"><span class="rev-no">' + (i + 1) + '</span>'
         + '<span class="rev-et">' + etiket + '</span></div>'
