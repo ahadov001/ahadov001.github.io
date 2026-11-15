@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         '<span class="gb-tarix">' + tarix(d.yaradildi) + (d.odendi ? ' · ödədim: ' + tarix(d.odendi) : '') + '</span></div>' +
         '<div class="os-esas"><b class="os-meb">' + azn(d.hal === "tesdiq" && d.yazilan ? d.yazilan : d.odenecek) + '</b>' +
         '<span class="os-cip">' + k(d.hedef || USUL[d.usul] || d.usul) + '</span><span class="os-cip">Kod: ' + k(d.kod) + '</span>' +
-        '<span class="os-cip">Paket: ' + azn(d.mebleg) + '</span></div>' +
+        '</div>' +
         '<p class="gb-meta">İstifadəçi: <b>' + k(d.ad || "—") + '</b> · ' + k(d.email || "") + ' · balans: ' + azn(d.cari_balans || 0) + '</p>' +
         (d.gonderen ? '<p class="gb-ktx">Göndərən: ' + k(d.gonderen) + '</p>' : '') +
         (d.admin_qeyd ? '<p class="gb-meta">Qeyd: ' + k(d.admin_qeyd) + '</p>' : '') +

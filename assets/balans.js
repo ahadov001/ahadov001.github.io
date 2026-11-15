@@ -88,8 +88,8 @@ var basla = function () {
       return;
     }
 
-    paketCiz();
     usulCiz();
+    mebCiz();
     el("b-davam").addEventListener("click", davam);
     sorguCiz();
 
@@ -97,24 +97,31 @@ var basla = function () {
     izle();
   }
 
-  function paketCiz() {
-    var h = "";
-    P.forEach(function (p) {
-      h += '<button type="button" class="bkart" data-m="' + p.mebleg + '" aria-pressed="false">' +
-        (p.secilen ? '<span class="bk-nisan">ən çox seçilən</span>' : '') +
-        '<span class="bk-mebleg">' + azn(p.mebleg) + '</span>' +
-        (p.bonus ? '<span class="bk-bonus">+' + azn(p.bonus) + ' bonus</span>' : '') +
-        '<span class="bk-izah">' + (p.izah || "") + '</span></button>';
-    });
-    el("b-paketler").innerHTML = h;
-    el("b-paketler").addEventListener("click", function (e) {
-      var b = e.target.closest && e.target.closest(".bkart");
-      if (!b) return;
-      secMebleg = parseInt(b.getAttribute("data-m"), 10);
-      [].forEach.call(el("b-paketler").querySelectorAll(".bkart"), function (x) {
-        x.classList.toggle("secilen", x === b);
-        x.setAttribute("aria-pressed", x === b ? "true" : "false");
+  /* istənilən məbləğ: 1–500 AZN, ən çox 2 rəqəm kəsr */
+  function mebOxu(t) {
+    t = String(t || "").replace(/\s+/g, "").replace(",", ".");
+    if (!/^\d{1,3}(\.\d{1,2})?$/.test(t)) return null;
+    var q = Math.round(parseFloat(t) * 100);
+    return (q >= 100 && q <= 50000) ? q : null;
+  }
+  function mebCiz() {
+    var i = el("b-mebleg");
+    var lazim = new URLSearchParams(location.search).get("lazim");
+    if (lazim) {
+      S.qiymet(lazim).then(function (q) {
+        if (!q) return;
+        var c = q.qiymet - S.balans();
+        if (c > 0 && !i.value) { i.value = (Math.max(100, Math.ceil(c / 100) * 100) / 100).toFixed(0); i.dispatchEvent(new Event("input")); }
       });
+    }
+    i.addEventListener("input", function () {
+      var v = i.value.replace(/[^\d.,]/g, "");
+      if (v !== i.value) i.value = v;
+      var q = mebOxu(v), x = el("b-meb-x");
+      secMebleg = q;
+      x.className = "xirda b-meb-x" + (v && !q ? " xeta" : "");
+      x.textContent = !v ? "İstədiyin məbləği yaz: ən az 1 AZN, ən çox 500 AZN."
+        : (q ? "Balansına yazılacaq: " + azn(q) : "Məbləğ 1 ilə 500 AZN arasında olmalıdır (məs.: 12 və ya 7,50).");
       yoxla();
     });
   }
@@ -223,7 +230,7 @@ var basla = function () {
       '<span><b>' + k(ad) + '</b><small>' + (m10 ? "Telefon nömrəsinə və ya QR kodla köçür" : "Kartdan karta köçür") + '</small></span></div>' +
       '<div class="bo-mebleg"><span>Dəqiq bu məbləği göndər</span><b>' + azn(s.odenecek) + '</b>' +
       '<button type="button" class="btn sm bo-kop" data-kop="' + mebAZN + '">' + IK.kopya + '<i>Məbləği kopyala</i></button>' +
-      '<small>Sondakı ' + (s.odenecek - s.mebleg) + ' qəpik ödənişini tanımağımız üçündür — məbləğin hamısı (' + azn(s.odenecek) + ') balansına yazılacaq.</small></div>' +
+      (s.odenecek > s.mebleg ? '<small>Sondakı ' + (s.odenecek - s.mebleg) + ' qəpik ödənişini tanımağımız üçündür — məbləğin hamısı (' + azn(s.odenecek) + ') balansına yazılacaq.</small>' : '<small>Balansına yazılacaq məbləğ: ' + azn(s.odenecek) + '</small>') + '</div>' +
       '<div class="bo-qrid' + (m10 && M.m10_qr ? "" : " bo-tek") + '"><div class="bo-melumat">' +
       (m10
         ? setir("M10 nömrəsi", M.m10_nomre, String(M.m10_nomre).replace(/\s+/g, "")) + (M.m10_ad ? setir("Alan", M.m10_ad) : "")
