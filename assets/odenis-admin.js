@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     im.src = url;
   }
   var USUL = { m10: "M10", kart: "Kart" };
-  var HAL = { yeni: "Ödənilməyib", gozleyir: "Yoxlanılmalı", tesdiq: "Təsdiqləndi", redd: "Rədd edildi", legv: "Ləğv edildi" };
+  var HAL = { yeni: "Sorğu açıldı", gozleyir: "WhatsApp-a keçdi", tesdiq: "Təsdiqləndi", redd: "Rədd edildi", legv: "Ləğv edildi" };
 
   function k(t) { return S.kacir(t == null ? "" : String(t)); }
   function azn(q) { return S.qepik(q); }
@@ -34,15 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function say() {
     var c = { gozleyir: 0, yeni: 0, tesdiq: 0, redd: 0 };
-    data.forEach(function (d) { var h = d.hal === "legv" ? "redd" : d.hal; if (c[h] !== undefined) c[h]++; });
-    Object.keys(c).forEach(function (h) { $("os-c-" + h).textContent = c[h]; });
-    $("os-say").textContent = c.gozleyir ? c.gozleyir + " ödəniş yoxlanılmalıdır. Bank / M10 tətbiqində gəlib-gəlmədiyini yoxla, sonra təsdiqlə."
-                                         : "Yoxlanılmalı ödəniş yoxdur.";
+    data.forEach(function (d) { var h = d.hal === "legv" ? "redd" : (d.hal === "yeni" ? "gozleyir" : d.hal); if (c[h] !== undefined) c[h]++; });
+    Object.keys(c).forEach(function (h) { var x = $("os-c-" + h); if (x) x.textContent = c[h]; });
+    $("os-say").textContent = c.gozleyir ? c.gozleyir + " sorğu gözləyir. WhatsApp-dakı çek və ya mesajdakı sorğu kodu ilə uyğunlaşdır, bank / M10 tətbiqində pulun gəldiyini yoxla, sonra təsdiqlə."
+                                         : "Gözləyən sorğu yoxdur.";
   }
 
   function ciz() {
     var list = data.filter(function (d) {
-      return filtr === "redd" ? (d.hal === "redd" || d.hal === "legv") : d.hal === filtr;
+      return filtr === "redd" ? (d.hal === "redd" || d.hal === "legv") : filtr === "gozleyir" ? (d.hal === "gozleyir" || d.hal === "yeni") : d.hal === filtr;
     });
     var q = $("os-siyahi");
     if (!list.length) { q.innerHTML = '<p class="gb-bos">Bu bölmədə sorğu yoxdur.</p>'; return; }
