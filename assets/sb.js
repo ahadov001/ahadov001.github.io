@@ -277,9 +277,16 @@
     if (S.aktiv && S.istifadeci) {
       var ad = (S.profil && S.profil.ad) ? String(S.profil.ad).trim() : "";
 
-      h += '<a class="nav-bal" href="balans.html" title="Balansı artır">' +
-           '<span class="nb-ad">Balans</span>' +
-           '<span class="nb-bal">' + qepik(S.balans()) + '</span></a>';
+      h += '<div class="nav-menyu">' +
+           '<button type="button" class="nav-bal" id="nav-bal-d" aria-haspopup="true" aria-expanded="false" aria-controls="nav-bal-ac" title="Balans">' +
+           '<span class="nb-t"><span class="nb-ad">Balans</span>' +
+           '<span class="nb-bal">' + qepik(S.balans()) + '</span></span>' +
+           '<span class="nb-plus" aria-hidden="true">+</span></button>' +
+           '<div class="nav-acilan nav-bal-ac" id="nav-bal-ac" role="menu" hidden>' +
+             '<div class="nba-bas"><span>Cari balans</span><b>' + qepik(S.balans()) + '</b></div>' +
+             '<a role="menuitem" class="btn solid tam nba-artir" href="balans.html">+ Balans artır</a>' +
+             '<a role="menuitem" href="kabinet.html#alislar">Alışlarım</a>' +
+           '</div></div>';
 
       h += destekDugmesi();
 
@@ -348,14 +355,28 @@
     var d = document.getElementById("nav-profil-d");
     if (m) m.hidden = true;
     if (d) d.setAttribute("aria-expanded", "false");
+    var bm = document.getElementById("nav-bal-ac"), bd = document.getElementById("nav-bal-d");
+    if (bm) bm.hidden = true;
+    if (bd) bd.setAttribute("aria-expanded", "false");
   }
   document.addEventListener("click", function (e) {
     var t = e.target;
+    var bdug = t && t.closest ? t.closest("#nav-bal-d") : null;
+    if (bdug) {
+      var bm = document.getElementById("nav-bal-ac");
+      if (!bm) return;
+      var bac = bm.hidden;
+      menyuBagla(); hambBagla();
+      bm.hidden = !bac;
+      bdug.setAttribute("aria-expanded", bac ? "true" : "false");
+      return;
+    }
     var dugme = t && t.closest ? t.closest("#nav-profil-d") : null;
     if (dugme) {
       var m = document.getElementById("nav-acilan");
       if (!m) return;
       var ac = m.hidden;
+      menyuBagla();
       hambBagla();
       m.hidden = !ac;
       dugme.setAttribute("aria-expanded", ac ? "true" : "false");
@@ -365,7 +386,7 @@
       S.cixis().then(function () { location.href = "index.html"; });
       return;
     }
-    if (!(t && t.closest && t.closest("#nav-acilan"))) menyuBagla();
+    if (!(t && t.closest && t.closest("#nav-acilan, #nav-bal-ac"))) menyuBagla();
     else if (t.closest("a")) menyuBagla();
   });
   function hambBagla() {

@@ -47,7 +47,7 @@ var basla = function () {
     var ad = (S.profil && S.profil.ad) ? S.profil.ad : "";
     var t = "Salam! Dərs Toplusu saytında balans artırma ödənişi etmişəm.\n" +
       "Sorğu kodu: " + s.kod + "\nMəbləğ: " + (s.odenecek / 100).toFixed(2).replace(".", ",") + " AZN\n" +
-      "Üsul: " + (s.usul === "m10" ? "M10" : "Bank kartı") + "\n" +
+      "Üsul: " + (s.hedef || (s.usul === "m10" ? "M10" : "Bank kartı")) + "\n" +
       (ad ? "Ad: " + ad + "\n" : "") + "Hesab: " + S.istifadeci.email + "\nÇeki əlavə edirəm.";
     return "https://wa.me/" + M.whatsapp + "?text=" + encodeURIComponent(t);
   }
@@ -119,16 +119,28 @@ var basla = function () {
     });
   }
 
+  /* ödəniş seçimləri: M10 + hər kart ayrıca seçim */
+  var USULLAR = [];
+  function ton(t) { var h = 0; for (var i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) % 360; return h; }
+  function nisan(ad, logo) {
+    if (logo) return '<img src="' + k(logo) + '" alt="" loading="lazy">';
+    var m = String(ad || "?").trim().split(/\s+/).map(function (x) { return x.charAt(0); }).join("").slice(0, 2).toUpperCase();
+    return '<span class="bu-mono" style="--h:' + ton(String(ad)) + '">' + k(m) + '</span>';
+  }
+  function kartEtiket(c) { return (c.bank || "Bank") + " ••" + String(c.nomre).slice(-4); }
   function usulCiz() {
-    var u = [];
-    if (m10Var()) u.push(["m10", "M10", "Telefon nömrəsinə və ya QR kodla köçürmə"]);
-    if (kartVar()) u.push(["kart", "Bank kartı", "İstənilən bank tətbiqindən kartdan karta köçürmə"]);
-    if (lemonVar()) u.push(["lemon", "Onlayn kartla", "Visa / Mastercard — avtomatik yazılır"]);
-    el("b-usullar").innerHTML = u.map(function (x) {
-      return '<button type="button" class="b-usul" data-u="' + x[0] + '" aria-pressed="false">' +
-        '<span class="bu-ik">' + IK[x[0]] + '</span><span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></button>';
+    USULLAR = [];
+    if (m10Var()) USULLAR.push({ id: "m10", usul: "m10", kart: null, ad: "M10", alt: "Telefon nömrəsinə və ya QR kodla köçürmə", nisan: nisan("M10", M.m10_logo), logo: !!M.m10_logo });
+    (M.kartlar || []).forEach(function (c, i) {
+      USULLAR.push({ id: "kart:" + i, usul: "kart", kart: i, ad: (c.bank || "Bank") + " kartı", alt: "Kart ••" + String(c.nomre).slice(-4) + " · kartdan karta köçürmə", nisan: nisan(c.bank, c.logo), logo: !!c.logo });
+    });
+    if (lemonVar()) USULLAR.push({ id: "lemon", usul: "lemon", kart: null, ad: "Onlayn kartla", alt: "Visa / Mastercard — avtomatik yazılır", nisan: '<span class="bu-ik2">' + IK.lemon + '</span>', logo: false });
+    el("b-usullar").innerHTML = USULLAR.map(function (x) {
+      return '<button type="button" class="b-usul v2" data-u="' + x.id + '" aria-pressed="false">' +
+        '<span class="bu-logo' + (x.logo ? " has" : "") + '">' + x.nisan + '</span><span class="bu-metn"><b>' + k(x.ad) + '</b><small>' + k(x.alt) + '</small></span>' +
+        '<span class="bu-tik" aria-hidden="true">' + IK.ok + '</span></button>';
     }).join("");
-    if (u.length === 1) { secUsul = u[0][0]; el("b-usullar").querySelector(".b-usul").classList.add("sec"); }
+    if (USULLAR.length === 1) { secUsul = USULLAR[0].id; el("b-usullar").querySelector(".b-usul").classList.add("sec"); }
     el("b-usullar").addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest(".b-usul");
       if (!b) return;
@@ -151,6 +163,7 @@ var basla = function () {
   function xetaMetn(e) {
     var m = (e && (e.message || e)) + "";
     if (m.indexOf("cox_sorgu") > -1) return "Eyni vaxtda ən çox 3 açıq sorğu ola bilər. Əvvəlkiləri tamamla və ya ləğv et.";
+    if (m.indexOf("kart_yoxdur") > -1) return "Bu kart artıq mövcud deyil. Səhifəni yeniləyib yenidən seç.";
     if (m.indexOf("giris_lazim") > -1) return "Hesaba yenidən daxil ol.";
     if (m.indexOf("sorgu_tapilmadi") > -1) return "Bu sorğu artıq dəyişib. Səhifəni yenilə.";
     return "Alınmadı, bir az sonra yenidən yoxla.";
@@ -159,7 +172,11 @@ var basla = function () {
   function davam() {
     if (secUsul === "lemon") { lemonAc(); return; }
     var d = el("b-davam"); d.disabled = true;
-    S._sb.rpc("balans_sorgu_yarat", { p_mebleg: secMebleg, p_usul: secUsul }).then(function (r) {
+    var u = USULLAR.filter(function (x) { return x.id === secUsul; })[0];
+    if (!u) { d.disabled = false; return; }
+    var arg = { p_mebleg: secMebleg, p_usul: u.usul };
+    if (u.usul === "kart") arg.p_kart = u.kart;
+    S._sb.rpc("balans_sorgu_yarat", arg).then(function (r) {
       d.disabled = false;
       if (r.error) { xeber(xetaMetn(r.error), "xeta"); return; }
       var s = r.data;
@@ -186,40 +203,50 @@ var basla = function () {
       (kopya ? '<button type="button" class="bo-kop" data-kop="' + k(kopya) + '" aria-label="Kopyala">' + IK.kopya + '<i>Kopyala</i></button>' : '') + '</div>';
   }
 
+  function kartTap(s) {
+    var L = M.kartlar || [], t = null;
+    L.forEach(function (c) { if (!t && s.hedef && kartEtiket(c) === s.hedef) t = c; });
+    return t || L[0];
+  }
+
   function odenisAc(s) {
     var m10 = s.usul === "m10";
+    var c = m10 ? null : kartTap(s);
     var mebAZN = (s.odenecek / 100).toFixed(2);
+    var ad = m10 ? "M10" : (c.bank || "Bank") + " kartı";
+    var logo = m10 ? M.m10_logo : c.logo;
+    var wa = waLink(s);
     var h = '<div class="bo">' +
       '<div class="bo-ust"><button type="button" class="kecid bo-geri" id="bo-geri">← Geri</button>' +
       '<span class="bo-kod">Sorğu kodu: <b>' + k(s.kod) + '</b></span></div>' +
+      '<div class="bo-metod"><span class="bu-logo' + (logo ? " has" : "") + '">' + nisan(m10 ? "M10" : c.bank, logo) + '</span>' +
+      '<span><b>' + k(ad) + '</b><small>' + (m10 ? "Telefon nömrəsinə və ya QR kodla köçür" : "Kartdan karta köçür") + '</small></span></div>' +
       '<div class="bo-mebleg"><span>Dəqiq bu məbləği göndər</span><b>' + azn(s.odenecek) + '</b>' +
       '<button type="button" class="btn sm bo-kop" data-kop="' + mebAZN + '">' + IK.kopya + '<i>Məbləği kopyala</i></button>' +
       '<small>Sondakı ' + (s.odenecek - s.mebleg) + ' qəpik ödənişini tanımağımız üçündür — məbləğin hamısı (' + azn(s.odenecek) + ') balansına yazılacaq.</small></div>' +
       '<div class="bo-qrid' + (m10 && M.m10_qr ? "" : " bo-tek") + '"><div class="bo-melumat">' +
-      '<h3>' + (m10 ? IK.m10 + " M10 ilə ödə" : IK.kart + " Kartla ödə") + '</h3>' +
       (m10
         ? setir("M10 nömrəsi", M.m10_nomre, String(M.m10_nomre).replace(/\s+/g, "")) + (M.m10_ad ? setir("Alan", M.m10_ad) : "")
-        : (M.kartlar.length > 1 ? '<p class="bo-kartc-i">Aşağıdakı kartlardan <b>istənilən birinə</b> köçürə bilərsən:</p>' : "") +
-          M.kartlar.map(function (c, i) {
-            return '<div class="bo-kartc">' + (M.kartlar.length > 1 ? '<span class="bo-kartc-b">Kart ' + (i + 1) + '</span>' : "") +
-              setir("Kart nömrəsi", kartFormat(c.nomre), String(c.nomre).replace(/\s+/g, "")) +
-              (c.ad ? setir("Kart sahibi", c.ad) : "") + (c.bank ? setir("Bank", c.bank) : "") + '</div>';
-          }).join("")) +
+        : setir("Kart nömrəsi", kartFormat(c.nomre), String(c.nomre).replace(/\s+/g, "")) +
+          (c.ad ? setir("Kart sahibi", c.ad) : "") + (c.bank ? setir("Bank", c.bank) : "")) +
       setir("Qeyd / təyinat", s.kod, s.kod) +
       '<ol class="bo-adim">' +
       (m10
         ? '<li>M10 tətbiqini aç → <b>Köçürmələr</b> → nömrəyə köçürmə' + (M.m10_qr ? ' (və ya QR kodu skan et)' : '') + '.</li>'
         : '<li>Bank tətbiqində <b>kartdan karta köçürmə</b> bölməsini aç.</li>') +
       '<li>Nömrəni yaz və məbləğə dəqiq <b>' + azn(s.odenecek) + '</b> yaz.</li>' +
-      '<li>Mümkündürsə qeyd hissəsinə <b>' + k(s.kod) + '</b> yaz.</li>' +
-      '<li>Ödənişdən sonra aşağıdakı <b>«Ödəniş etdim»</b> düyməsini bas' + (M.whatsapp ? ', sonra <b>çekin şəklini WhatsApp ilə göndər</b>.' : '.') + '</li></ol>' +
+      '<li>Mümkündürsə qeyd hissəsinə <b>' + k(s.kod) + '</b> yaz.</li></ol>' +
       (M.telimat ? '<p class="bo-telimat">' + k(M.telimat) + '</p>' : '') +
       '</div>' +
       (m10 && M.m10_qr ? '<div class="bo-qr"><img src="' + k(M.m10_qr) + '" alt="M10 QR kodu"><span>M10 tətbiqi ilə skan et</span></div>' : '') +
       '</div>' +
-      '<label class="bo-gon">Göndərənin adı, telefon nömrəsi və ya kartın son 4 rəqəmi <em>(istəyə bağlı, yoxlamanı sürətləndirir)</em>' +
-      '<input type="text" id="bo-gonderen" maxlength="120" placeholder="Məs.: Aysel M., 4417"></label>' +
-      '<button type="button" class="btn solid lg tam" id="bo-odedim">' + IK.ok + ' Ödəniş etdim</button>' +
+      '<div class="bo-cek"><div class="bo-cek-ik">' + IK.wa + '</div><div><b>Ödənişi etdikdən sonra çeki bizimlə paylaş</b>' +
+      '<p>Köçürməni bitirən kimi çekin (qəbzin) şəklini WhatsApp ilə göndər. Sorğunun kodu, məbləği və hesabın mesajda hazır yazılıb, yalnız şəkli əlavə et. ' +
+      'Sorğu artıq bizdə görünür — çeki yoxlayıb təsdiqləyən kimi məbləğ avtomatik balansına yazılır.</p></div></div>' +
+      (wa
+        ? '<a class="btn wa lg tam" id="bo-wa" href="' + wa + '" target="_blank" rel="noopener">' + IK.wa + ' Ödəniş etdim — çeki WhatsApp-da göndər</a>'
+        : '<button type="button" class="btn solid lg tam" id="bo-odedim">' + IK.ok + ' Ödəniş etdim</button>') +
+      '<p class="bo-hal" id="bo-hal"' + (s.hal === "gozleyir" ? "" : " hidden") + '>' + IK.ok + ' Sorğun yoxlamaya göndərildi. Çek gələn kimi baxılacaq. Status bu səhifədə özü yenilənir.</p>' +
       '<button type="button" class="kecid bo-legv" id="bo-legv">Bu sorğunu ləğv et</button>' +
       '</div>';
     el("b-odenis").innerHTML = h;
@@ -229,22 +256,17 @@ var basla = function () {
     if (el("b-odenis").scrollIntoView) el("b-odenis").scrollIntoView({ behavior: "smooth", block: "start" });
 
     el("bo-geri").onclick = secimeQayit;
-    el("bo-odedim").onclick = function () {
-      var b = this; b.disabled = true;
-      S._sb.rpc("balans_sorgu_odedim", { p_id: s.id, p_gonderen: el("bo-gonderen").value }).then(function (r) {
-        b.disabled = false;
-        if (r.error) { xeber(xetaMetn(r.error), "xeta"); return; }
-        yenile(r.data);
-        el("b-odenis").innerHTML = '<div class="bo bo-son">' + '<span class="bo-son-ik">' + IK.ok + '</span>' +
-          '<h3>Ödənişin yoxlanılır</h3><p>Sorğu <b>' + k(s.kod) + '</b> · ' + azn(s.odenecek) +
-          '. ' + (M.whatsapp ? '<b>Son addım:</b> ödəniş çekinin şəklini WhatsApp ilə göndər, yoxladıqdan sonra məbləğ balansına yazılacaq.' : 'Ödəniş təsdiqlənən kimi məbləğ balansına yazılacaq.') + ' Bu səhifəni açıq saxlasan, status özü yenilənəcək.</p>' +
-          (M.whatsapp ? '<div class="bo-wa">' + waDugme(s, "lg") + '<small>Mesaj hazır yazılacaq: kod, məbləğ və hesabın. Yalnız çeki əlavə et.</small></div>' : '') +
-          '<div class="cta-d" style="justify-content:center"><a class="btn" href="kabinet.html">Kabinetə keç</a>' +
-          '<button type="button" class="btn solid" id="bo-yeni">Başqa məbləğ</button></div></div>';
-        el("bo-yeni").onclick = secimeQayit;
+    function odedim() {
+      if (s.hal !== "yeni") return;
+      S._sb.rpc("balans_sorgu_odedim", { p_id: s.id, p_gonderen: null }).then(function (r) {
+        if (r.error) { return; }
+        s = r.data; yenile(s);
+        if (el("bo-hal")) el("bo-hal").hidden = false;
         izle();
       });
-    };
+    }
+    if (el("bo-wa")) el("bo-wa").addEventListener("click", odedim);
+    if (el("bo-odedim")) el("bo-odedim").onclick = function () { odedim(); };
     el("bo-legv").onclick = function () {
       S._sb.rpc("balans_sorgu_legv", { p_id: s.id }).then(function (r) {
         if (r.error) { xeber(xetaMetn(r.error), "xeta"); return; }
@@ -279,7 +301,7 @@ var basla = function () {
     q.innerHTML = sorgular.slice(0, 10).map(function (s) {
       var h = HAL[s.hal] || [s.hal, ""];
       return '<div class="b-sorgu"><div><b>' + azn(s.hal === "tesdiq" && s.yazilan ? s.yazilan : s.odenecek) + '</b>' +
-        '<span>' + (s.usul === "m10" ? "M10" : "Kart") + ' · ' + k(s.kod) + ' · ' + tarix(s.yaradildi) + '</span>' +
+        '<span>' + k(s.hedef || (s.usul === "m10" ? "M10" : "Kart")) + ' · ' + k(s.kod) + ' · ' + tarix(s.yaradildi) + '</span>' +
         (s.hal === "redd" && s.admin_qeyd ? '<small>' + k(s.admin_qeyd) + '</small>' : '') + '</div>' +
         '<span class="b-hal ' + h[1] + '">' + h[0] + '</span>' +
         (s.hal === "yeni" ? '<button type="button" class="btn sm" data-ac="' + s.id + '">Davam et</button>' : '') +

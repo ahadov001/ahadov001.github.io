@@ -2,7 +2,20 @@
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
   var S = window.Sinaq, $ = function (i) { return document.getElementById(i); };
-  var data = [], filtr = "gozleyir", qr = "";
+  var data = [], filtr = "gozleyir", qr = "", m10Logo = "";
+  function kicilt(f, O, cb) {
+    if (!f || !/^image\//.test(f.type)) return;
+    var url = URL.createObjectURL(f), im = new Image();
+    im.onload = function () {
+      var sc = Math.min(1, O / Math.max(im.width, im.height));
+      var c = document.createElement("canvas"); c.width = Math.max(1, Math.round(im.width * sc)); c.height = Math.max(1, Math.round(im.height * sc));
+      c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      var d = c.toDataURL("image/png"); if (d.length > 120000) { var x = c.getContext("2d"); d = c.toDataURL("image/jpeg", 0.85); }
+      cb(d);
+    };
+    im.src = url;
+  }
   var USUL = { m10: "M10", kart: "Kart" };
   var HAL = { yeni: "Ödənilməyib", gozleyir: "Yoxlanılmalı", tesdiq: "Təsdiqləndi", redd: "Rədd edildi", legv: "Ləğv edildi" };
 
@@ -41,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         '<div class="gb-bas"><span class="gb-nov os-' + d.hal + '">' + HAL[d.hal] + '</span>' +
         '<span class="gb-tarix">' + tarix(d.yaradildi) + (d.odendi ? ' · ödədim: ' + tarix(d.odendi) : '') + '</span></div>' +
         '<div class="os-esas"><b class="os-meb">' + azn(d.hal === "tesdiq" && d.yazilan ? d.yazilan : d.odenecek) + '</b>' +
-        '<span class="os-cip">' + (USUL[d.usul] || d.usul) + '</span><span class="os-cip">Kod: ' + k(d.kod) + '</span>' +
+        '<span class="os-cip">' + k(d.hedef || USUL[d.usul] || d.usul) + '</span><span class="os-cip">Kod: ' + k(d.kod) + '</span>' +
         '<span class="os-cip">Paket: ' + azn(d.mebleg) + '</span></div>' +
         '<p class="gb-meta">İstifadəçi: <b>' + k(d.ad || "—") + '</b> · ' + k(d.email || "") + ' · balans: ' + azn(d.cari_balans || 0) + '</p>' +
         (d.gonderen ? '<p class="gb-ktx">Göndərən: ' + k(d.gonderen) + '</p>' : '') +
@@ -106,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     f.elements.lemon_aktiv.checked = !!m.lemon_aktiv;
     kartlarCiz(m.kartlar || []);
     qr = m.m10_qr || ""; qrCiz();
+    m10Logo = m.m10_logo || ""; m10LogoCiz();
     var us = []; if (m.m10_nomre) us.push("M10"); if ((m.kartlar || []).length) us.push("Kart (" + m.kartlar.length + ")"); if (m.whatsapp) us.push("WhatsApp"); if (m.lemon_aktiv) us.push("Lemon");
     $("os-ayar-hal").textContent = us.length ? "Aktiv: " + us.join(", ") : "Doldurulmayıb — istifadəçilər hələ ödəniş edə bilmir";
     $("os-ayar").open = !us.length;
@@ -119,8 +133,16 @@ document.addEventListener("DOMContentLoaded", function () {
     var q = $("os-kartlar"), d = document.createElement("div"); d.className = "os-kart-s";
     d.innerHTML = '<input data-k="nomre" inputmode="numeric" placeholder="Kart nömrəsi: 4169 0000 0000 0000" maxlength="30" aria-label="Kart nömrəsi">' +
       '<input data-k="ad" placeholder="Kart sahibi" maxlength="80" aria-label="Kart sahibi">' +
-      '<input data-k="bank" placeholder="Bank" maxlength="60" aria-label="Bank">' +
+      '<input data-k="bank" placeholder="Bank (məs.: Kapital Bank)" maxlength="60" aria-label="Bank">' +
+      '<span class="os-kl"><img alt="" hidden><label class="btn sm os-kl-b">Loqo<input type="file" accept="image/*" hidden></label></span>' +
       '<button type="button" class="btn sm gb-sil" aria-label="Kartı sil">Sil</button>';
+    var img = d.querySelector(".os-kl img"); d._logo = (c && c.logo) || "";
+    function lg() { img.hidden = !d._logo; if (d._logo) img.src = d._logo; }
+    lg();
+    d.querySelector('.os-kl input').addEventListener("change", function () {
+      var f = this.files && this.files[0]; this.value = ""; kicilt(f, 160, function (u) { d._logo = u; lg(); });
+    });
+    img.title = "Loqonu silmək üçün bas"; img.style.cursor = "pointer"; img.onclick = function () { d._logo = ""; lg(); };
     ["nomre", "ad", "bank"].forEach(function (n) { d.querySelector('[data-k="' + n + '"]').value = (c && c[n]) || ""; });
     d.querySelector("button").onclick = function () { d.remove(); $("os-kart-elave").hidden = q.children.length >= 6; };
     q.appendChild(d);
@@ -129,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $("os-kart-elave").addEventListener("click", function () { kartSetir({}); });
   function kartlariTop() {
     return [].map.call($("os-kartlar").children, function (d) {
-      var o = {}; ["nomre", "ad", "bank"].forEach(function (n) { o[n] = d.querySelector('[data-k="' + n + '"]').value.trim(); }); return o;
+      var o = {}; ["nomre", "ad", "bank"].forEach(function (n) { o[n] = d.querySelector('[data-k="' + n + '"]').value.trim(); }); o.logo = d._logo || ""; return o;
     }).filter(function (o) { return o.nomre; });
   }
   function waNomre(v) {
@@ -139,6 +161,12 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (d.length === 9) d = "994" + d;
     return d;
   }
+  function m10LogoCiz() { var i = $("os-logo-img"); i.hidden = !m10Logo; if (m10Logo) i.src = m10Logo; }
+  $("os-logo-fayl").addEventListener("change", function () {
+    var f = this.files && this.files[0]; this.value = "";
+    kicilt(f, 160, function (d) { m10Logo = d; m10LogoCiz(); });
+  });
+  $("os-logo-sil").onclick = function () { m10Logo = ""; m10LogoCiz(); };
   function qrCiz() { var i = $("os-qr-img"); i.hidden = !qr; if (qr) i.src = qr; }
   $("os-qr-fayl").addEventListener("change", function () {
     var f = this.files && this.files[0]; this.value = "";
@@ -159,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     var f = this, x = $("os-form-x"), p = {};
     ["m10_nomre", "m10_ad", "telimat"].forEach(function (n) { p[n] = f.elements[n].value; });
-    p.lemon_aktiv = f.elements.lemon_aktiv.checked; p.m10_qr = qr;
+    p.lemon_aktiv = f.elements.lemon_aktiv.checked; p.m10_qr = qr; p.m10_logo = m10Logo;
     p.kartlar = kartlariTop();
     for (var i = 0; i < p.kartlar.length; i++) {
       if (!/^[\d\s]{12,23}$/.test(p.kartlar[i].nomre)) { x.className = "pf-xeber xeta"; x.textContent = (i + 1) + "-ci kartın nömrəsi yalnız rəqəmlərdən (12–19) ibarət olmalıdır."; return; }
