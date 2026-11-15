@@ -466,3 +466,11 @@
     S.hazir().then(naviqasiyaQur);
   }
 })();
+
+/* Geri bildirim düyməsi bütün səhifələrdə (ayrıca fayl, eyni qovluqdan) */
+(function () {
+  if (window.__dtGeri || document.querySelector('script[data-geri]')) return;
+  var sc = document.createElement("script");
+  sc.src = "assets/geri.js?v=1"; sc.defer = true; sc.setAttribute("data-geri", "1");
+  document.head.appendChild(sc);
+})();
