@@ -1418,3 +1418,25 @@ html.ru-yukle body{visibility:hidden}
 .ru-qeyd{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;margin:0 auto;max-width:1120px;padding:10px 16px;font-size:.88rem;line-height:1.5;
   color:var(--ink-2);background:var(--brand-a);border-bottom:1px solid var(--line)}
 .ru-qeyd button{flex:none;border:0;background:transparent;color:var(--ink-2);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 4px}
+.zs-kartlar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:6px 0 18px}
+.zs-kart{background:var(--surface,#fff);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:2px}
+.zs-kart span{font-size:.8rem;color:var(--muted);font-weight:600}
+.zs-kart b{font-size:1.9rem;line-height:1.15;color:var(--ink);letter-spacing:-.02em}
+.zs-kart small{font-size:.76rem;color:var(--muted)}
+.zs-kart.vurgu{background:var(--brand-soft,#e6eeff);border-color:var(--brand)}.zs-kart.vurgu b{color:var(--brand)}
+.zs-blok{background:var(--surface,#fff);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:14px}
+.zs-blok h2{font-size:1rem;margin:0 0 12px}.zs-blok h2 small{font-weight:500;color:var(--muted)}
+.zs-qrafik{display:flex;align-items:flex-end;gap:6px;height:180px}
+.zs-sut{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;min-width:0}
+.zs-cubuq{flex:1;width:100%;position:relative;display:flex;align-items:flex-end}
+.zs-cubuq i{position:absolute;bottom:0;left:12%;right:12%;border-radius:5px 5px 0 0;min-height:2px}
+.zs-cubuq i.b{background:var(--brand-soft,#cfdcff)}.zs-cubuq i.z{background:var(--brand);left:28%;right:28%}
+.zs-sut b{font-size:.78rem}.zs-sut small{font-size:.66rem;color:var(--muted)}
+.zs-lg{display:inline-block;width:10px;height:10px;border-radius:3px;vertical-align:middle;margin-right:4px}.zs-lg.z{background:var(--brand)}.zs-lg.b{background:#cfdcff}
+.zs-iki{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+.zs-sira,.zs-pay{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr auto;gap:10px;align-items:center;padding:5px 0;font-size:.88rem}
+.zs-pay{grid-template-columns:auto 1fr auto;padding:9px 0}
+.zs-ad{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zs-zol{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}.zs-zol i{display:block;height:100%;background:var(--brand);border-radius:99px}
+@media (max-width:860px){.zs-kartlar{grid-template-columns:repeat(2,1fr)}.zs-iki{grid-template-columns:1fr}.zs-kart b{font-size:1.6rem}}
+@media (max-width:640px){.zs-sut small{font-size:.58rem;writing-mode:vertical-rl;transform:rotate(180deg)}.zs-qrafik{gap:3px}}

@@ -306,7 +306,8 @@
              '<a role="menuitem" href="kabinet.html#transkript">Transkript</a>' +
              '<a role="menuitem" href="kabinet.html#alislar">Alışlar</a>' +
              (sahibdir() ? '<a role="menuitem" href="odenis-sorgulari.html">Ödəniş sorğuları <span class="os-nisan" hidden></span></a>' +
-                           '<a role="menuitem" href="geri-bildirimler.html">Geri bildirimlər</a>' : '') +
+                           '<a role="menuitem" href="geri-bildirimler.html">Geri bildirimlər</a>' +
+                           '<a role="menuitem" href="statistika.html">Ziyarət statistikası</a>' : '') +
              '<button role="menuitem" type="button" class="na-cixis" id="nav-cixis">Çıxış</button>' +
            '</div></div>';
     } else if (S.aktiv) {
@@ -328,7 +329,8 @@
           '<a href="kabinet.html" class="nm-profil">' + S.avatar(S.profil, ad0()) +
           '<span>Profil</span></a>' +
           (sahibdir() ? '<a href="odenis-sorgulari.html" class="nm-adm">Ödəniş sorğuları <span class="os-nisan" hidden></span></a>' +
-                        '<a href="geri-bildirimler.html" class="nm-adm">Geri bildirimlər</a>' : '') +
+                        '<a href="geri-bildirimler.html" class="nm-adm">Geri bildirimlər</a>' +
+                        '<a href="statistika.html" class="nm-adm">Ziyarət statistikası</a>' : '') +
           '<button type="button" class="nm-cixis" id="nm-cixis">Çıxış</button>';
       } else if (S.aktiv) {
         alt.innerHTML = '<a href="giris.html" class="nm-giris">Giriş / Qeydiyyat</a>';
