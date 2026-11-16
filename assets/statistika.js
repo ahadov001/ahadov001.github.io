@@ -38,7 +38,25 @@ document.addEventListener("DOMContentLoaded", function () {
     $("zs-say").textContent = "İndi saytda " + (d.onlayn || 0) + " nəfər var · bu gün " + (d.bugun_ziyaretci || 0) + " ziyarətçi.";
     $("zs-hal").hidden = true; $("zs-govde").hidden = false;
   }
+  var Q = [];
+  function tar(t) { if (!t) return "—"; var d = new Date(t); return d.toLocaleDateString("az-AZ", { day: "2-digit", month: "2-digit", year: "numeric" }) + " " + d.toLocaleTimeString("az-AZ", { hour: "2-digit", minute: "2-digit" }); }
+  function qciz() {
+    var a = ($("zs-axtar").value || "").toLowerCase().trim();
+    var L = Q.filter(function (x) { return !a || ((x.ad || "") + " " + (x.email || "")).toLowerCase().indexOf(a) >= 0; });
+    $("zs-qeyd").innerHTML = L.length ? L.map(function (x, i) {
+      return '<div class="zs-qs"><span class="zs-qn">' + (Q.length - Q.indexOf(x)) + '</span><span class="zs-qa"><b>' + k(x.ad || "(adsız)") + '</b><small>' + k(x.email || "") + '</small></span>' +
+        '<span class="zs-qt"><small>Qeydiyyat</small>' + k(tar(x.t)) + '</span><span class="zs-qt"><small>Son giriş</small>' + k(tar(x.son)) + '</span>' +
+        '<span class="zs-qb">' + k(S.qepik(x.balans || 0)) + '</span></div>';
+    }).join("") : '<p class="xirda">Heç kim tapılmadı.</p>';
+  }
+  function qyukle() {
+    return S._sb.rpc("adm_qeydiyyatlar").then(function (r) {
+      if (r.error || !r.data) return;
+      Q = r.data.siyahi || []; $("zs-qsay").textContent = "(cəmi " + (r.data.say || Q.length) + ")"; qciz();
+    });
+  }
   function yukle() {
+    qyukle();
     return S._sb.rpc("adm_ziyaret_statistika").then(function (r) {
       if (r.error) { hal("Bu səhifə yalnız sayt sahibinin hesabı üçündür.", ["index.html", "Ana səhifə"]); return; }
       try { localStorage.setItem("dt_noz", "1"); } catch (e) {}
@@ -50,5 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!S.istifadeci) { hal("Statistikanı görmək üçün sayt sahibi hesabı ilə daxil olun.", ["giris.html", "Daxil ol"]); return; }
     yukle(); setInterval(function () { if (document.visibilityState === "visible") yukle(); }, 30000);
     $("zs-yenile").addEventListener("click", yukle);
+    $("zs-axtar").addEventListener("input", qciz);
   });
 });
