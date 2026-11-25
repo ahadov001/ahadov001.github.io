@@ -13,6 +13,8 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 // Paddle price ID → qəpik (200 = 2 AZN)
 const PAKETLER: Record<string, number> = {
   "pri_01m88qcmvvcbnneaam201r392v": 200,   //  2 AZN  ($1.20)
+  "pri_01m88wcjnvp4m67126jfnak697": 1500,  // 15 AZN ($9)
+  "pri_01m88wd2e8bp3g8mbcakjw5n8w": 2500,  // 25 AZN ($15)
   "pri_01m88qdd33wmgcpzq475t87be5": 500,   //  5 AZN  ($3)
   "pri_01m88qdfxzxg1b6kjt60k5nbk6": 1000,  // 10 AZN  ($6)
   "pri_01m88qdk5xa70vmw0hxs5ee21e": 2000,  // 20 AZN  ($12)
