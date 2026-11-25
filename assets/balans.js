@@ -92,9 +92,10 @@ var basla = function () {
     /* Onlayn ödəniş aktivdirsə: yalnız paket seçilir, klikdən sonra ödəniş pəncərəsi avtomatik açılır */
     if (lemonVar()) {
       birbasa = true;
-      el("b-bas2").classList.add("gizli"); el("b-usullar").classList.add("gizli");
-      el("b-davam").classList.add("gizli"); el("b-nece").classList.add("gizli");
-      el("b-lead").textContent = "Məbləği seç — təhlükəsiz ödəniş pəncərəsi avtomatik açılacaq. Ödənişdən dərhal sonra məbləğ balansına yazılır, səni saytın özünə qaytarırıq.";
+      ["b-bas2", "b-usullar", "b-davam", "b-nece"].forEach(function (i) { var x = el(i); if (x) x.classList.add("gizli"); });
+      /* köhnə keşlənmiş HTML üçün: 2-ci başlıq və açıqlama siyahısını mətnə görə də gizlət */
+      [].forEach.call(document.querySelectorAll("h2.b-bas, ol.b-nece"), function (x) { if (!/Məbləği seç/.test(x.textContent) || x.tagName === "OL") { if (x.tagName === "OL" || /Ödəniş yolunu/.test(x.textContent)) x.classList.add("gizli"); } });
+      if (el("b-lead")) el("b-lead").textContent = "Məbləği seç — təhlükəsiz ödəniş pəncərəsi avtomatik açılacaq. Ödənişdən dərhal sonra məbləğ balansına yazılır, səni saytın özünə qaytarırıq.";
       paketCiz();
       sorguCiz();
       return;
@@ -236,7 +237,7 @@ var basla = function () {
   /* ödənişdən sonra: balans artana qədər gözlə, sonra kabinetə yönləndir */
   function odenisSonrasi() {
     el("b-sec").classList.add("gizli");
-    el("b-lead").textContent = "Ödənişin alındı. Balansın yenilənir…";
+    if (el("b-lead")) el("b-lead").textContent = "Ödənişin alındı. Balansın yenilənir…";
     var evvel = parseInt(baza(), 10), say = 0;
     el("b-xeber").className = "notice ok";
     el("b-xeber").innerHTML = "<b>Ödəniş qəbul olundu.</b> Balansın avtomatik yenilənir, bir neçə saniyə gözlə…";
