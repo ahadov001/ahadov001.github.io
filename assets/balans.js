@@ -1,7 +1,7 @@
 (function () {
 var basla = function () {
 /* Balans artırma — M10 / bank kartı ilə köçürmə, admin təsdiqi ilə.
-   (Lemon Squeezy sahib tərəfindən aktiv ediləndə onlayn ödəniş də görünür.) */
+   (Paddle ilə onlayn ödəniş sahib tərəfindən aktiv ediləndə görünür; balans avtomatik artır.) */
 (function () {
   "use strict";
   var S = window.Sinaq;
@@ -55,7 +55,7 @@ var basla = function () {
     var l = waLink(s); if (!l) return "";
     return '<a class="btn wa ' + (sinif || "") + '" href="' + l + '" target="_blank" rel="noopener">' + IK.wa + ' Çeki WhatsApp-da göndər</a>';
   }
-  function lemonVar() { return !!M.lemon_aktiv && P.some(function (p) { return (p.link || "").indexOf("http") === 0; }); }
+  function lemonVar() { return !!M.lemon_aktiv && !!(window.PADDLE_CFG && window.PADDLE_CFG.token) && P.some(function (p) { return (p.price || "").indexOf("pri_") === 0; }); }
 
   function cariCiz() {
     el("b-cari").innerHTML =
@@ -144,7 +144,7 @@ var basla = function () {
     (M.kartlar || []).forEach(function (c, i) {
       USULLAR.push({ id: "kart:" + i, usul: "kart", kart: i, ad: (c.bank || "Bank") + " kartı", alt: "Kart ••" + String(c.nomre).slice(-4) + " · kartdan karta köçürmə", nisan: nisan(c.bank, c.logo), logo: !!c.logo });
     });
-    if (lemonVar()) USULLAR.push({ id: "lemon", usul: "lemon", kart: null, ad: "Onlayn kartla", alt: "Visa / Mastercard — avtomatik yazılır", nisan: '<span class="bu-ik2">' + IK.lemon + '</span>', logo: false });
+    if (lemonVar()) USULLAR.push({ id: "lemon", usul: "lemon", kart: null, ad: "Onlayn kartla", alt: "Visa / Mastercard / Apple Pay — avtomatik yazılır", nisan: '<span class="bu-ik2">' + IK.lemon + '</span>', logo: false });
     el("b-usullar").innerHTML = USULLAR.map(function (x) {
       return '<button type="button" class="b-usul v2" data-u="' + x.id + '" aria-pressed="false">' +
         '<span class="bu-logo' + (x.logo ? " has" : "") + '">' + x.nisan + '</span><span class="bu-metn"><b>' + k(x.ad) + '</b><small>' + k(x.alt) + '</small></span>' +
@@ -196,14 +196,50 @@ var basla = function () {
     });
   }
 
+  var paddleHazir = null;
+  function paddleYukle() {
+    if (paddleHazir) return paddleHazir;
+    paddleHazir = new Promise(function (ok, xeta) {
+      var yuk = function () {
+        try {
+          var C = window.PADDLE_CFG || {};
+          if (C.env === "sandbox") window.Paddle.Environment.set("sandbox");
+          window.Paddle.Initialize({ token: C.token, eventCallback: paddleHadise });
+          ok(window.Paddle);
+        } catch (e) { xeta(e); }
+      };
+      if (window.Paddle) { yuk(); return; }
+      var sc = document.createElement("script");
+      sc.src = "https://cdn.paddle.com/paddle/v2/paddle.js"; sc.onload = yuk;
+      sc.onerror = function () { paddleHazir = null; xeta(new Error("yuklenmedi")); };
+      document.head.appendChild(sc);
+    });
+    return paddleHazir;
+  }
+  function paddleHadise(e) {
+    if (!e || e.name !== "checkout.completed") return;
+    xeber("<b>Ödəniş qəbul olundu.</b> Balansın bir neçə saniyəyə avtomatik yenilənəcək…", "ok");
+    var evvel = S.balans(), say = 0;
+    (function yoxla() {
+      S.yenile().then(function () {
+        cariCiz();
+        if (S.balans() > evvel) { xeber("<b>Balans artırıldı!</b> Cari balans: <b>" + azn(S.balans()) + "</b>.", "ok"); return; }
+        if (++say < 30) setTimeout(yoxla, 2000);
+        else xeber("Ödənişin alındı, balans bir neçə dəqiqə ərzində yenilənəcək. Yenilənməsə dəstəyə yaz.", "ok");
+      });
+    })();
+  }
   function lemonAc() {
     var p = P.filter(function (x) { return x.mebleg === secMebleg; })[0];
-    if (!p || (p.link || "").indexOf("http") !== 0) { xeber("Bu məbləğ üçün onlayn ödəniş hazır deyil.", "xeta"); return; }
-    var link = p.link + (p.link.indexOf("?") > -1 ? "&" : "?") +
-      "checkout[custom][uid]=" + encodeURIComponent(S.istifadeci.id) +
-      "&checkout[email]=" + encodeURIComponent(S.istifadeci.email) +
-      "&checkout[billing_address][country]=AZ";
-    window.open(link, "_blank", "noopener");
+    if (!p || (p.price || "").indexOf("pri_") !== 0) { xeber("Bu məbləğ üçün onlayn ödəniş hazır deyil.", "xeta"); return; }
+    paddleYukle().then(function (Pd) {
+      Pd.Checkout.open({
+        items: [{ priceId: p.price, quantity: 1 }],
+        customData: { uid: S.istifadeci.id },
+        customer: { email: S.istifadeci.email },
+        settings: { displayMode: "overlay", theme: "light", locale: "en", variant: "one-page" }
+      });
+    }).catch(function () { xeber("Ödəniş pəncərəsi açılmadı. İnterneti yoxla və yenidən cəhd et.", "xeta"); });
   }
 
   /* ---------- ödəniş ekranı ---------- */

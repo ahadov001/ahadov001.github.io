@@ -1,23 +1,16 @@
-/* ═══════════════════════════════════════════════════════════════
-   BALANS PAKETLƏRİ — 8 balans paketi: 2, 5, 10, 15, 20, 25, 30, 50 AZN.
-   (Lemon linki yalnız onlayn ödəniş aktiv olanda istifadə olunur;
-   15 və 25 AZN üçün link hələ yoxdur.)
-
-   Hər paketdə yalnız  link  sahəsini doldurun:
-   Lemon Squeezy → məhsul → Share → "Buy link" linkini dırnaqların
-   arasına yapışdırın.
-
-   mebleg — qəpiklə. 200 = 2 AZN. (Bu rəqəm yalnız sayt görünüşü
-   üçündür; balansa həqiqətən yazılan məbləği webhook funksiyası
-   variant ID-yə görə təyin edir.)
-   ═══════════════════════════════════════════════════════════════ */
+/* BALANS PAKETLƏRİ — 2, 5, 10, 15, 20, 25, 30, 50 AZN.
+   price — Paddle price ID (onlayn ödəniş). 15 və 25 AZN üçün Paddle-də qiymət
+   yaradılmayıb, ona görə yalnız M10/kart köçürməsi ilə mümkündür.
+   mebleg — qəpiklə (200 = 2 AZN). Balansa real yazılan məbləği webhook
+   funksiyası (supabase/functions/paddle-webhook) price ID-yə görə təyin edir. */
+window.PADDLE_CFG = { token: "live_42d82ab3c164832d3027dda8c32", env: "production" };
 window.BALANS_PAKETLERI = [
-  { mebleg:  200, link: "https://testtoplusu.lemonsqueezy.com/checkout/buy/a679df0d-8fbe-4c11-b474-27431b0135d0" },
-  { mebleg:  500, link: "https://testtoplusu.lemonsqueezy.com/checkout/buy/d39b6b87-9d62-45e7-afdd-b26739267f49" },
-  { mebleg: 1000, link: "https://testtoplusu.lemonsqueezy.com/checkout/buy/e2600378-3f57-4821-8cf2-f2f11c51d07d", secilen: true },
-  { mebleg: 1500, link: "" },
-  { mebleg: 2000, link: "https://testtoplusu.lemonsqueezy.com/checkout/buy/c5dfed82-112e-41c8-8ffe-b3db453f3e78" },
-  { mebleg: 2500, link: "" },
-  { mebleg: 3000, link: "https://testtoplusu.lemonsqueezy.com/checkout/buy/6c3301ef-6aad-46c0-9eeb-95f1d4921cf6" },
-  { mebleg: 5000, link: "https://testtoplusu.lemonsqueezy.com/checkout/buy/ff279ec9-19e5-4840-8564-32ad58c68ffc" }
+  { mebleg:  200, price: "pri_01m88qcmvvcbnneaam201r392v" },
+  { mebleg:  500, price: "pri_01m88qdd33wmgcpzq475t87be5" },
+  { mebleg: 1000, price: "pri_01m88qdfxzxg1b6kjt60k5nbk6", secilen: true },
+  { mebleg: 1500, price: "" },
+  { mebleg: 2000, price: "pri_01m88qdk5xa70vmw0hxs5ee21e" },
+  { mebleg: 2500, price: "" },
+  { mebleg: 3000, price: "pri_01m88qdpd86fn96ksywaw6w2c2" },
+  { mebleg: 5000, price: "pri_01m88qdsn67s4n4r5qe1tx035h" }
 ];
