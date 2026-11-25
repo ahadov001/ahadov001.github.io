@@ -20,7 +20,7 @@ var basla = function () {
   }
 
   var M = {};            /* ödəniş məlumatları (sahibin doldurduğu) */
-  var secMebleg = null, secUsul = null, sorgular = [], izleId = null;
+  var secMebleg = null, secUsul = null, sorgular = [], izleId = null, birbasa = false;
 
   var IK = {
     m10: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.8" width="11" height="18.4" rx="2.6"/><path d="M10.5 17.6h3"/><path d="M9 8.5h6M9 11.5h4"/></svg>',
@@ -67,6 +67,7 @@ var basla = function () {
 
   function qur() {
     cariCiz();
+    if (new URLSearchParams(location.search).get("odenis") === "ok") { odenisSonrasi(); return; }
 
     /* Hansı xidmət üçün gəlib? */
     var lazim = new URLSearchParams(location.search).get("lazim");
@@ -88,6 +89,16 @@ var basla = function () {
       return;
     }
 
+    /* Onlayn ödəniş aktivdirsə: yalnız paket seçilir, klikdən sonra ödəniş pəncərəsi avtomatik açılır */
+    if (lemonVar()) {
+      birbasa = true;
+      el("b-bas2").classList.add("gizli"); el("b-usullar").classList.add("gizli");
+      el("b-davam").classList.add("gizli"); el("b-nece").classList.add("gizli");
+      el("b-lead").textContent = "Məbləği seç — təhlükəsiz ödəniş pəncərəsi avtomatik açılacaq. Ödənişdən dərhal sonra məbləğ balansına yazılır, səni saytın özünə qaytarırıq.";
+      paketCiz();
+      sorguCiz();
+      return;
+    }
     paketCiz();
     usulCiz();
     el("b-davam").addEventListener("click", davam);
@@ -113,6 +124,7 @@ var basla = function () {
         x.classList.toggle("secilen", x === b);
         x.setAttribute("aria-pressed", x === b ? "true" : "false");
       });
+      if (birbasa) { lemonAc(); return; }
       yoxla();
     });
     /* xidmət üçün çatmayan məbləğ varsa, onu ödəyən ən kiçik paketi əvvəlcədən seç */
@@ -124,7 +136,7 @@ var basla = function () {
         if (c <= 0) return;
         var u = P.filter(function (p) { return p.mebleg >= c; })[0] || P[P.length - 1];
         var b = u && el("b-paketler").querySelector('.bkart[data-m="' + u.mebleg + '"]');
-        if (b) b.click();
+        if (b) { if (birbasa) { b.classList.add("secilen"); b.setAttribute("aria-pressed","true"); secMebleg = u.mebleg; } else b.click(); }
       });
     }
   }
@@ -216,28 +228,42 @@ var basla = function () {
     });
     return paddleHazir;
   }
+  function baza(v) { try { if (v === undefined) return sessionStorage.getItem("bal_evvel"); sessionStorage.setItem("bal_evvel", String(v)); } catch (e) { return null; } }
   function paddleHadise(e) {
     if (!e || e.name !== "checkout.completed") return;
-    xeber("<b>Ödəniş qəbul olundu.</b> Balansın bir neçə saniyəyə avtomatik yenilənəcək…", "ok");
-    var evvel = S.balans(), say = 0;
+    location.href = "balans.html?odenis=ok";
+  }
+  /* ödənişdən sonra: balans artana qədər gözlə, sonra kabinetə yönləndir */
+  function odenisSonrasi() {
+    el("b-sec").classList.add("gizli");
+    el("b-lead").textContent = "Ödənişin alındı. Balansın yenilənir…";
+    var evvel = parseInt(baza(), 10), say = 0;
+    el("b-xeber").className = "notice ok";
+    el("b-xeber").innerHTML = "<b>Ödəniş qəbul olundu.</b> Balansın avtomatik yenilənir, bir neçə saniyə gözlə…";
+    function bitir(metn) {
+      el("b-xeber").innerHTML = metn + " Səni kabinetə yönləndiririk…";
+      setTimeout(function () { location.href = "kabinet.html"; }, 2500);
+    }
     (function yoxla() {
       S.yenile().then(function () {
         cariCiz();
-        if (S.balans() > evvel) { xeber("<b>Balans artırıldı!</b> Cari balans: <b>" + azn(S.balans()) + "</b>.", "ok"); return; }
-        if (++say < 30) setTimeout(yoxla, 2000);
-        else xeber("Ödənişin alındı, balans bir neçə dəqiqə ərzində yenilənəcək. Yenilənməsə dəstəyə yaz.", "ok");
-      });
+        if (!isNaN(evvel) && S.balans() > evvel) { bitir("<b>Balans artırıldı!</b> Cari balans: <b>" + azn(S.balans()) + "</b>."); return; }
+        if (++say < 25) setTimeout(yoxla, 2000);
+        else bitir("Ödənişin alındı, balans bir neçə dəqiqə ərzində yenilənəcək. Yenilənməsə dəstəyə yaz.");
+      }, function () { if (++say < 25) setTimeout(yoxla, 2000); });
     })();
   }
   function lemonAc() {
     var p = P.filter(function (x) { return x.mebleg === secMebleg; })[0];
     if (!p || (p.price || "").indexOf("pri_") !== 0) { xeber("Bu məbləğ üçün onlayn ödəniş hazır deyil.", "xeta"); return; }
+    baza(S.balans());
     paddleYukle().then(function (Pd) {
       Pd.Checkout.open({
         items: [{ priceId: p.price, quantity: 1 }],
         customData: { uid: S.istifadeci.id },
         customer: { email: S.istifadeci.email },
-        settings: { displayMode: "overlay", theme: "light", locale: "en", variant: "one-page" }
+        settings: { displayMode: "overlay", theme: "light", locale: "en", variant: "one-page",
+                    successUrl: location.origin + "/balans.html?odenis=ok" }
       });
     }).catch(function () { xeber("Ödəniş pəncərəsi açılmadı. İnterneti yoxla və yenidən cəhd et.", "xeta"); });
   }
